@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.3",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "updatedAt": "2026-10-13T23:52:33.701Z",
-  "notes": "Bug fixes, performance improvements, and Messenger integration enhancements"
+  "updatedAt": "2026-10-14T09:15:08.312Z",
+  "notes": "Fix customer chat sending and add version tracker below logout button"
 }
