@@ -1,7 +1,7 @@
 {
   "version": "1.0.8",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "30d2988b1fbb4c9d24c783f70ad989d13d59c9d4e67d3d60248bee91995ff5cb",
-  "updatedAt": "2026-10-17T23:54:15.230Z",
+  "checksum": "a109a6b02bd9a45d61df2e5eb6023fb65fb43ed08811e1eebf7678294da4fccf",
+  "updatedAt": "2026-10-17T23:58:24.532Z",
   "notes": "Latest chat, customer name fixes, roster safeguards, and smart cart updates"
 }
