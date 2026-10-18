@@ -1,7 +1,8 @@
 {
-  "version": "1.0.8",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "a109a6b02bd9a45d61df2e5eb6023fb65fb43ed08811e1eebf7678294da4fccf",
-  "updatedAt": "2026-10-17T23:58:24.532Z",
-  "notes": "Latest chat, customer name fixes, roster safeguards, and smart cart updates"
+  "version": "1.0.9",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.9.zip",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
+  "checksum": "a04c4eb6feab28922552455c793cfe3c0c32e0ca6d55d75df376003266216791",
+  "updatedAt": "2026-10-18T00:26:35.226Z",
+  "notes": "Eliminate chat thread message lag using granular child listeners and instant feed sync"
 }
