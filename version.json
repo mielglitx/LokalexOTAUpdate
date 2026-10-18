@@ -1,8 +1,8 @@
 {
-  "version": "1.0.10",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.10.zip",
+  "version": "1.0.11",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.11.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "c933ea4f866f3ded26d045cb86cfca89108cc34fc4432a189fe6e2b232e8ee6b",
-  "updatedAt": "2026-10-18T00:40:50.495Z",
-  "notes": "Feature: Send store menu to customer chat and sequential auto-overwrite gallery download"
+  "checksum": "3be16a33258b4a56f91e1a52d046068d6ca2b127e425666c118a6fd6b4054a99",
+  "updatedAt": "2026-10-18T02:03:00.753Z",
+  "notes": "Fix: Send store menu pictures one at a time with recipient ID resolution and pacing"
 }
