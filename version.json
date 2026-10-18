@@ -1,8 +1,8 @@
 {
-  "version": "1.0.9",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.9.zip",
+  "version": "1.0.10",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.10.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "a04c4eb6feab28922552455c793cfe3c0c32e0ca6d55d75df376003266216791",
-  "updatedAt": "2026-10-18T00:26:35.226Z",
-  "notes": "Eliminate chat thread message lag using granular child listeners and instant feed sync"
+  "checksum": "c933ea4f866f3ded26d045cb86cfca89108cc34fc4432a189fe6e2b232e8ee6b",
+  "updatedAt": "2026-10-18T00:40:50.495Z",
+  "notes": "Feature: Send store menu to customer chat and sequential auto-overwrite gallery download"
 }
