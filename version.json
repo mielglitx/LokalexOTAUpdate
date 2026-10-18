@@ -1,8 +1,8 @@
 {
-  "version": "1.0.19",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.19.zip",
+  "version": "1.0.20",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.20.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "8730c137e329efe6d1ca5e3739163775ead8e76c5336188c781f0ec8e0a43a98",
-  "updatedAt": "2026-10-18T22:58:19.281Z",
-  "notes": "v1.0.19: Fix applicant tagging retention and prevent clear inbox threads from resurrecting during Facebook sync"
+  "checksum": "0fe5a49e925b18679b51c63468b15afc95e4af7ed173a383c6840cd137d20345",
+  "updatedAt": "2026-10-18T23:22:29.243Z",
+  "notes": "v1.0.20: Fix admin customer renaming on active catering roster and chat"
 }
