@@ -1,8 +1,8 @@
 {
-  "version": "1.0.20",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.20.zip",
+  "version": "1.0.21",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.21.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "0fe5a49e925b18679b51c63468b15afc95e4af7ed173a383c6840cd137d20345",
-  "updatedAt": "2026-10-18T23:22:29.243Z",
-  "notes": "v1.0.20: Fix admin customer renaming on active catering roster and chat"
+  "checksum": "2d213052e5919e31a30422008e134294d745436ab00860c3388e9f8068883d98",
+  "updatedAt": "2026-10-18T23:45:23.015Z",
+  "notes": "v1.0.21: Keep Firebase WebSocket and background notifications active when minimized"
 }
