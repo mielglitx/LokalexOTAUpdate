@@ -1,8 +1,8 @@
 {
-  "version": "1.0.21",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.21.zip",
+  "version": "1.0.22",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.22.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "2d213052e5919e31a30422008e134294d745436ab00860c3388e9f8068883d98",
-  "updatedAt": "2026-10-18T23:45:23.015Z",
-  "notes": "v1.0.21: Keep Firebase WebSocket and background notifications active when minimized"
+  "checksum": "62967148fb5fa0258e005a5f51038c3a7fd08f645cf26bccbab1340043141711",
+  "updatedAt": "2026-10-18T23:54:55.229Z",
+  "notes": "v1.0.22: Add back Follow Up button and advance order workflow to chat modal"
 }
