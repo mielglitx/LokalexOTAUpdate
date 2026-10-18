@@ -1,8 +1,8 @@
 {
-  "version": "1.0.15",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.15.zip",
+  "version": "1.0.16",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.16.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e3d9b39eacb202ffe15c5694229c31e7e5280fdaa8e9ff6f6b449b88b71530c5",
-  "updatedAt": "2026-10-18T04:56:39.320Z",
-  "notes": "Bug fixes, performance improvements, and Messenger integration enhancements"
+  "checksum": "daa8a5d814b61a984dbf7d4f13df04d384abb58e7148fa25be14ce9eb96ed3d2",
+  "updatedAt": "2026-10-18T05:24:23.651Z",
+  "notes": "Fix roster rubber-banding on customer void, authoritative RTDB propagation, rider cart slot and GPS auto-cleanup, and chat folder guards"
 }
