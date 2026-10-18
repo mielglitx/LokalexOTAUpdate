@@ -1,8 +1,8 @@
 {
-  "version": "1.0.11",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.11.zip",
+  "version": "1.0.12",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.12.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "3be16a33258b4a56f91e1a52d046068d6ca2b127e425666c118a6fd6b4054a99",
-  "updatedAt": "2026-10-18T02:03:00.753Z",
-  "notes": "Fix: Send store menu pictures one at a time with recipient ID resolution and pacing"
+  "checksum": "1a2befd0e712a1c86b5f29a0103eb1f2c4fe6effaccb6a29542ad682b02a714c",
+  "updatedAt": "2026-10-18T04:25:43.329Z",
+  "notes": "Bug fixes, performance improvements, and Messenger integration enhancements"
 }
