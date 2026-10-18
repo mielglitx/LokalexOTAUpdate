@@ -1,8 +1,8 @@
 {
-  "version": "1.0.17",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.17.zip",
+  "version": "1.0.18",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.18.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e053561e137f4e42bfefeea358048664d11819c467fe30dd84cbfb0154eafbc2",
-  "updatedAt": "2026-10-18T22:36:11.975Z",
-  "notes": "v1.0.17: Clear Inbox fix, failed message dimming with retry, menu last page notice, Facebook Page folder sync (Done & Spam), spam auto-reply prevention, Applicant folder and Applicant thread tagging"
+  "checksum": "8b8564ba4588cc20b1a1413ed42974ad18061f2c9a136849b09a99ac08f5e3a3",
+  "updatedAt": "2026-10-18T22:48:31.527Z",
+  "notes": "v1.0.18: Per-thread typing draft persistence, safe background message sending across threads, and catered customer renaming fix"
 }
