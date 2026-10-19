@@ -1,8 +1,8 @@
 {
-  "version": "1.0.24",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.24.zip",
+  "version": "1.0.25",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.25.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e150a4c25e333e5ad1c8e5d0e549eca750f220a71a112c70bc5d9433e5c8ca98",
-  "updatedAt": "2026-10-19T00:43:50.306Z",
-  "notes": "v1.0.24: Preload Facebook APIs, direct REST fallback for attachment resolution, and auto-recovery on image error"
+  "checksum": "4c88ebe4950c2d2cc96de4ca6946005bae08708eb6924e5e9fc70f99b0f23678",
+  "updatedAt": "2026-10-19T01:30:30.542Z",
+  "notes": "Support non-image document upload/download and clickable links with native app intents"
 }
