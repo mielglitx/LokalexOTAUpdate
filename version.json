@@ -1,8 +1,8 @@
 {
-  "version": "1.0.25",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.25.zip",
+  "version": "1.0.26",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.26.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "4c88ebe4950c2d2cc96de4ca6946005bae08708eb6924e5e9fc70f99b0f23678",
-  "updatedAt": "2026-10-19T01:30:30.542Z",
-  "notes": "Support non-image document upload/download and clickable links with native app intents"
+  "checksum": "1f6c4ccb5f8a3da62ed65859ab0304a0a193ebf41f5cf6c2ee227c79ec939a57",
+  "updatedAt": "2026-10-19T02:55:13.556Z",
+  "notes": "Fix cross-customer name collisions and chat catering targeting"
 }
