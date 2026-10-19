@@ -1,8 +1,8 @@
 {
-  "version": "1.0.28",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.28.zip",
+  "version": "1.0.29",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.29.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "86579054e3a3ceb9dba0ccd05a2770515241d47bd219bf9b9f423158fe2b17d1",
-  "updatedAt": "2026-10-19T11:08:02.418Z",
-  "notes": "Fix idle crash caused by background service flooding and location FGS restrictions"
+  "checksum": "e5a31f523c34a576c88bc9d595af08e41bd7f567115a3e07dffc98578eea3d24",
+  "updatedAt": "2026-10-19T22:54:03.262Z",
+  "notes": "Add OTA version selector and rollback engine, clean unused code"
 }
