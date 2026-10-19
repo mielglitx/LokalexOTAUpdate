@@ -1,8 +1,8 @@
 {
-  "version": "1.0.23",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.23.zip",
+  "version": "1.0.24",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.24.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "c9f55fa9651cb7c9e09c533dd4ddc19f63cc5981a7a789b30dbc495f51f17dfc",
-  "updatedAt": "2026-10-19T00:27:05.407Z",
-  "notes": "v1.0.23: Instant customer chat photo loading, parallel Graph API resolution, and persistent caching"
+  "checksum": "e150a4c25e333e5ad1c8e5d0e549eca750f220a71a112c70bc5d9433e5c8ca98",
+  "updatedAt": "2026-10-19T00:43:50.306Z",
+  "notes": "v1.0.24: Preload Facebook APIs, direct REST fallback for attachment resolution, and auto-recovery on image error"
 }
