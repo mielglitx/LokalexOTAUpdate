@@ -1,8 +1,8 @@
 {
-  "version": "1.0.29",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.29.zip",
+  "version": "1.0.30",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.30.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e5a31f523c34a576c88bc9d595af08e41bd7f567115a3e07dffc98578eea3d24",
-  "updatedAt": "2026-10-19T22:54:03.262Z",
-  "notes": "Add OTA version selector and rollback engine, clean unused code"
+  "checksum": "6246696ddd3911454d6a1eeafec47657dd427599be7429e070e51035db3e5536",
+  "updatedAt": "2026-10-19T23:03:22.532Z",
+  "notes": "Fix chat thread new message not appearing on initial open until reopened"
 }
