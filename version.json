@@ -1,8 +1,8 @@
 {
-  "version": "1.0.27",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.27.zip",
+  "version": "1.0.28",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.28.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "d43f1f243719f03edb4bf6308526000c18ff256edb28e1206bb725744f525b66",
-  "updatedAt": "2026-10-19T07:10:48.391Z",
-  "notes": "Fix silent background crash and prevent old chats from auto-resurrecting to inbox"
+  "checksum": "86579054e3a3ceb9dba0ccd05a2770515241d47bd219bf9b9f423158fe2b17d1",
+  "updatedAt": "2026-10-19T11:08:02.418Z",
+  "notes": "Fix idle crash caused by background service flooding and location FGS restrictions"
 }
