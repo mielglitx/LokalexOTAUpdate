@@ -1,8 +1,8 @@
 {
-  "version": "1.0.32",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.32.zip",
+  "version": "1.0.33",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.33.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "8f8a01df7ca0784217278285148346b58bd537a91355ebaf424118cebb879126",
-  "updatedAt": "2026-10-20T09:12:29.329Z",
-  "notes": "Fix receipt and chat image downloads to gallery"
+  "checksum": "526c21c3d24e84846d135e5b8db8e3f3020795045ad0a3d8f0a60dc5171a636a",
+  "updatedAt": "2026-10-20T23:20:03.471Z",
+  "notes": "Fix void/cancel actions, safeguard ordinary rider cancel with receipt, chat Done workflow, and active catered customer chat switcher"
 }
