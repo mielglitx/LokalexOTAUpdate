@@ -1,8 +1,8 @@
 {
-  "version": "1.0.30",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.30.zip",
+  "version": "1.0.31",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.31.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "6246696ddd3911454d6a1eeafec47657dd427599be7429e070e51035db3e5536",
-  "updatedAt": "2026-10-19T23:03:22.532Z",
-  "notes": "Fix chat thread new message not appearing on initial open until reopened"
+  "checksum": "8c74607557ceffca99253cae1f2a63a8e74b79a1eba71502f68c9862f0cc62f5",
+  "updatedAt": "2026-10-20T09:02:03.545Z",
+  "notes": "Fix startup lag, empty path error and real-time open chat replies"
 }
