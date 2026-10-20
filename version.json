@@ -1,8 +1,8 @@
 {
-  "version": "1.0.33",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.33.zip",
+  "version": "1.0.34",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.34.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "526c21c3d24e84846d135e5b8db8e3f3020795045ad0a3d8f0a60dc5171a636a",
-  "updatedAt": "2026-10-20T23:20:03.471Z",
-  "notes": "Fix void/cancel actions, safeguard ordinary rider cancel with receipt, chat Done workflow, and active catered customer chat switcher"
+  "checksum": "55130201961451f5f6a21ebf57ebb03361de43a77a115fab851776efd1b4bb80",
+  "updatedAt": "2026-10-20T23:46:27.134Z",
+  "notes": "Fix quick reply popup menu tap action, robust ID lookups and immediate cache display"
 }
