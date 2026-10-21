@@ -1,8 +1,8 @@
 {
-  "version": "1.0.35",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.35.zip",
+  "version": "1.0.36",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.36.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "8677e87c796ea5ed8eb1ff5dc2aadda63b0702464dbd23b5276340fa7497fc06",
-  "updatedAt": "2026-10-20T23:53:14.941Z",
-  "notes": "Fix retry failed chat status sync and clear failure flags"
+  "checksum": "892d55600038b618f7b902e1a9fe6a4322c0522d1b2e6e2c8b69e06bc130e8cd",
+  "updatedAt": "2026-10-21T00:01:14.201Z",
+  "notes": "Strictly limit chat opening to last 10 messages and fix older pagination query"
 }
