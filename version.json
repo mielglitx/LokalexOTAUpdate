@@ -1,8 +1,8 @@
 {
-  "version": "1.0.37",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.37.zip",
+  "version": "1.0.38",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.38.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "8dc0529b47e86f30c85dd1f4c7cf41a4f9a256bcbd96e4ce688d6926bdc41ad2",
-  "updatedAt": "2026-10-21T00:13:05.041Z",
-  "notes": "Block unauthenticated users and off-duty riders from catering customers"
+  "checksum": "2ef49c4e430fec71b97cb97835045102fee36bb53d8c411399593689fc3533da",
+  "updatedAt": "2026-10-21T00:26:01.119Z",
+  "notes": "Add customer seen indicator and floating mini avatar in rider chat"
 }
