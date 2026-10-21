@@ -1,8 +1,8 @@
 {
-  "version": "1.0.40",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.40.zip",
+  "version": "1.0.41",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.41.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "2b960c4f45d8c51d431541374ac119ca9b20e707206f11e7e0879a754ff7f5de",
-  "updatedAt": "2026-10-21T09:43:37.621Z",
-  "notes": "Fix background sleeping and native real-time chat sync when screen is off"
+  "checksum": "f22bff194c3fb7b9a4595480686c7e455ab8e290848303b0b7d08cb5f6dc24de",
+  "updatedAt": "2026-10-21T23:39:25.533Z",
+  "notes": "Low screen adaptation, bold receipt gcash, phone system chimes, unified login, remove security otp, and deleted account session revocation"
 }
