@@ -1,8 +1,8 @@
 {
-  "version": "1.0.41",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.41.zip",
+  "version": "1.0.42",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.42.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "f22bff194c3fb7b9a4595480686c7e455ab8e290848303b0b7d08cb5f6dc24de",
-  "updatedAt": "2026-10-21T23:39:25.533Z",
-  "notes": "Low screen adaptation, bold receipt gcash, phone system chimes, unified login, remove security otp, and deleted account session revocation"
+  "checksum": "892d1d4b67636c319dd364d7169de7ab32ab1d26fe3c0f5355fbecef57e9fd95",
+  "updatedAt": "2026-10-21T23:55:42.932Z",
+  "notes": "Permanent editing of quick replies entries and templates"
 }
