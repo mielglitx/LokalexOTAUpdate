@@ -1,8 +1,8 @@
 {
-  "version": "1.0.38",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.38.zip",
+  "version": "1.0.39",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.39.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "2ef49c4e430fec71b97cb97835045102fee36bb53d8c411399593689fc3533da",
-  "updatedAt": "2026-10-21T00:26:01.119Z",
-  "notes": "Add customer seen indicator and floating mini avatar in rider chat"
+  "checksum": "0ca6c19fcf3a1a41e042c461778f6f87f4fc0c5305e211412319aac1e064f86a",
+  "updatedAt": "2026-10-21T07:58:54.208Z",
+  "notes": "Fix admin void commission desync, chat sync timestamp ordering, catering roster card visibility, and low-RAM 3G/4G optimization"
 }
