@@ -1,8 +1,8 @@
 {
-  "version": "1.0.36",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.36.zip",
+  "version": "1.0.37",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.37.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "892d55600038b618f7b902e1a9fe6a4322c0522d1b2e6e2c8b69e06bc130e8cd",
-  "updatedAt": "2026-10-21T00:01:14.201Z",
-  "notes": "Strictly limit chat opening to last 10 messages and fix older pagination query"
+  "checksum": "8dc0529b47e86f30c85dd1f4c7cf41a4f9a256bcbd96e4ce688d6926bdc41ad2",
+  "updatedAt": "2026-10-21T00:13:05.041Z",
+  "notes": "Block unauthenticated users and off-duty riders from catering customers"
 }
