@@ -1,8 +1,8 @@
 {
-  "version": "1.0.39",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.39.zip",
+  "version": "1.0.40",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.40.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "0ca6c19fcf3a1a41e042c461778f6f87f4fc0c5305e211412319aac1e064f86a",
-  "updatedAt": "2026-10-21T07:58:54.208Z",
-  "notes": "Fix admin void commission desync, chat sync timestamp ordering, catering roster card visibility, and low-RAM 3G/4G optimization"
+  "checksum": "2b960c4f45d8c51d431541374ac119ca9b20e707206f11e7e0879a754ff7f5de",
+  "updatedAt": "2026-10-21T09:43:37.621Z",
+  "notes": "Fix background sleeping and native real-time chat sync when screen is off"
 }
