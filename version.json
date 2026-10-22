@@ -1,8 +1,8 @@
 {
-  "version": "1.0.51",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.51.zip",
+  "version": "1.0.52",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.52.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "80af4ea6c8412ad3424fa595f9f3949ac8605c55afb8e9a2c6030c7ef958a061",
-  "updatedAt": "2026-10-22T03:06:09.474Z",
-  "notes": "Fix views rendering underneath version, ensure completion records commission, and fix OTA rollback checksums"
+  "checksum": "e1cdd8548802297bf46388c47a4ed5c14d7b0599f64b313fc550e636c026ea8f",
+  "updatedAt": "2026-10-22T14:42:57.644Z",
+  "notes": "Per-folder unread reply badges, custom folder chimes and mute controls, code modularization"
 }
