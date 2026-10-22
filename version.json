@@ -1,8 +1,8 @@
 {
-  "version": "1.0.52",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.52.zip",
+  "version": "1.0.53",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.53.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e1cdd8548802297bf46388c47a4ed5c14d7b0599f64b313fc550e636c026ea8f",
-  "updatedAt": "2026-10-22T14:42:57.644Z",
-  "notes": "Per-folder unread reply badges, custom folder chimes and mute controls, code modularization"
+  "checksum": "e4f78ac3c7aef72a0377a1a38f650d680fa7efebdc473376996abe4adedd2fdf",
+  "updatedAt": "2026-10-22T23:52:58.770Z",
+  "notes": "Fix store menu camera scanner rendering behind store menu modal"
 }
