@@ -1,8 +1,8 @@
 {
-  "version": "1.0.43",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.43.zip",
+  "version": "1.0.44",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.44.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "6ac8ed29fb5842ecd36e247d4136e158bca6f0714d7825ac149769a1575475bb",
-  "updatedAt": "2026-10-22T00:07:34.156Z",
-  "notes": "Customer profile picture in chat thread and chat, removed name edit button, auto-capture rider location for new profile"
+  "checksum": "e23f264917035b272f6a592d78692a601fbdbef3699f832b6d0d108769038fce",
+  "updatedAt": "2026-10-22T00:13:50.361Z",
+  "notes": "Query all system ringtones and alarms, custom audio file picker chime"
 }
