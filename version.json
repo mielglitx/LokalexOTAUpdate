@@ -1,8 +1,8 @@
 {
-  "version": "1.0.44",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.44.zip",
+  "version": "1.0.45",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.45.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e23f264917035b272f6a592d78692a601fbdbef3699f832b6d0d108769038fce",
-  "updatedAt": "2026-10-22T00:13:50.361Z",
-  "notes": "Query all system ringtones and alarms, custom audio file picker chime"
+  "checksum": "d4380a021df61a60bf1dd03347cc09af6c0f430292234b0d0f85336a800b84e5",
+  "updatedAt": "2026-10-22T00:59:29.473Z",
+  "notes": "Facebook customer profile pictures synchronization and custom photo uploader"
 }
