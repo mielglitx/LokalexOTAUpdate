@@ -1,8 +1,8 @@
 {
-  "version": "1.0.53",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.53.zip",
+  "version": "1.0.54",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.54.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e4f78ac3c7aef72a0377a1a38f650d680fa7efebdc473376996abe4adedd2fdf",
-  "updatedAt": "2026-10-22T23:52:58.770Z",
-  "notes": "Fix store menu camera scanner rendering behind store menu modal"
+  "checksum": "3b5cc38935962b06c4d66e9f564b78bc9b95c6f41920f5412cdc1745f804d20e",
+  "updatedAt": "2026-10-24T15:57:55.551Z",
+  "notes": "Fix directory linking, force refresh buttons, video sharing, and roster fixes"
 }
