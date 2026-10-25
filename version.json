@@ -1,8 +1,8 @@
 {
-  "version": "1.0.54",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.54.zip",
+  "version": "1.0.55",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.55.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "3b5cc38935962b06c4d66e9f564b78bc9b95c6f41920f5412cdc1745f804d20e",
-  "updatedAt": "2026-10-24T15:57:55.551Z",
-  "notes": "Fix directory linking, force refresh buttons, video sharing, and roster fixes"
+  "checksum": "faf47b217738b3213361e4024c660d307c2cb6133fd51b356206c0774797cfa7",
+  "updatedAt": "2026-10-25T01:34:47.061Z",
+  "notes": "Camera auto-orientation & pinch zoom, real-time chat presence & typing indicators, catered chime isolation bug fix, GCash profile sync fix, and startup stability"
 }
