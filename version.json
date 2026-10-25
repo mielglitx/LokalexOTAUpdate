@@ -1,8 +1,8 @@
 {
-  "version": "1.0.55",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.55.zip",
+  "version": "1.0.56",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.56.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "faf47b217738b3213361e4024c660d307c2cb6133fd51b356206c0774797cfa7",
-  "updatedAt": "2026-10-25T01:34:47.061Z",
-  "notes": "Camera auto-orientation & pinch zoom, real-time chat presence & typing indicators, catered chime isolation bug fix, GCash profile sync fix, and startup stability"
+  "checksum": "9168e7a04a9a906eae334e101d88556fb2fe22ff145ae90aef2c98ff0ec0699a",
+  "updatedAt": "2026-10-25T07:41:43.887Z",
+  "notes": "Quick menu sending in chat with deduplication, in-app pre/post confirmations, accurate seen badge placement, base64 Messenger payload optimization, and full English localization"
 }
