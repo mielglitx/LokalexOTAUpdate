@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 1.0.60 (2026-10-25)
+
+### 1. Store Menu Camera: Hardware Gravity Sensor Auto-Orientation
+* **Physical Gravity Detection (`devicemotion`):** Added hardware gravity sensor monitoring (`accelerationIncludingGravity`) to automatically switch the camera between Portrait and Landscape orientation even when the phone's system Orientation Lock (portrait lock) is enabled.
+* **Orientation Lock Bypass:** Removed the premature screen orientation return that previously prevented accelerometer and gyroscope readings from being evaluated when the phone was locked in portrait.
+* **Jitter & Flat Surface Protection:** Added a hysteresis threshold (`|acc.x| > |acc.y| + 1.8`) to prevent rapid flipping when held at slight angles, and resting-flat detection (`|acc.z| > 8.2`) to maintain the current orientation when the phone is placed on a table.
+* **Direction-Aware Photo Rotation:** Integrated `lastDetectedAccX` and `tiltGamma` into `ensurePhotoOrientation` so wide landscape photos are rotated correctly before saving regardless of system lock status.
+
+### 2. Store Menu Camera: Clean Viewfinder (Overlay Removed)
+* **Framing Box & Corner Brackets Removed:** Removed the yellow document corner brackets, border lines, and center badge overlay from the camera viewfinder (`#menu-camera-viewfinder`) for a clean, unobstructed edge-to-edge view.
+* **Header Status Feedback:** Relocated orientation feedback cleanly into the top bar (`#menu-camera-orient-btn` and `#menu-camera-sub`), providing non-intrusive status cues without covering the camera view.
+
+### 3. In-App Change Log & Release Notes
+* **Change Log Display Below Version:** Added a dedicated "Change Log" button and expandable details view right below the app version tracker in the Home Dashboard, Profile Settings, and Version Selector modal.
+* **Dynamic Markdown Parser:** Renders the complete contents of `CHANGELOG.md` into formatted release notes cards with offline support and automatic GitHub synchronization.
+
 ## Version 1.0.59 (2026-10-25)
 
 ### 1. Store Menu Camera & Lightbox Stacking Context Fix
