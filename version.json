@@ -1,8 +1,8 @@
 {
-  "version": "1.0.57",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.57.zip",
+  "version": "1.0.58",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.58.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "cdcc1defcca6bce7b26271d50631adde78d1a514639cc62f99fe46a401f384a6",
-  "updatedAt": "2026-10-25T08:29:16.107Z",
-  "notes": "Release v1.0.57: Delivery fare rates chat quick-send, directory auto-fill suggestive inputs, and rider profile photo fixes"
+  "checksum": "3a65d8f49209d07b3b68e57c3b4a23175ea143c717875e2cb9e1ff63eaeea1d2",
+  "updatedAt": "2026-10-25T10:43:49.474Z",
+  "notes": "Release v1.0.58: Commission Page admin rider isolation fix, public GitHub Pages domain links, external Chrome browser breakout, and auto location permission"
 }

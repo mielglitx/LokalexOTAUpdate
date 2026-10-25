@@ -1,5 +1,20 @@
 # Lokalex App Release Notes
 
+## Version 1.0.58 (2026-10-25)
+
+### 1. Commission Page: Admin Rider Isolation & Report Fix
+* **Admin Rider Filter Isolation Fix:** Fixed the issue where isolating a single rider from the admin dropdown (`#admin-rider-select`) displayed a blank ledger with 0 records. Implemented `checkRiderFilterMatch` to accurately reconcile rider display names with numeric Telegram IDs and roster records across the commission calculation engine.
+* **Daily Report Text Isolation:** Corrected rider isolation in the exportable Daily Summary Report text (`generateDailyReportText`), ensuring isolated rider breakdowns compute gross totals, rider shares, and company fees properly.
+* **Settlement Status Protection:** Prevented marking or reverting settlements when "All Riders" is selected, requiring an isolated rider selection before committing payment statuses.
+
+### 2. Map Calculation & Catering Roster Map Links: Public Web Hosting & Chrome Breakout
+* **Public Domain URL Resolution (Localhost Loopback Fix):** Fixed the bug where generated map calculation (`?mapcalc=...`), customer delivery tracking (`?track=...`), and mutual live GPS (`?livegps=...`) links defaulted to `http://localhost` when generated inside the Android app (Capacitor) or development environments. All customer-facing links are now canonically anchored to the public GitHub Pages domain (`https://mielglitx.github.io/Lokalex-Complete-Tool-Kit/`).
+* **Force External Google Chrome Browser Breakout:**
+  * Implemented `isInAppBrowser()` detection for Facebook Messenger, Instagram, and webview environments.
+  * Added automated Android Chrome Intent launching (`intent://...#Intent;scheme=https;package=com.android.chrome;...`) to break out of in-app webviews directly into standalone Google Chrome.
+  * Added user-facing fallback banners (`#mapcalc-iab-chrome-banner`, `#track-iab-chrome-banner`, `#livegps-iab-chrome-banner`) equipped with a 1-tap **"Switch to Chrome Browser"** button and clear guidance on using the Messenger 3-dots (⋯) menu.
+* **Instant Native Location Permission Prompt:** Customer portals for Map Calculation, Live Tracking, and Mutual GPS now automatically trigger location requests immediately upon opening, presenting the browser's native location permission dialog without requiring manual button taps.
+
 ## Version 1.0.57 (2026-10-25)
 
 ### 1. Delivery Fare Rates Quick-Send in Customer Chat
