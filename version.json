@@ -1,8 +1,8 @@
 {
-  "version": "1.0.56",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.56.zip",
+  "version": "1.0.57",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.57.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "9168e7a04a9a906eae334e101d88556fb2fe22ff145ae90aef2c98ff0ec0699a",
-  "updatedAt": "2026-10-25T07:41:43.887Z",
-  "notes": "Quick menu sending in chat with deduplication, in-app pre/post confirmations, accurate seen badge placement, base64 Messenger payload optimization, and full English localization"
+  "checksum": "cdcc1defcca6bce7b26271d50631adde78d1a514639cc62f99fe46a401f384a6",
+  "updatedAt": "2026-10-25T08:29:16.107Z",
+  "notes": "Release v1.0.57: Delivery fare rates chat quick-send, directory auto-fill suggestive inputs, and rider profile photo fixes"
 }

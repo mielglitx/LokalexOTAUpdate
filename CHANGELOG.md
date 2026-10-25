@@ -1,5 +1,33 @@
 # Lokalex App Release Notes
 
+## Version 1.0.57 (2026-10-25)
+
+### 1. Delivery Fare Rates Quick-Send in Customer Chat
+* **Chat Header, Action Bar & Quick-Toolbar Access:** Added dedicated "Rates" pill button (`#rider-chat-rates-pill`) in the chat header, an action bar "Rates" button (`#rider-chat-send-rate-btn`), and an input toolbar rate icon button (`#rider-chat-rates-input-btn`) directly next to the message field for instant access inside any customer chat.
+* **In-Chat Delivery Fare Rates Picker Modal (`#chat-fare-rate-picker-modal`):** Allows riders to view and filter standardized delivery rates by Origin Municipality and Destination Municipality/Barangay, with instant text search and organized card layouts showing Origin, Destination, Base Fare, and Additional Rates.
+* **Dual Dispatch Modes (Insert to Input vs. Direct Quick-Send):**
+  * **"Insert" Button:** Formats the standard delivery rate details into a clean chat message template and inserts it directly into the chat input field for optional rider customization before sending.
+  * **"Send Rate" Button:** Prepares the standardized delivery rate and triggers an in-app confirmation modal for immediate 1-tap dispatch into the active chat thread.
+* **Pre-Send Confirmation Modal (`#fare-rate-send-confirm-modal`):** Displays a verified breakdown (Origin → Destination, Delivery Fee, and Customer Recipient Name) before any delivery fare rate is dispatched to avoid accidental sends.
+
+### 2. Fee Rates Directory Auto-Fill & Suggestive Inputs
+* **Automatic Destination Pre-Fill:** When viewing a destination in the Fee Rates Directory and clicking "Add New Rates", the destination municipality and destination region are automatically pre-filled to match the currently viewed destination, saving riders repetitive manual selection.
+* **Suggestive Typewritten Textboxes (`<input list="...">`):** Converted the Destination Region and Destination Municipality from static dropdown selects into modern, suggestive typewritten inputs with dynamic `<datalist>` auto-suggestions.
+* **Dynamic Cascading Suggestions:** Typing or choosing a Region dynamically filters and populates the Municipality datalist (`#form-rate-municipality-list`) via the Philippine Standard Geographic Code (PSGC) dataset, matching the behavior of the Barangay suggestive input.
+* **Full Backward Compatibility:** Maintained fallback compatibility with existing directory records and custom municipality/region naming across the application.
+
+### 3. Rider Profile Pictures & Avatar Stability Overhaul
+* **Elimination of Temporary 72-Hour Litterbox Uploads:** Removed temporary 72-hour `litterbox.catbox.moe` photo uploads. All new rider profile photo uploads are now stored permanently using compressed high-resolution base64 data URLs when Firebase Storage is bypassed, ensuring avatars never expire.
+* **Automatic Dead/Expired Link Sanitization:** Added automatic detection and sanitization that purges expired Litterbox URLs (`litterbox.catbox.moe`) from local storage and memory on app startup, rider login, and roster sync.
+* **Universal Fallback UI (`onerror` Handlers):** Added inline `onerror` fallback handlers and defensive fallback logic across all avatar elements in the application:
+  * Main Header User Avatar (`#header-user-avatar`)
+  * Rider Profile Settings Preview (`#prof-modal-avatar-preview`)
+  * Avatar Picker Modal Preview (`#avatar-picker-preview`)
+  * Admin Controls Rider Info Modal (`#rider-info-avatar`)
+  * Customer Chat Feed Message Avatars
+  * Team Comms Message Avatars
+* **Startup & Real-Time Profile Photo Hydration:** Ensured the rider's active avatar is hydrated immediately on app launch from local storage and continuously synced in real time with Firebase RTDB (`roster/` and `riders/` nodes).
+
 ## Version 1.0.56 (2026-10-25)
 
 ### 1. Restaurant Menu Directory & Quick Send in Customer Chat
