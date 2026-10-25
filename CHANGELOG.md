@@ -1,5 +1,12 @@
 # Lokalex App Release Notes
 
+## Version 1.0.59 (2026-10-25)
+
+### 1. Store Menu Camera & Lightbox Stacking Context Fix
+* **Camera Modal Stacking Elevation:** Fixed the issue where the camera modal (`#store-menu-camera-modal`) rendered underneath the store menu gallery modal (`#store-menu-gallery-modal`). Increased the camera modal's z-index to `1000060 !important` and ensured it is dynamically re-appended to `document.body` so it reliably sits at the very top of the DOM stacking context above the gallery (`1000010`).
+* **Gallery Lightbox Elevation:** Elevated the menu full-screen photo lightbox (`#gallery-lightbox`) z-index to `1000050 !important`, ensuring high-resolution image previews open cleanly on top of the store menu.
+* **Recipient Picker Elevation:** Raised the customer recipient selection picker (`#menu-recipient-picker-modal`) to z-index `1000020`, guaranteeing full visibility when sharing menus directly from the gallery.
+
 ## Version 1.0.58 (2026-10-25)
 
 ### 1. Commission Page: Admin Rider Isolation & Report Fix

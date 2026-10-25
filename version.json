@@ -1,8 +1,8 @@
 {
-  "version": "1.0.58",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.58.zip",
+  "version": "1.0.59",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.59.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "3a65d8f49209d07b3b68e57c3b4a23175ea143c717875e2cb9e1ff63eaeea1d2",
-  "updatedAt": "2026-10-25T10:43:49.474Z",
-  "notes": "Release v1.0.58: Commission Page admin rider isolation fix, public GitHub Pages domain links, external Chrome browser breakout, and auto location permission"
+  "checksum": "71fe5faa0e51d6ddc14b0ed2a47cf904f72f4a9c50b02287d5199e48e36ab4e6",
+  "updatedAt": "2026-10-25T12:10:06.685Z",
+  "notes": "Release v1.0.59: Elevated store menu camera modal and lightbox z-index stacking above gallery modal"
 }
