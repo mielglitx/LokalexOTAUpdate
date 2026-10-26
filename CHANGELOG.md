@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version 1.0.62 (2026-10-27)
+
+### 1. Store Menu Camera: 1x Framing & Blur-Free HD Capture
+* **Zero-Lag WYSIWYG Video Capture:** Eliminated the blurry snapshot bug caused by `ImageCapture.takePhoto()` autofocus reset/hunting cycles on Android multi-camera hardware. Replaced with direct frame capture from the live, focused HTML5 video stream onto an off-screen HD canvas with high-quality bicubic smoothing (`imageSmoothingQuality = 'high'`).
+* **Sensor Discrepancy & 0.6x Distortion Fix:** Fixed the issue where photos were captured significantly wider (0.6x sensor effect) than the 1x viewfinder preview. Accurate `object-cover` viewport calculations ensure the captured frame exactly matches the on-screen framing down to the pixel.
+* **Preserved Viewfinder Zoom:** Accurately retains digital and hardware zoom levels (1x, 1.5x, 2x, 3x) in the captured photo.
+* **Shutter Flash & Tap-to-Focus UI:** Added an instant white shutter flash animation (`#menu-camera-shutter-flash`) upon capture, plus an interactive amber focus ring (`#menu-camera-focus-ring`) when tapping anywhere on the viewfinder to re-lock continuous auto-focus.
+* **Orientation & Document Clarity:** Ensured landscape and portrait rotations with orientation lock enabled maintain crisp, legible document text and menu prices.
+
+### 2. Floating Window Mode (Picture-in-Picture)
+* **Native Android PiP Multitasking:** Added native Picture-in-Picture mode support to keep Lokalex visible as a floating window while using navigation, messaging, or other apps.
+* **1-Tap Quick Access Buttons:** Integrated floating window mode buttons directly on the top app header (`#header-floating-window-btn`), Home Dashboard (`#dashboard-float-window-btn`), and Customer Chat modal header.
+* **Adaptive PiP UI Layout:** Responsive compact styling (`html.in-floating-mode`) automatically condenses dashboard cards and chat views for optimal readability in small window dimensions.
+
+### 3. Background Persistence & Screen-Off Execution
+* **Hardware Wakeup Watchdog (`BackgroundWatchdogReceiver`):** Configured `AlarmManager.setExactAndAllowWhileIdle(RTC_WAKEUP, ...)` to ensure Android CPU hardware wakes up periodically even in deep Doze mode when the screen is off or out of focus.
+* **Foreground Service Modernization:** Migrated foreground service type to `remoteMessaging|location` in `AndroidManifest.xml` to prevent the 6-hour background timeout on modern Android versions.
+* **Swipe-Away Persistence & Screen Keep-Alive:** Persists across swipe-away dismissals via `onTaskRemoved` and prevents premature screen timeouts during active app navigation.
+
 ## Version 1.0.61 (2026-10-26)
 
 ### 1. App Startup & USB Debugging Smoothness Optimization

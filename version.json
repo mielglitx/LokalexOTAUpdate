@@ -1,8 +1,8 @@
 {
-  "version": "1.0.61",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.61.zip",
+  "version": "1.0.62",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.62.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "57a78fb45b709b81871eebbcdce9e467bf5a1c7682103eff0012423952ce6dc6",
-  "updatedAt": "2026-10-26T01:52:37.827Z",
-  "notes": "Release v1.0.61: Performance & startup optimization, offline outbox self-healing, debounced sync events, and O(1) thread lookup"
+  "checksum": "bcb2d78e5b35634e0d47970032897a2948af8ede5f6294894386320d369814fa",
+  "updatedAt": "2026-10-26T23:07:59.523Z",
+  "notes": "Release v1.0.62: Store menu camera 1x framing & blur fix, Picture-in-Picture floating window mode, and background Doze mode persistence"
 }
