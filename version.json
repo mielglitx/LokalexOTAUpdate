@@ -1,8 +1,8 @@
 {
-  "version": "1.0.60",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.60.zip",
+  "version": "1.0.61",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.61.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "1787657f38f50d4bc070bf1c61f0f406c116cbf3c1706a98cb23b7392fe77633",
-  "updatedAt": "2026-10-25T13:46:32.304Z",
-  "notes": "Release v1.0.60: Camera auto-orientation with orientation lock, viewfinder overlay removal, and in-app changelog viewer"
+  "checksum": "57a78fb45b709b81871eebbcdce9e467bf5a1c7682103eff0012423952ce6dc6",
+  "updatedAt": "2026-10-26T01:52:37.827Z",
+  "notes": "Release v1.0.61: Performance & startup optimization, offline outbox self-healing, debounced sync events, and O(1) thread lookup"
 }
