@@ -2,7 +2,7 @@
   "version": "1.0.62",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.62.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e6ec73ab7a2ede6635641812c9b8e8d1b87715243dae18c1d7d0d1bc951551d7",
-  "updatedAt": "2026-10-26T23:14:14.971Z",
-  "notes": "Release v1.0.62: Store menu camera 1x framing & blur fix, Picture-in-Picture floating window mode, background Doze mode persistence, and directory scrolling fix"
+  "checksum": "abbac14f802e067992b31bd246e4f22263bb31e7850fc9b8072b085045fff522",
+  "updatedAt": "2026-10-26T23:24:22.282Z",
+  "notes": "Bug fixes, performance improvements, and Messenger integration enhancements"
 }
