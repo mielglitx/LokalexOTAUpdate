@@ -19,6 +19,10 @@
 * **Foreground Service Modernization:** Migrated foreground service type to `remoteMessaging|location` in `AndroidManifest.xml` to prevent the 6-hour background timeout on modern Android versions.
 * **Swipe-Away Persistence & Screen Keep-Alive:** Persists across swipe-away dismissals via `onTaskRemoved` and prevents premature screen timeouts during active app navigation.
 
+### 4. Directory Scrolling & Touch Physics Fix
+* **Unrestricted Directory Scrolling:** Fixed the issue where touch gestures could not scroll in any of the directory lists (Customers, Stores, and Rates & Barangays). Removed global `overscroll-behavior-y: contain` and restrictive `touch-action` rules that trapped gesture chaining in the Chromium compositor.
+* **Guaranteed Scroll Handshake:** Added explicit `touch-action: pan-y; -webkit-overflow-scrolling: touch;` on `#record-list` and ensured view transitions (`switchView` and `openDirectory`) automatically clear any lingering body scroll locks (`overflow-hidden` / `touch-none`).
+
 ## Version 1.0.61 (2026-10-26)
 
 ### 1. App Startup & USB Debugging Smoothness Optimization
