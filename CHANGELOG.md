@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.0.70 (2026-10-27)
+
+### 1. PiP (Picture-in-Picture) Tree-Shaking & Bundle Inclusion Fix
+* **Global Handler Export:** Fixed critical build tree-shaking bug where `window.enterFloatingWindowMode` was omitted from production bundles by Vite, causing the header PiP button to silently do nothing when tapped.
+* **Persistent DOM Surface in PiP:** Completely eliminated `#pip-stashed-badge` and all `display: none !important` hide rules on `<body>` elements when in floating mode. The app content (live chat feed and modal views) now continuously paints to the Android SurfaceControl buffer, preventing the OS window manager from considering the window empty and dismissing it.
+* **Informative Permission & Native APK Guidance:** If invoked on a client device running an older base APK without native multi-window permissions, the app now shows an actionable toast rather than silently doing nothing.
+
+
 ## Version 1.0.69 (2026-10-27)
 
 ### 1. PiP (Picture-in-Picture) Web Layout & Transition Fix
