@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 1.0.77 (2026-10-27)
+
+### 1. In-App Over-The-Air (OTA) APK Self-Updater
+* **Direct Phone Upgrades Without PC/ADB:** Implemented a native APK self-updater allowing riders to upgrade and fresh-install base Android APKs directly on their phone over the air.
+* **Seamless 1-Tap System Installer:** When a new base APK version is released, the app downloads the APK in the background with a live progress indicator (`showApkInstallProgress`) and launches Android's native `PackageInstaller` via `FileProvider`.
+* **Zero Data Loss:** Updating the base APK preserves 100% of the rider's session, login tokens, SQLite database, and preferences.
+* **Smart Permission Handling:** Checks `REQUEST_INSTALL_PACKAGES` permission and opens system settings if needed to ensure effortless one-tap updates.
+* **Dual-Track Updater Engine:** Minor web patches continue to live-swap instantly via OTA zips without interruption, while core Android native updates (services, permissions, native bridges) prompt for APK installation.
+
+### 2. Picture-in-Picture (PiP) Floating Window Mode & Auto-PiP
+* **Smooth Native PiP:** Android's native Picture-in-Picture mode keeps Lokalex active in a compact, floating window while riding or using navigation apps (Google Maps, Waze).
+* **Auto-PiP on Background:** Automatically transitions to Picture-in-Picture whenever the rider presses Home or switches apps via `onUserLeaveHint()`.
+* **Instant Uninterrupted Chat & Audio:** PiP keeps the app running on screen in multi-window mode so Firebase listeners, chat badges, and chime notifications ring with zero delay.
+
 ## Version 1.0.76 (2026-10-27)
 
 ### 1. Restored Native Picture-in-Picture (PiP) Floating Window Mode
