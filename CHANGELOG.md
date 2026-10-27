@@ -23,12 +23,15 @@
 * **Unrestricted Directory Scrolling:** Fixed the issue where touch gestures could not scroll in any of the directory lists (Customers, Stores, and Rates & Barangays). Removed global `overscroll-behavior-y: contain` and restrictive `touch-action` rules that trapped gesture chaining in the Chromium compositor.
 * **Guaranteed Scroll Handshake:** Added explicit `touch-action: pan-y; -webkit-overflow-scrolling: touch;` on `#record-list` and ensured view transitions (`switchView` and `openDirectory`) automatically clear any lingering body scroll locks (`overflow-hidden` / `touch-none`).
 
-### 5. Customizable Automated Message Dispatch (Catering & Done)
-* **Customizable Auto-Messaging System:** Added configurable automated message triggers for customer chats with separate settings for two critical workflow milestones.
-* **Scenario 1 - Being Catered:** Automatically dispatches a customizable greeting message when a customer order/chat thread is marked as "Being Catered" (from chat header cater button or roster catering actions). Includes a 2-minute debounce deduplication to prevent accidental double-sends.
-* **Scenario 2 - Marked as Done (Receipt Protected):** Automatically dispatches a customizable completion and receipt breakdown message when a customer thread is marked as "Done". Strictly enforces receipt creation verification—if no receipt exists for the customer, the Done auto-message is cleanly bypassed.
-* **Dynamic Smart Placeholders:** Supports rich templated tags including `{customerName}`, `{riderName}`, `{receiptTotal}`, `{receiptNumber}`, and `{time}`.
-* **Centralized Configuration UI:** Configurable via the dedicated Auto-Messages modal accessible directly from the Rider Chat quick action bar (`Auto-Msg` button) and the Profile Settings menu. Settings persist safely in local storage with independent on/off toggles and default restoration.
+### 5. Customizable Automated Message Dispatch (Admin-Managed)
+* **Admin-Only Configuration & Cloud Sync:** Automated message controls (toggling on/off and customizing message templates for both Catering and Done milestones) are strictly restricted to administrators. Configuration synchronizes globally across all riders in real time via Firebase Realtime Database (`settings/autoMessage`).
+* **Scenario 1 - Being Catered:** Dispatches an introductory greeting message when a customer order is actively being catered.
+* **Scenario 2 - Marked as Done (Receipt Protected & Active Catering Only):** Fixed the issue where Done auto-messages fired when moving non-catered Inbox threads to Done or when replying to follow-up messages on finished threads. Done auto-messages now strictly require:
+  1. The customer must be actively catered on the roster and completing delivery.
+  2. A verified receipt must exist for the order.
+  3. Single-use receipt consumption guarantees that a receipt will never trigger a duplicate Done message if the thread is replied to or re-archived.
+* **Dynamic Smart Placeholders:** Supports dynamic template parameters: `{customerName}`, `{riderName}`, `{receiptTotal}`, `{receiptNumber}`, and `{time}`.
+* **Admin Interface Access:** Accessible to authorized administrators via the Live Chats header (`Auto-Msg` button), the Dashboard Admin Toolbar, and Profile Settings. Hidden from regular riders.
 
 ## Version 1.0.61 (2026-10-26)
 
