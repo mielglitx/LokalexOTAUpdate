@@ -1,5 +1,20 @@
 # Lokalex App Release Notes
 
+## Version 1.0.63 (2026-10-27)
+
+### 1. Directory Credit Depletion & Disabled Enforcement Fix
+* **Strict Honor of Disabled System:** Fixed the bug where rider credits continued to deplete when clicking "View Location" on customer entries even after the credit system was toggled OFF in Admin Directory Credit settings.
+* **Instant Free Access When Disabled:** When the credit system is turned OFF (`enabled: false`), viewing customer GPS locations bypasses the credit confirmation modal entirely and opens the map link directly with zero credit deductions and no minimum balance requirement.
+* **Real-time Status Feedback:** The Directory Credits pill on the home dashboard dynamically reflects the system status, showing "OFF" when disabled by an administrator and giving riders clear visibility that directory lookups are free.
+
+### 2. Auto-Message Name Display Formats (First, Last, or Whole Name)
+* **Configurable Name Display Preferences:** Added dedicated selector dropdowns in the Admin Auto-Message modal to configure how names are presented in automated messages for both Customer and Rider (`First Name Only`, `Last Name Only`, or `Whole Name`).
+* **Dynamic Name Formatting Tags:** Added granular template placeholder tags:
+  * `{customerFirstName}`, `{customerLastName}`, `{customerFullName}`
+  * `{riderFirstName}`, `{riderLastName}`, `{riderFullName}`
+  * Standard `{customerName}` and `{riderName}` dynamically format based on the admin's chosen format setting.
+* **1-Tap Insert Tag Buttons:** Added quick-insert chip buttons for first name, last name, and full name tags in both the "Being Catered" and "Mark Done" message template editors.
+
 ## Version 1.0.62 (2026-10-27)
 
 ### 1. Store Menu Camera: 1x Framing & Blur-Free HD Capture
