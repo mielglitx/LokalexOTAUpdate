@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.0.76 (2026-10-27)
+
+### 1. Restored Native Picture-in-Picture (PiP) Floating Window Mode
+* **Live Chat Feeds & Uninterrupted Execution:** Switched back to Android's native Picture-in-Picture (PiP) window. Unlike overlay badges which put the app into background sleep mode, PiP keeps the WebView active on screen—ensuring incoming chat messages, badges, and audio chimes trigger instantaneously without delay.
+* **Thread-Safe Native Bridge:** Fixed the issue where entering floating mode could fail by ensuring `enterPictureInPictureMode()` executes on the main UI thread.
+* **Audio & Listener Continuity:** Automatically keeps DOM timers and audio engines unpaused while in PiP mode so riders never miss customer or catering messages.
+* **Adaptive Mini-Window UI:** Restored PiP responsive styling for headers, chat panels, and stashed badge expanding.
+
 ## Version 1.0.75 (2026-10-27)
 
 ### 1. Drag-to-Close Dismiss Target for Floating Window

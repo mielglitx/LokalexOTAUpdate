@@ -1,8 +1,8 @@
 {
-  "version": "1.0.75",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.75.zip",
+  "version": "1.0.76",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.76.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "15c49cceea914953db13d547412cb4ec642b18eb420ca470a990764ce98cbda8",
-  "updatedAt": "2026-10-27T12:58:55.271Z",
-  "notes": "Drag to close dismiss area for floating window"
+  "checksum": "ab01f0967b7dc0c40feeeed0e9ea0d2864aa8392204f9b4c70aa22d446405af4",
+  "updatedAt": "2026-10-27T13:43:10.406Z",
+  "notes": "Restored native Picture-in-Picture mode and real-time chat updates"
 }
