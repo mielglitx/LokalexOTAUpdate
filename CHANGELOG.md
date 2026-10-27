@@ -1,5 +1,27 @@
 # Lokalex App Release Notes
 
+## Version 1.0.67 (2026-10-27)
+
+### 1. Live Chat Feed Channel Bar Lock (Misclick Protection)
+* **Default Locked Protection:** The source filter bar (`#rider-chat-channel-bar`) and Full Booking mode trigger on the Live Chat Feed are now locked by default to prevent accidental misclicks by riders while scrolling through incoming customer conversations.
+* **1-Tap Lock / Unlock Toggle:** Added a prominent `[🔒 Locked]` / `[🔓 Unlocked]` toggle button with instant visual and haptic feedback.
+* **Intelligent Click-Guard:** When locked, chips and buttons are dimmed to 60% opacity with an active overlay that intercepts errant taps and notifies the rider (`"🔒 Feed filters are locked to prevent misclicks. Tap 🔓 on the right to edit."`).
+
+### 2. Password Removal Direct Login Fix
+* **Password-Free Rider Authentication:** Resolved the bug where riders whose passwords were removed by an administrator in the Roster could not log into the app because the login modal still demanded a password.
+* **Auto-Routing to Setup Modal:** Cleared-password riders now bypass password entry automatically and are guided straight to the rider password setup modal.
+
+### 3. PiP (Picture-in-Picture) UI Thread Safety & Floating Button Clean-Up
+* **Main UI Looper Thread Dispatch:** Fixed native Android `IllegalStateException` on PiP mode entry by ensuring `enterPictureInPictureMode` is always invoked on the main UI looper Handler, preventing WebView worker thread crashes.
+* **Streamlined PiP Buttons:** Removed cluttered and redundant PiP buttons from inside the customer chat modal and the live chat feed, retaining only the clean, dedicated top header button.
+
+### 4. "Share Location" Map Picker Navigation Isolation
+* **Checkout Wizard Misdirection Fix:** Resolved the bug where clicking "Share Location" in the chat modal inadvertently triggered history state pop navigation into the customer checkout wizard.
+* **In-Place Modal Overlay:** Map location picking from chat is now fully isolated as an in-place modal overlay with zero history stack interference.
+
+### 5. Chat Modal Toolbar Cleanup
+* **Duplicate Menu & Rates Buttons Removed:** Cleaned up excessive Menu and Rates buttons from the customer chat header bar and cater action row, preserving only the dedicated action buttons located next to the `[⚡ Quick]` toolbar button.
+
 ## Version 1.0.66 (2026-10-27)
 
 ### 1. Fix Duplicate Page Echo Messages in Chat
