@@ -1,5 +1,12 @@
 # Lokalex App Release Notes
 
+## Version 1.0.66 (2026-10-27)
+
+### 1. Fix Duplicate Page Echo Messages in Chat
+* **Rider vs Page Echo Deduplication:** Fixed the bug where sending a message in the app caused two identical messages to display (one from the rider like "Hero Dinong" and a duplicate echo from the Facebook Page like "Camiling Delivery by Lokalex").
+* **Smart Content & Mid Match in Meta Sync:** Updated `syncCurrentThreadFromMetaGraph` to cross-reference existing rider messages before inserting. If an existing message matches the content and timestamp window, the Meta message ID is linked without creating a second bubble.
+* **Triple-Layer Render Filter:** Added content deduplication in `renderRiderMessages` and `appendOrUpdateSingleRiderMessage`, preventing duplicate bubbles from rendering and auto-cleaning any previously created duplicates from Firebase.
+
 ## Version 1.0.65 (2026-10-27)
 
 ### 1. High-Performance Facebook Page Chat Fetching & Real-Time Sync
