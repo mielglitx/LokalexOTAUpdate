@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.0.71 (2026-10-27)
+
+### 1. Replaced Android PiP with Native Floating Edge Badge (Float Window Mode)
+* **Dedicated Float Window Mode:** Completely abandoned and removed fragile Android Picture-in-Picture (PiP) window manager implementation, which caused app vanishing/collapsing on Transsion (Infinix/Tecno) and Android 12+ devices due to `mWaitForEnteringPinnedMode` null pointer crashes in `ActivityTaskManager`.
+* **Instant Float Header Button:** Tapping the header float button (`<i class="fa-solid fa-arrow-up-right-from-square"></i>`) immediately enters Float Window mode: smoothly minimizes the app and docks an interactive, circular Lokalex badge on the edge of the screen.
+* **Automatic Background Float Mode:** When the rider switches to external apps (such as Google Maps, Waze, or Messenger) or minimizes the app, the floating badge automatically docks to the side of the screen.
+* **Magnetic Edge-Snapping & Draggable:** The floating badge is smoothly draggable anywhere on the screen and features magnetic snapping to the nearest edge with a spring-decelerate animation.
+* **Instant Re-foreground:** Tapping the edge badge immediately restores Lokalex Rider to the active foreground.
+* **Active Status & Unread Badge:** Includes an active emerald ring pulse and an unread notification counter pill that displays real-time pending customer messages.
+
 ## Version 1.0.70 (2026-10-27)
 
 ### 1. PiP (Picture-in-Picture) Tree-Shaking & Bundle Inclusion Fix
