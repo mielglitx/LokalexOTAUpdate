@@ -1,5 +1,22 @@
 # Lokalex App Release Notes
 
+## Version 1.0.72 (2026-10-27)
+
+### 1. Color-Coded Category Badges in Float Window Mode
+* **Color-Coded Folder Badges:** Added live dynamic color coding to the floating edge badge when receiving incoming customer messages in Float Window mode:
+  - 🟢 **Green** for **Inbox** (`#10B981`)
+  - 🟠 **Orange** for **Catering** (`#F97316`)
+  - 🔴 **Red** for **Follow-up** (`#EF4444`)
+  - 🟣 **Purple** for **Applicant** (`#A855F7`)
+  - ⚪ **White** for **Stores** (`#FFFFFF` with high-contrast text)
+* **Floating Head Glow & Bounce Alert:** The outer ring and status dot dynamically illuminate with the active category color, while a smooth bounce animation triggers on arrival to immediately catch the rider's attention over Maps or other apps.
+* **Auto-Show on Message Arrival:** If the app is in the background when a message arrives, the floating badge is displayed automatically with the new unread pill.
+
+### 2. Chat Acoustic Chimes Restoration & Dual Native Engine
+* **Fixed Missing Chimes on Chat Updates:** Resolved the bug where incoming inbox, follow-up, and applicant messages were silenced for active riders due to a restrictive role gate in `chatFeedListener.js`.
+* **Dual Native Android + Web Audio Engine:** In addition to Web Audio API synthesis, chimes now trigger Android native `RingtoneManager` sound via `playNativeChatChime()` through the native bridge. Chimes now ring loudly and reliably in the foreground, background, and Float Window mode.
+* **Continuous AudioContext Availability:** Removed aggressive post-chime `suspend()` calls that previously froze the web audio engine on Android mobile WebViews.
+
 ## Version 1.0.71 (2026-10-27)
 
 ### 1. Replaced Android PiP with Native Floating Edge Badge (Float Window Mode)
