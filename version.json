@@ -1,10 +1,10 @@
 {
-  "version": "1.0.77",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.77.zip",
+  "version": "1.0.78",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.78.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "87499f4445d1cf804e1c16127d35b37d2416f9231f7a4e282c82b750f3d59141",
-  "updatedAt": "2026-10-27T15:26:26.311Z",
-  "notes": "Removed automated background GPS session tracking from roster catering",
-  "nativeVersion": "1.0.77",
+  "checksum": "5407c02e531a346c62f1cbba999f702a5245d207ea0df2311bf25e1f9fbc6338",
+  "updatedAt": "2026-10-27T16:01:33.979Z",
+  "notes": "Optimized RTDB data efficiency and eliminated excessive chat, directory, and commission egress leaks",
+  "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
