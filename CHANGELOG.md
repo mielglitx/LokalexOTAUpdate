@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 1.0.68 (2026-10-27)
+
+### 1. PiP (Picture-in-Picture) Floating Window Stability Fix
+* **Elimination of Instant Window Closure:** Resolved the bug where entering PiP mode caused the app to instantly close or dismiss on Android 12+ (specifically on Infinix, Tecno, and OEM systems).
+* **Safe Transition Architecture:** Removed conflicting gesture flags (`autoEnterEnabled` & `seamlessResize`) from programmatic triggers, preventing window manager transaction aborts.
+* **Transition Guarding & Source Rect Hint:** Added an `isEnteringPip` state lock to eliminate race conditions from `onUserLeaveHint()`, along with hardware bounds hints (`sourceRectHint`) for smooth window scaling.
+* **Manifest Modernization:** Configured `android:resizeableActivity="true"` and `android:enableOnBackInvokedCallback="false"` to prevent system back-gesture interceptions.
+
+### 2. Live Chat Feed Lock Button Responsiveness
+* **Isolated Stacking Context (`z-50`):** Fixed the lock button being unclickable when in the locked state. The toggle button is now elevated to its own independent stacking context (`z-50`) with persistent inline style enforcement, ensuring it remains immediately clickable even when feed misclick protection is active.
+* **Target Origin Verification:** Added event target checks in `onChannelBarLockedClick` to guarantee lock toggle interactions are never intercepted by the background click-guard overlay.
+
 ## Version 1.0.67 (2026-10-27)
 
 ### 1. Live Chat Feed Channel Bar Lock (Misclick Protection)

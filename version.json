@@ -1,8 +1,8 @@
 {
-  "version": "1.0.67",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.67.zip",
+  "version": "1.0.68",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.68.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "84881bb23935d35b4b00154eb4fefb711a39788b8937406d19a8ca032ef32ca8",
-  "updatedAt": "2026-10-27T11:04:24.294Z",
+  "checksum": "df380b6199586d8cd9aa2b50d2e890708f9b99c18f3bacf0bc53007bd822d7d4",
+  "updatedAt": "2026-10-27T11:14:01.611Z",
   "notes": "Bug fixes, performance improvements, and Messenger integration enhancements"
 }
