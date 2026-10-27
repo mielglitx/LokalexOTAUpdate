@@ -1,5 +1,16 @@
 # Lokalex App Release Notes
 
+## Version 1.0.74 (2026-10-27)
+
+### 1. Landscape Full-Width Snapping & Physical Display Boundaries
+* **Fixed Landscape Mid-Screen Stopping:** Resolved the bug where the floating window badge could only travel to the middle of the screen in landscape mode. Replaced stale `ApplicationContext` display metrics with physical hardware bounds via `WindowMetrics` (API 30+) and `Display.getRealMetrics()`.
+* **Full-Width Edge Snapping:** In landscape mode, dragging now spans the entire physical width (e.g. 2400px), cleanly docking flush against the far right or far left screen edge.
+
+### 2. Catered Chime Sound Isolation (Strictly My Cater Only)
+* **Removed Admin Chime Bleed:** Eliminated the admin bypass in `chatFeedListener.js` that caused orders catered by other riders to chime on the current rider's device.
+* **Strict Chime Ownership:** Incoming messages for catered customers now strictly ring the audio chime if and only if the current logged-in rider is the active caterer (`isMyCustomerThread === true`).
+* **Visual Color Badge Retention:** Float window badges still accurately display category colors (Green for Inbox, Orange for Catering, Red for Follow-up, Purple for Applicant, White for Stores) without sounding disruptive audio alarms for non-catered messages while on duty.
+
 ## Version 1.0.73 (2026-10-27)
 
 ### 1. Dual-Orientation Screen Edge Docking (Portrait & Landscape)
