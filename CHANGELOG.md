@@ -1,5 +1,14 @@
 # Lokalex App Release Notes
 
+## Version 1.0.75 (2026-10-27)
+
+### 1. Drag-to-Close Dismiss Target for Floating Window
+* **Messenger-Style Bottom Close Area:** Dragging the floating window badge now displays an intuitive, circular dismiss target (`✕` "Drag here to close") at the bottom center of the screen.
+* **Interactive Hover Feedback & Haptics:** Dragging the badge into the bottom close zone triggers haptic vibration feedback, turns the close target glowing red (`#E11D48` "Release to close"), scales up the target, and subtly pulls the floating badge into the dismiss circle.
+* **Instant Float Dismissal:** Releasing the badge over the close area cleanly animates and dismisses the floating window badge from the screen.
+* **Safe Tap-to-Open & Edge Snapping:** Tapping the badge still brings Lokalex immediately to the foreground; dragging and releasing elsewhere on the screen continues to magnetically snap flush against the nearest screen edge.
+* **Dual-Orientation Support:** The bottom dismiss area accurately centers itself in both portrait and landscape screen orientations.
+
 ## Version 1.0.74 (2026-10-27)
 
 ### 1. Landscape Full-Width Snapping & Physical Display Boundaries

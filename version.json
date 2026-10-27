@@ -1,8 +1,8 @@
 {
-  "version": "1.0.74",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.74.zip",
+  "version": "1.0.75",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.75.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "42ad47ee92068704196954d725d5ddc35cd3548e5f4cea0dab8ba94f4e6978ca",
-  "updatedAt": "2026-10-27T12:49:38.692Z",
-  "notes": "Full-width landscape docking and strict catered chime isolation"
+  "checksum": "15c49cceea914953db13d547412cb4ec642b18eb420ca470a990764ce98cbda8",
+  "updatedAt": "2026-10-27T12:58:55.271Z",
+  "notes": "Drag to close dismiss area for floating window"
 }
