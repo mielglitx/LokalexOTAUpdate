@@ -8,6 +8,10 @@
 * **Smart Content & Mid Match in Meta Sync:** Updated `syncCurrentThreadFromMetaGraph` to cross-reference existing rider messages before inserting. If an existing message matches the content and timestamp window, the Meta message ID is linked without creating a second bubble or duplicate database record.
 * **Real-Time Stream & Render Deduplication:** Added deduplication in `renderRiderMessages`, `appendOrUpdateSingleRiderMessage`, and `child_added` event listeners, preventing duplicate bubbles from rendering and automatically purging any previously stored duplicate `m_...` keys from Firebase RTDB.
 
+### 2. Facebook Page User vs. App Rider Identity Differentiation
+* **Page Staff & Admin Distinction:** Direct messages sent from Facebook Page Inbox or Meta Business Suite are now cleanly labeled as **Page Admin** with a dedicated blue Admin shield badge (`🛡️ Admin`), eliminating the generic long Page name.
+* **App Sender Identity Preservation:** Messages sent through the Lokalex App or Admin Dashboard preserve the authentic rider or dispatcher's name, avatar, and role (`rider` vs `admin`), providing full accountability across all conversations.
+
 ## Version 1.0.65 (2026-10-27)
 
 ### 1. High-Performance Facebook Page Chat Fetching & Real-Time Sync
