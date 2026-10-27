@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 1.0.69 (2026-10-27)
+
+### 1. PiP (Picture-in-Picture) Web Layout & Transition Fix
+* **Removed Collapsing PiP Media Query:** Removed `@media (max-width: 170px)` CSS rule that inadvertently hid the entire app DOM (`body > *:not(#pip-stashed-badge) { display: none !important; }`) whenever the window resized down to portrait PiP dimensions (~120–140px width). This keeps the rider's chat and dashboard visible inside the floating mini-window instead of collapsing into a blank screen.
+* **Transition Re-entry Lock:** Added a programmatic state lock in `enterFloatingWindowMode()` and `onFloatingWindowModeChanged()` to prevent double-invocation of the native window transition, eliminating Android `ActivityClientController onTransact aborts`.
+* **Safe Badge Unstash Interaction:** Updated `#pip-stashed-badge` to harmlessly clear the stashed view state upon tapping rather than re-invoking native PiP entry while already in floating mode.
+* **Decoupled Haptics During Window Transition:** Moved haptic triggers prior to window transition execution, eliminating audio/vibrator IPC collisions with OEM window managers.
+
+### 2. Live Chat Feed Lock & Unlock Protection
+* **Guaranteed Unlock Access:** Confirmed `[🔒 Locked]` / `[🔓 Unlocked]` toggle button stays elevated at `z-50` with direct pointer event passthrough, ensuring riders can reliably lock or unlock feed filters at any time.
+
+
 ## Version 1.0.68 (2026-10-27)
 
 ### 1. PiP (Picture-in-Picture) Floating Window Stability Fix
