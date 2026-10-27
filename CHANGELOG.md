@@ -1,5 +1,23 @@
 # Lokalex App Release Notes
 
+## Version 1.0.64 (2026-10-27)
+
+### 1. Audio Ducking Bug Fixed (Other Apps Volume Preservation)
+* **Elimination of Silent Audio Loop:** Completely removed the background silent audio element (`silentAudioEl`) and the continuous 25-second Web Audio oscillator loop that forced Android's `AudioManager` to lower ("duck") other apps' media volume (Spotify, YouTube, podcast players) whenever Lokalex was opened.
+* **Auto-Suspension of Audio Context:** Added automatic `AudioContext` suspension (`suspendAudioContextIfIdle()`) after synthesized chimes or delivery reminder alarms finish playing, ensuring Android audio focus is immediately returned to background music players at 100% full volume.
+* **Pure Worker & Native Background Keep-Alive:** Background connectivity and WebSocket keep-alives are now maintained exclusively through dedicated Web Worker heartbeat timers and the native Android `LokalexForegroundService`, guaranteeing zero audio sub-system interference.
+
+### 2. PiP Side-Docking Stashed Badge Icon
+* **Native Android PiP Stashing Support:** Implemented Android 12+ (API 31+) PiP stashing callbacks via `Activity.onPictureInPictureUiStateChanged(PictureInPictureUiState pipState)` and `pipState.isStashed()`.
+* **Edge-Docked Badge View:** When the floating window is dragged or flung to the side bezel of the screen, the complex dashboard and chat elements are cleanly hidden, displaying an elegant circular glowing Lokalex badge icon (`Logo.png`) with an active green live pulse.
+* **Responsive Viewport Fallback:** Added `@media (max-width: 170px)` rules ensuring that narrow window dockings on any Android OEM skin seamlessly show the clean badge view.
+* **1-Tap Re-Expansion:** Tapping the side badge icon instantly re-expands the app into interactive floating or full-screen view.
+
+### 3. Smart Cart Scrolling Physics & List Performance Optimization
+* **Gesture Axis Disambiguation:** Redesigned `cartGestures.js` touch evaluation with Cartesian threshold detection (`diffY` vs `diffX`). When the user moves vertically, swipe-to-delete horizontal translation is immediately released, allowing the native browser compositor to execute vertical scrolls with zero hitching.
+* **Compositor Momentum Scrolling:** Applied `touch-action: pan-y; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; will-change: scroll-position;` to `#cart-items-list` for smooth 60–120 FPS inertial scrolling.
+* **Off-Screen Layout Optimization:** Integrated modern `content-visibility: auto; contain-intrinsic-size: 0 115px;` on all cart item cards, skipping off-screen DOM layout and paint work when managing large orders with dozens of items.
+
 ## Version 1.0.63 (2026-10-27)
 
 ### 1. Directory Credit Depletion & Disabled Enforcement Fix
