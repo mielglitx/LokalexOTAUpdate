@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.0.73 (2026-10-27)
+
+### 1. Dual-Orientation Screen Edge Docking (Portrait & Landscape)
+* **Permanent Side Sticking:** Floating window badge is now permanently anchored/docked to the left or right edge of the screen (`dpToPx(6)` margin), never floating adrift or getting stranded in the middle of the display.
+* **Instant Portrait & Landscape Adaptation:** Equipped with dual orientation watchers (`ComponentCallbacks2` and `OrientationEventListener`). When the device rotates between portrait and landscape modes, the badge automatically calculates the new screen width and height and smoothly animates to the docked edge without being cut off or pushed off-screen.
+* **Relative Vertical Position Memory:** Stores relative vertical height ratio so the badge retains its proportional elevation whether navigating in landscape on a handlebar mount or holding the phone in portrait.
+* **Debug Mode Deactivated:** Removed all web contents debugging and testing flags across native WebView and Java activity components.
+
 ## Version 1.0.72 (2026-10-27)
 
 ### 1. Color-Coded Category Badges in Float Window Mode

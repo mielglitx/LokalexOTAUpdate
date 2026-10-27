@@ -1,8 +1,8 @@
 {
-  "version": "1.0.72",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.72.zip",
+  "version": "1.0.73",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.73.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "e6a62b3f8543df63999e27ad2a8a6a1e037b8e7d2c861fe6c9cc65faa70aaeac",
-  "updatedAt": "2026-10-27T12:31:44.198Z",
-  "notes": "Add color-coded category badges in float window mode and fix chat chimes"
+  "checksum": "e059b4c0c0c01bfcd468a1f1998272a47c0d944521e64b0569943ea040961800",
+  "updatedAt": "2026-10-27T12:36:40.246Z",
+  "notes": "Permanent screen-edge docking in portrait and landscape modes; deactivated debug mode"
 }
