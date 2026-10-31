@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version 1.0.78 (2026-10-31)
+
+### 1. Directory Customer Profile Auto-Connect
+* **Instant Auto-Link:** When checking customer details in a chat thread, the app automatically checks the Customer Directory by name and contact phone. If a saved directory profile is detected, it automatically connects and links the customer profile immediately with zero extra taps required.
+* **Synchronized Profile Data:** Auto-connecting immediately syncs the customer's verified name, phone number, address, and all saved locations into the active chat session and roster.
+
+### 2. Multiple Saved Locations Support (Chat Info & Directory)
+* **Multiple Addresses & GPS Pins:** Customers can now register and store multiple locations (e.g., Home, Work, Office, Farm) in both the Customer Directory and Chat Customer Info.
+* **Chat Customer Info Locations Manager:** View all saved locations with one-tap Google Maps navigation, switch the active/default delivery location, or add new locations on the fly with 1-tap GPS calibration.
+* **Customer Directory Multiple Locations:** Directory form now supports adding multiple addresses and map pin links. Customer directory cards render all registered locations with direct location pins for each.
+
+### 3. Smart Cart Slider Scroller (Futuristic Circular Knob)
+* **Invisible Slider Track & Glowing Knob:** Added a sleek, circular slider knob with an invisible track on the right edge of the smart cart for effortless, lightning-fast touch scrolling through large order lists.
+* **Interactive Drag & Auto-Fade:** Supports 1:1 touch dragging and mouse drag scrolling with smooth haptics and automatic fade-out when idle.
+
+### 4. Multi-Photo Gallery & In-Bubble Voice Player
+* **Multi-Image Batch Display:** Fixed the bug where only 1 photo showed when customers sent multiple photos in Facebook Messenger. All photos are now parsed and displayed in an interactive gallery grid with fullscreen zoom.
+* **Customer Voice Note Player:** Customer audio recordings from Messenger are now rendered directly in chat bubbles with a custom audio player featuring play/pause controls, interactive seekable progress track, and live elapsed timer.
+
 ## Version 1.0.77 (2026-10-27)
 
 ### 1. In-App Over-The-Air (OTA) APK Self-Updater

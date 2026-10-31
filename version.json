@@ -2,9 +2,9 @@
   "version": "1.0.78",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.78.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "5407c02e531a346c62f1cbba999f702a5245d207ea0df2311bf25e1f9fbc6338",
-  "updatedAt": "2026-10-27T16:01:33.979Z",
-  "notes": "Optimized RTDB data efficiency and eliminated excessive chat, directory, and commission egress leaks",
+  "checksum": "5bcd31453b9bbd0ee44fb67b7a7a4138232025c9da67e0deaf644d3b0eabdf1c",
+  "updatedAt": "2026-10-31T02:26:09.077Z",
+  "notes": "Directory profile auto-connect, multiple customer locations in chat info and directory, smart cart scroller, and voice/multi-pic chat fixes",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
