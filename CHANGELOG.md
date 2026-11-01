@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 1.0.87 (2026-11-01)
+
+### 1. Catering Queue Jump Prevention & Dedicated Notice Modal
+* **Pre-Check Queue Spot on Catering Attempt:** Clicking the "Cater" button in the active customer chat thread (`#rider-chat-cater-btn`) or swiping to cater from the chat feed now strictly validates whether the rider is #1 in the queue lineup before initiating any assignment.
+* **Dedicated Not-First Notice Modal (`#not-first-in-queue-modal`):** If a rider attempts to cater an incoming order while someone is ahead in queue or while already catering with available riders waiting, a prominent, high-z-index warning modal is displayed directly over the chat dialog.
+* **Lineup Transparency Card:** The modal clearly presents:
+  * **1st in Line Rider:** Name of the designated rider currently at the top of the queue.
+  * **1st Rider Today's Gross:** Income comparison showing why the leading rider has queue priority.
+  * **Your Queue Spot & Gross:** Clear status indication (e.g., `#2 in Queue (₱340.00)` or `Currently Catering (Busy)`).
+  * **Clear Guidance:** Informs the rider that the customer order is designated for the rider at the top of the queue and to wait for their turn.
+
+### 2. Auto-Message Leak Prevention
+* **Zero Premature Messages:** Completely eliminated the bug where the "Being Catered" auto-message was dispatched to the customer even when the rider's cater request failed or was rejected due to queue position.
+* **Strict Assignment Gate:** `triggerAutoMessageOnCater` is now guarded at the system level and only triggered upon verified, successful Firebase database commitment where `cateredByRiderId` and `status: Catering` are confirmed.
+* **Fail-Safe Abort:** The message generator automatically aborts if the current user is not confirmed in active `Catering` status on the roster.
+
 ## Version 1.0.86 (2026-11-01)
 
 ### 1. Overtime Commission Incentive & Commission Relief Settings
