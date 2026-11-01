@@ -1,10 +1,10 @@
 {
-  "version": "1.0.80",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.80.zip",
+  "version": "1.0.81",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.81.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "3154fe7a13db29ce63a98df7cb5752df29e1e3473191f82eced6533bf8880314",
-  "updatedAt": "2026-11-01T02:00:31.959Z",
-  "notes": "Commission penalty confirmation & multi-rider/day, Messenger media & latest previews fix, dedicated add customer modal & live GPS",
+  "checksum": "4e6abac1816dee77c97d75fc7d5da6301aab6da5b4b3dcedd832f8c180a6761a",
+  "updatedAt": "2026-11-01T02:25:03.753Z",
+  "notes": "Fix commission penalty submission for rider names with dots/punctuation, child-level atomic Firebase updates",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
