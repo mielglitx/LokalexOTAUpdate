@@ -1,5 +1,29 @@
 # Lokalex App Release Notes
 
+## Version 1.0.83 (2026-11-01)
+
+### 1. Eliminated Native Desktop Scrollbars & Added Sleek Mobile Scrollbars
+* **Universal Horizontal Scrollbar Elimination:** Added CSS utility rules for `.no-scrollbar` and `[class*="no-scrollbar"]` across all platforms (Chromium, WebView, Desktop). Eliminated ugly native grey horizontal scrollbars and arrows `< [========] >` under chat action bars, category tabs, source filter chips, and switcher bars.
+* **Global Arrow Button Removal:** Stripped native scrollbar arrow buttons (`::-webkit-scrollbar-button { display: none !important; }`) across the entire app.
+* **Sleek Translucent Mobile Scrollbars:** Vertical message lists and modal dialogs now feature sleek, unobtrusive 3-4px rounded translucent thumb tracks that never obscure content.
+
+### 2. Smart Menu & Cart Sticky Layout and Side Scroller
+* **Sticky Header & Sticky Create Receipt:** Constrained `#view-cart` to viewport height so the top toolbar (cart slots, assign client, subtotal, and action buttons) remains permanently pinned at the top, and the "Create Receipt" button remains permanently pinned at the bottom.
+* **Internal Items Scrolling:** Only `#cart-items-list` scrolls between the fixed headers and footers, preventing the browser window from pushing action buttons off-screen.
+* **Permanent Side Scroller Rail & Knob:** The vertical slider track with the circular grabbing knob (`#cart-slider-track`) now reliably appears whenever the cart contains 5 or more items or when the list overflows, allowing effortless one-touch rapid scrolling.
+
+### 3. Screen-Off Background Notification Reliability (Android 16 / TECNO CM8)
+* **Indefinite Foreground WakeLock:** Updated `LokalexForegroundService` to hold `PowerManager.PARTIAL_WAKE_LOCK` continuously while the service is alive, preventing the CPU from entering suspend-to-RAM when the phone screen is turned off or idle.
+* **Android 14+ Exact Alarm Fallback:** Added `canScheduleExactAlarms()` verification before scheduling alarms, falling back safely to `setAndAllowWhileIdle()` to guarantee background watchdog pings run without security exceptions or system drops.
+
+### 4. Robust Commission Penalty Application
+* **Guaranteed Atomic Child Writes:** Replaced composite update dictionaries with direct sanitized `.child(penaltyKey).set(record)` writes under `commissionPenalties`, completely eliminating Firebase RTDB `update failed: values argument contains an invalid key` errors for riders with dots (e.g. `Ron DC.`) or special punctuation.
+* **Strict Primitives Sanitization:** Ensured all penalty record properties are non-undefined and safely formatted before database dispatch.
+
+### 5. Chat Media Bubble & Preview Enhancements
+* **Clean Media Text Suppression:** Prevented redundant placeholder captions (`📷 Photo`, `🎥 Video`, `🎤 Voice message`) from rendering as text bubbles below images and media cards.
+* **Auto-Reopen on Incoming Message:** Completed threads in `folder: 'done'` automatically reopen into `inbox` / `catering` whenever a customer sends a new message.
+
 ## Version 1.0.82 (2026-11-01)
 
 ### 1. Restored Chat Pictures, Multi-Photos, and Attachments

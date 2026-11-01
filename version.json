@@ -1,10 +1,10 @@
 {
-  "version": "1.0.82",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.82.zip",
+  "version": "1.0.83",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.83.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "db4a8e77e3017e0c8ff7bdc62bba11c4d7cb61480942df6976dbf8f85309939c",
-  "updatedAt": "2026-11-01T03:04:52.928Z",
-  "notes": "Restored chat pictures, multi-photos, videos, audio notes, and instant attachment resolution",
+  "checksum": "1a76a7e9ec30d64c7fc984a31ea5034c1839656429e66270581535ad1af05594",
+  "updatedAt": "2026-11-01T05:48:11.542Z",
+  "notes": "Eliminated desktop scrollbars, smart menu sticky header & 5+ item scroller, robust commission penalty & Android 16 screen-off service",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
