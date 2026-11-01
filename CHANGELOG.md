@@ -1,6 +1,6 @@
 # Lokalex App Release Notes
 
-## Version 1.0.79 (2026-11-01)
+## Version 1.0.80 (2026-11-01)
 
 ### 1. Commission Penalty System Overhaul & Multi-Rider / Multi-Day Sanctions
 * **Pre-Submission Confirmation Review:** Adding a penalty now features an explicit 2-step confirmation review modal displaying target rider(s), applicable dates, penalty surcharge percentage, reason, and total records calculation before applying.
