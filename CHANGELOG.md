@@ -1,5 +1,23 @@
 # Lokalex App Release Notes
 
+## Version 1.0.86 (2026-11-01)
+
+### 1. Overtime Commission Incentive & Commission Relief Settings
+* **Admin Overtime Incentive Settings:** Added comprehensive overtime reward configuration in Admin Commission Fee Settings (`#admin-commission-settings-modal`), allowing administrators to award riders working past their scheduled shift.
+* **Flexible Commission Relief:** Supports both percentage discount deduction (e.g., -5% company commission rate, allowing riders to keep higher payout) or fixed deduction per order (e.g., -₱10 less company commission per delivery).
+* **Shift Duty Threshold:** Configurable duty threshold hours (default: 8 hours or individual rider shift schedule), accurately factoring in net worked minutes while strictly excluding break times.
+* **Real-Time Rate & Settlement Integration:** Automatically calculates and applies overtime commission relief across live orders, daily totals, settlement reports, and order-by-order breakdown cards with dynamic `⚡ Overtime` and `⚡ OT Incentive` badges.
+
+### 2. Manual Map Picker for Customer Directory & Profile Addresses
+* **Customer Directory Add Address Map Picker:** Added dedicated "Pick on Map" button (`window.openCustomerMapPicker('add-customer-address')`) directly inside the Add Address submodal (`#add-customer-address-modal`), allowing riders and dispatchers to drop and drag a custom map pin or tap anywhere on OpenStreetMap alongside the automatic GPS detector.
+* **Customer Profile & Details Saved Locations Map Picker:** Added interactive "Pick on Map" button inside the customer details saved locations form (`#cust-modal-add-loc-box`) and customer profile edit modal (`#edit-customer-profile-modal`).
+* **Overlay Layer & Input Integration:** Displays high-z-index Leaflet map canvas directly over open customer modals with center reticle and manual draggable pin, automatically populating GPS coordinates and reverse-geocoded addresses without disrupting dialog state or navigation stacks.
+
+### 3. Shift Time Calculation & Break Period Allowance System
+* **Break Time Excluded from Shift Total:** Rider shift duty now strictly excludes all accumulated break time ($\text{Net Worked} = \text{Gross Elapsed} - \text{Total Break}$), preventing idle time from inflating shift records.
+* **Daily Break Allowance (60m Default):** Admin-configurable break duration with leftover rollover across breaks on the same calendar day, auto-exiting to Available when time expires and refreshing daily.
+* **Unlimited Break for Admins:** Direct option for unlimited break duration when taken by admins or force-administered to riders.
+
 ## Version 1.0.85 (2026-11-01)
 
 ### 1. Interactive Picture-in-Picture (PiP) Floating Badge
