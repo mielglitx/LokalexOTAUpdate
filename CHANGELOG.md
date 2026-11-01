@@ -1,5 +1,27 @@
 # Lokalex App Release Notes
 
+## Version 1.0.82 (2026-11-01)
+
+### 1. Restored Chat Pictures, Multi-Photos, and Attachments
+* **Fixed Single & Multi-Image Rendering:** Resolved a critical logic conflict in `riderChatRender.js` where image URLs were improperly passed into video/audio detectors, causing the message image list to evaluate as empty. Sent and received pictures, multi-image grids, and gallery items now render instantly without delay.
+* **Non-Blocking Combined Media:** Customers sending multiple photos or photo + video combinations simultaneously now display both media cards seamlessly without one suppressing the other.
+* **Eliminated Raw Placeholder Text:** Fixed redundant text lines (`📷 Photo`, `🎥 Video`, `🎤 Voice message`) from displaying inside chat bubbles when media cards are loaded. Captions and genuine text messages are preserved cleanly.
+* **Robust Image Error Recovery:** Enhanced `handleChatImageLoadError` to cleanly unpack refreshed media objects and prevent broken image `src` replacements.
+
+### 2. Resolved Meta Graph API 400 Bad Request on Attachments
+* **Clean Attachment Query Specification:** Replaced non-existent Graph API attachment field request (`video_data`) with standard `attachments` collection query across client resolvers and Cloudflare Worker webhooks.
+* **Restored Voice Clips & Audio Playback:** Voice messages and audio clips from Facebook Messenger now fetch and resolve successfully without throwing HTTP 400 errors, with instant audio waveform player controls.
+
+### 3. Real-Time Chat Feed Card Synchronization
+* **Automatic Metadata Timestamp Catch-Up:** Opening any chat thread automatically checks if the latest message timestamp is newer than `customerChatMeta`, immediately repairing stale preview cards and keeping the inbox list strictly synchronized with the latest customer message.
+
+## Version 1.0.81 (2026-11-01)
+
+### 1. Fixed Commission Penalty Application & Name Sanitization
+* **Illegal Firebase Character Sanitization:** Fixed the penalty submission failure (`update failed: values must be valid Firebase paths`) caused when targeting riders whose names include periods (e.g. `Ron DC.`), slashes, or special punctuation.
+* **Child-Level Atomic Updates:** Multi-rider and multi-day penalty mutations now use direct sanitized child keys under `commissionPenalties` (`db.ref('commissionPenalties').update()`), ensuring 100% reliable Firebase database writes across all names and punctuation marks.
+* **Fuzzy & Sanitized Key Lookup:** Enhanced penalty rate evaluation in `commissionRates.js` to look up both raw and sanitized keys, with automatic fallback to fuzzy name matching (`isRiderMatch`).
+
 ## Version 1.0.80 (2026-11-01)
 
 ### 1. Commission Penalty System Overhaul & Multi-Rider / Multi-Day Sanctions
