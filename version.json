@@ -1,10 +1,10 @@
 {
-  "version": "1.0.83",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.83.zip",
+  "version": "1.0.84",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.84.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "1a76a7e9ec30d64c7fc984a31ea5034c1839656429e66270581535ad1af05594",
-  "updatedAt": "2026-11-01T05:48:11.542Z",
-  "notes": "Eliminated desktop scrollbars, smart menu sticky header & 5+ item scroller, robust commission penalty & Android 16 screen-off service",
+  "checksum": "7817cce625b30a85b9fef10adc197a3fff95a4487a96b4c15fbe797ea3fb091b",
+  "updatedAt": "2026-11-01T05:58:38.062Z",
+  "notes": "Smart cart sticky layout & 5+ items side scroller, universal scrollbar modernization, screen-off foreground service",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

@@ -1,5 +1,22 @@
 # Lokalex App Release Notes
 
+## Version 1.0.84 (2026-11-01)
+
+### 1. Smart Cart Sticky Layout & Overflow Rail Tuning
+* **Pinned Header & Footer:** Consolidated the Smart Cart view into a fixed viewport height container so the slot selector, customer assigner, subtotal display, and paste actions remain permanently fixed at the top, and the "Create Receipt" action button remains permanently pinned at the bottom.
+* **Internal List Momentum Scrolling:** Enabled smooth internal touch momentum scrolling for `#cart-items-list` without moving or pushing away the header and footer toolbars.
+* **Smart Rail & Knob Auto-Display:** Tuned the vertical slider rail and circular draggable knob (`#cart-slider-track`) to reliably display whenever the cart has 5 or more items or when the list overflows the viewport.
+
+### 2. Universal Scrollbar Modernization
+* **Elimination of Ugly Desktop Scrollbars:** Enforced CSS `.no-scrollbar` rules across horizontal tabs, action button strips, category switchers, and quick reply chips on all platforms.
+* **Native Arrow Button Removal:** Disabled default platform scrollbar stepper buttons globally (`::-webkit-scrollbar-button`) for a clean, modern aesthetic.
+* **Sleek 3px Translucent Scrollbars:** Integrated minimal 3px semi-transparent thumb indicators for vertical chat message feeds and modal dialogues.
+
+### 3. Screen-Off Notification Stability & Atomic Penalty Execution
+* **Continuous Foreground WakeLock:** Maintained indefinite `PARTIAL_WAKE_LOCK` for `LokalexForegroundService`, preventing CPU suspension and missed chat/order notifications on Android 16 when the phone screen is turned off.
+* **Exact Alarm Compatibility:** Added safe alarm fallback (`setAndAllowWhileIdle`) for Android 14+ devices without exact alarm grants.
+* **Child-Level Penalty Database Transactions:** Streamlined commission penalties into atomic `.child(penaltyKey).set(record)` operations to prevent Firebase invalid key errors with dotted rider names.
+
 ## Version 1.0.83 (2026-11-01)
 
 ### 1. Eliminated Native Desktop Scrollbars & Added Sleek Mobile Scrollbars
