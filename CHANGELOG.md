@@ -1,5 +1,30 @@
 # Lokalex App Release Notes
 
+## Version 1.0.79 (2026-11-01)
+
+### 1. Commission Penalty System Overhaul & Multi-Rider / Multi-Day Sanctions
+* **Pre-Submission Confirmation Review:** Adding a penalty now features an explicit 2-step confirmation review modal displaying target rider(s), applicable dates, penalty surcharge percentage, reason, and total records calculation before applying.
+* **Multi-Rider Sanctioning:** Penalty modal now supports Single Rider, Multiple Riders (with searchable list, Select All / Clear All, and live counter badge), or All Active Riders in one operation.
+* **Date Range (Multiple Days):** Sanction riders for single dates or date ranges (From/To) with an automatic days counter and individual daily ledger records.
+* **Active Date Penalties Banner:** Prominent live banner in the Commission view displaying all active penalties for the selected period, complete with rider name, date, surcharge percentage, reason, and a 1-click Remove button with delete confirmation.
+* **Rider Card Header Badges:** Collapsed rider cards now feature a prominent red `⚖️ +X% Penalty` badge next to the rider's name for instant visibility.
+* **Zero-Delivery Visibility:** Riders with active penalties remain visible on the Commission ledger even before logging deliveries for that day.
+* **Quick Presets:** Instant preset chips for penalty rates (+3%, +5%, +10%, +15%, +20%) and common violation reasons (Late shift, Unexcused absence, Incomplete uniform, Extended break, Customer complaint).
+
+### 2. Multi-Media Messenger Chat Resolution & Latest Previews
+* **Enhanced Meta Graph API Subfield Extraction:** Fixed missing attachments when customers send multiple photos or photo + video combinations simultaneously from Facebook Messenger. Meta Graph API fetches now request full nested attachment subfields (`image_data, video_data, payload, subattachments, mime_type`) across Cloudflare Workers and client resolvers.
+* **Accurate Chat Card Previews:** Resolved race conditions and stale timestamp comparisons in `chatFeedListener.js`. Newly incoming customer messages and media previews now immediately take absolute precedence over older cached messages.
+* **Live Metadata Preview Sync:** Incoming message streams write latest message previews and media badges directly into `customerChatMeta` in real time.
+
+### 3. Dedicated Add Customer Modal & Live GPS Location Capture
+* **Streamlined Add Customer Modal:** Replaced nested directory prompts with a dedicated Customer Registration modal featuring Customer Name, Contact Number, and dynamic Add Address triggers.
+* **Automatic GPS Calibration:** Both the Chat Customer Info location manager and the Directory Add Address modal now auto-capture the rider's live GPS coordinates and generate a precise Google Maps pin link automatically.
+* **Multi-Location Management:** Manage and navigate to multiple registered addresses per customer directly from chat and directory cards.
+
+### 4. Store Directory Bulk Menu Photo Upload & Smart Cart Scrollbar
+* **Bulk Store Menu Uploads:** Store owners and riders can now select and upload multiple menu photos in a single batch with preview thumbnail grid and faster image compression.
+* **Smart Cart Permanent Scrollbar:** Enhanced order scrolling for large orders with a visible, responsive scrollbar and touch slider for effortless navigation.
+
 ## Version 1.0.78 (2026-10-31)
 
 ### 1. Directory Customer Profile Auto-Connect

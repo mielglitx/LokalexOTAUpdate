@@ -1,10 +1,10 @@
 {
-  "version": "1.0.78",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.78.zip",
+  "version": "1.0.79",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.79.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "5bcd31453b9bbd0ee44fb67b7a7a4138232025c9da67e0deaf644d3b0eabdf1c",
-  "updatedAt": "2026-10-31T02:26:09.077Z",
-  "notes": "Directory profile auto-connect, multiple customer locations in chat info and directory, smart cart scroller, and voice/multi-pic chat fixes",
-  "nativeVersion": "1.0.78",
+  "checksum": "2870666672e1f84ea380fce671151f96c92fb0c26177e0c93d3f1e1a90d7d5f4",
+  "updatedAt": "2026-11-01T01:45:02.777Z",
+  "notes": "Commission Penalty Confirmation & Multi-Rider/Day, Messenger Media & Latest Previews Fix, Dedicated Add Customer Modal & Live GPS",
+  "nativeVersion": "1.0.79",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
