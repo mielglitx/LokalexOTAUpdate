@@ -2,9 +2,9 @@
   "version": "1.0.84",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.84.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "7817cce625b30a85b9fef10adc197a3fff95a4487a96b4c15fbe797ea3fb091b",
-  "updatedAt": "2026-11-01T05:58:38.062Z",
-  "notes": "Smart cart sticky layout & 5+ items side scroller, universal scrollbar modernization, screen-off foreground service",
+  "checksum": "6dc7dd7518cf0c4be3b26fcc46bffd928cdd6ada0668c9d89ca9ba587ffe9974",
+  "updatedAt": "2026-11-01T06:09:15.601Z",
+  "notes": "Fix Generate Receipt button layout in smart cart, internal scrolling, and changelog update",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

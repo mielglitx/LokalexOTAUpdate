@@ -2,9 +2,10 @@
 
 ## Version 1.0.84 (2026-11-01)
 
-### 1. Smart Cart Sticky Layout & Overflow Rail Tuning
-* **Pinned Header & Footer:** Consolidated the Smart Cart view into a fixed viewport height container so the slot selector, customer assigner, subtotal display, and paste actions remain permanently fixed at the top, and the "Create Receipt" action button remains permanently pinned at the bottom.
-* **Internal List Momentum Scrolling:** Enabled smooth internal touch momentum scrolling for `#cart-items-list` without moving or pushing away the header and footer toolbars.
+### 1. Fixed Generate Receipt Button & Smart Cart Viewport Layout
+* **Always-Visible Fixed Generate Receipt Button:** Converted the "Generate Receipt" button to a viewport-fixed bottom container (`fixed bottom-0 z-40`) to ensure it remains permanently present and 100% visible across all device screen heights, avoiding clipping issues from nested container paddings.
+* **Sticky Top Navigation & Pinned Action Bar:** Kept the cart slot tabs, client assigner, subtotal display, and item actions pinned at the top (`sticky top-0 z-20`).
+* **Internal Touch Momentum Scrolling:** Constrained `#cart-items-list` with `max-h-[calc(100vh-270px)]` and `overflow-y-auto` so items scroll smoothly between the fixed toolbars without displacing the bottom Generate Receipt button.
 * **Smart Rail & Knob Auto-Display:** Tuned the vertical slider rail and circular draggable knob (`#cart-slider-track`) to reliably display whenever the cart has 5 or more items or when the list overflows the viewport.
 
 ### 2. Universal Scrollbar Modernization
