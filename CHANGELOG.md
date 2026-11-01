@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version 1.0.88 (2026-11-02)
+
+### 1. Broken Image Resolution in Chat & Interactive Recovery
+* **Facebook CDN Referer Fix (`no-referrer`):** Added `referrerpolicy="no-referrer"` to single photo attachments, image grids, and the fullscreen image viewer. Resolves HTTP 403 Forbidden blocks from Meta / Facebook CDNs (`lookaside.fbsbx.com`, `scontent.xx.fbcdn.net`).
+* **Accurate Meta Message ID Resolution:** Enhanced `resolveFacebookMessageAttachment` to look up Meta `mid` / `metaMid` when given a Firebase push key, ensuring Graph API queries succeed with valid message IDs.
+* **Expired Cache Bypass:** Added a cache purge mechanism when handling image loading errors, clearing stale expired URLs from memory and local storage so fresh signed URLs are retrieved.
+* **Real-Time Graph Attachment Refresh:** Updated `syncCurrentThreadFromMetaGraph` so when fresh media attachments are fetched from Meta Graph API, existing message bubbles, in-memory caches, and Firebase records are immediately refreshed.
+* **Interactive Image Fallback Card ("Tap to reload"):** If a photo fails to load due to temporary network or token expiration, the broken browser icon is replaced with a clean card (`Photo expired or loading failed • Tap to reload`) that re-fetches the image on tap.
+
+### 2. Stale Catering Status & Lock Bug Fix
+* **Live Roster Authority:** The live rotation roster is now the strict source of truth for catering status (`getActiveRosterCaterer` and `status === 'Catering'`). If a rider is off duty or no longer in Catering status, customers are never falsely locked or marked as catered by them.
+* **Auto-Purge Stale Metadata:** Opening or syncing a customer thread automatically purges stale `cateredBy`, `cateredByRiderName`, and `cateredByRiderId` from Firebase, resetting the folder to `inbox` (or `done`) so active riders can cater immediately.
+* **End Shift & Auto End Shift Release:** Integrated automatic catering chat cleanup into `clockOutRider()` and overnight `sweepStaleShiftsFromPriorDays()`, ensuring off-duty riders never hold locks on customer chats.
+* **Hidden False Admin Banner:** Removed false `⚡ Admin Mode — Replying as Admin (Catered by ...)` warnings on unassigned or previously catered threads.
+
+### 3. Overtime (OT) Remittance Discount Shift-Boundary Fix
+* **Order-by-Order Shift Boundary Evaluation:** Overtime remittance discounts now strictly apply only to orders delivered past the rider's set scheduled duty cutoff ($\text{Login Time} + \text{Set Duty Hours} + \text{Break Time}$). Orders completed within regular duty hours strictly pay standard commission.
+* **Breakdown Card & Report Accuracy:** Individual customer cards display the `⚡ Overtime` badge and discounted rate only for qualified orders past duty, while daily settlement reports and rider summaries clearly delineate regular orders from overtime-discounted orders.
+
 ## Version 1.0.87 (2026-11-01)
 
 ### 1. Catering Queue Jump Prevention & Dedicated Notice Modal
