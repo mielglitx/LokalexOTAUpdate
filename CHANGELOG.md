@@ -1,5 +1,18 @@
 # Lokalex App Release Notes
 
+## Version 1.0.85 (2026-11-01)
+
+### 1. Interactive Picture-in-Picture (PiP) Floating Badge
+* **Dynamic Status Rings:** The floating mini-badge now automatically updates its ring color in real time based on active rider operations:
+  * **Blue Ring:** Idle standby mode when the rider has no unread messages in the inbox and is not currently catering.
+  * **Yellow Ring:** Actively catering mode indicating the rider is on an active order delivery.
+* **Dual Unread Notification Badges:**
+  * **Green Badge:** Displays the number of unread incoming chats in the general inbox.
+  * **Orange Badge:** Prominently displays the number of unread incoming messages from the customer the rider is actively catering.
+  * **Auto-Balancing Layout:** Automatically anchors to the top-right corner when a single category is active, or splits into top-right (Catering) and bottom-right (Inbox) when both have unread messages to ensure zero visual overlap.
+* **Touch & Tap Interactivity:** Tapping the badge triggers native tactile haptic feedback and intelligently routes to the relevant customer chat thread (catered customer first, then unread inbox chats, or restores fullscreen mode).
+* **Mini PiP Chat & Fullscreen Restorer:** Integrated an expand-to-fullscreen button (`#rider-chat-expand-btn`) in the chat header and added native `exitFloatingWindowMode()` bridge so riders can toggle between the floating badge and full app seamlessly.
+
 ## Version 1.0.84 (2026-11-01)
 
 ### 1. Fixed Generate Receipt Button & Smart Cart Viewport Layout

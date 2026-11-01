@@ -1,10 +1,10 @@
 {
-  "version": "1.0.84",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.84.zip",
+  "version": "1.0.85",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.85.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "6dc7dd7518cf0c4be3b26fcc46bffd928cdd6ada0668c9d89ca9ba587ffe9974",
-  "updatedAt": "2026-11-01T06:09:15.601Z",
-  "notes": "Fix Generate Receipt button layout in smart cart, internal scrolling, and changelog update",
+  "checksum": "6c11ac54aacce20a52c79ebd217158df9873f01b3f66c02864769a185080585a",
+  "updatedAt": "2026-11-01T06:55:15.316Z",
+  "notes": "Interactive Picture-in-Picture floating badge with dynamic rings and unread counters",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
