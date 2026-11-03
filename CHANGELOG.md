@@ -1,5 +1,12 @@
 # Lokalex App Release Notes
 
+## Version 1.0.91 (2026-11-04)
+
+### 1. Screen-Off Real-Time Chat Listener Fix
+* **Eliminated `requestAnimationFrame` Delay on Incoming Chats:** Removed render-frame scheduling from `customerChatMeta` listener in `chatFeedListener.js`. When the phone screen is locked or turned off, incoming message metadata, sound chimes, and native notifications now process immediately and synchronously instead of freezing until screen unlock.
+* **Dual-Engine Native Background Monitoring:** Added native Supabase REST endpoint polling to Android `LokalexForegroundService.java` alongside Firebase RTDB. The background service checks for new incoming chats every 5 seconds under a native partial wake lock, sounds the chime, posts status notifications, and wakes the screen even when the app is in deep sleep.
+* **Supabase Realtime Keep-Alive & Auto-Reconnect:** Enhanced `goOnline()` in `supabaseDb.js` to actively verify and reconnect dropped Supabase WebSocket connections upon background heartbeat pulses and lifecycle transitions.
+
 ## Version 1.0.90 (2026-11-04)
 
 ### 1. Header Gap Elimination (No Gap UI)
