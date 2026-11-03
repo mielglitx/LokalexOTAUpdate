@@ -58,6 +58,10 @@
 * **One-Click Group Summary Copy:** Copies an emoji-formatted, ready-to-share text report directly to clipboard for Telegram/Messenger rider group chats.
 * **Continuous Shift Archiving:** Automatic persistence to `shiftHistory` on every clock-in, break, and clock-out event.
 
+### 11. Performance Board Accuracy & Admin Exclusion
+* **Excluded Admin Accounts from Leaderboard & Spotlights:** Administrator accounts (e.g. Amiel Yalung, Rex, Azriel, Ruth Ann, IDs in `ADMIN_IDS`, or users with `userType: 'admin'`) are now strictly filtered out of the Rider Performance Tracker. Spotlights and rankings are exclusively reserved for bona fide active delivery riders.
+* **Resolved Ghost Duty Hours (Rex 18h Bug):** Fixed stale shift handling where riders who have not been working for months could inherit arbitrary duty time from unclosed or multi-day shift records. Standardized date parsing using `normalizeToDateStr`, restricted `Date.now()` duration calculations strictly to today's active shifts, capped realistic single-shift limits, and required actual customer deliveries or verified attendance for spotlight qualification.
+
 ## Version 1.0.88 (2026-11-02)
 
 ### 1. Broken Image Resolution in Chat & Interactive Recovery
