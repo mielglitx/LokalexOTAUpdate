@@ -27,6 +27,11 @@
 * **Inbox State Restoration:** Rescued archived active conversations and restored incoming chat routing directly to the active rider inbox feed.
 * **Overtime Commission Incentive Crash Fix:** Fixed `ReferenceError: overtimeReward is not defined` crash when toggling overtime incentive settings.
 
+### 6. Message Notification Chimes Restoration
+* **Unassigned & Inbox Message Chimes:** Removed the restrictive `!isRiderRole` check in `chatFeedListener.js` that was inadvertently silencing acoustic chimes on incoming customer messages for logged-in riders and administrators.
+* **Administrator Catering Monitoring:** Enabled incoming catering audio alerts for administrators and authorized dispatchers alongside the active catering rider.
+* **Instant Audio & Native Ringtone:** Incoming messages now reliably trigger both the Web Audio chime synthesizer and Android native notification alert according to the user's chime preferences.
+
 ## Version 1.0.88 (2026-11-02)
 
 ### 1. Broken Image Resolution in Chat & Interactive Recovery

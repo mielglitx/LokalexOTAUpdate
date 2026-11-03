@@ -2,9 +2,9 @@
   "version": "1.0.89",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.89.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "74bd16ae25b6121b376ef4246ebc49e9354d4fa1c88d707e09f76b89deed6bbc",
-  "updatedAt": "2026-11-03T16:56:51.411Z",
-  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
+  "checksum": "24c292b2d08a79f243e6eee3dee695e69452ebcedf3c006ad1c36d717d84ba26",
+  "updatedAt": "2026-11-03T17:15:18.258Z",
+  "notes": "Restored message notification chimes, eliminated top header gap, and permanently anchored Cart Generate Receipt button",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
