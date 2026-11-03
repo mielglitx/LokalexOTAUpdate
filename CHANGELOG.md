@@ -32,9 +32,9 @@
 * **Administrator Catering Monitoring:** Enabled incoming catering audio alerts for administrators and authorized dispatchers alongside the active catering rider.
 * **Instant Audio & Native Ringtone:** Incoming messages now reliably trigger both the Web Audio chime synthesizer and Android native notification alert according to the user's chime preferences.
 
-### 7. Pixel-Perfect "No Gap" Status Bar & Header Layout
-* **Eliminated Top Gap & Notch Overlap:** Restored `WindowCompat.setDecorFitsSystemWindows` and non-overlay status bar configuration (`StatusBar.setOverlaysWebView({ overlay: false })`), resolving both the top black gap and camera notch overlap with the app header.
-* **Guaranteed Bottom Button Visibility:** With the top gap removed, the Smart Cart "Generate Receipt" button is permanently visible and never cut off or pushed below the bottom bezel.
+### 7. Header Visibility & Immersive Status Bar
+* **Fully Visible App Header:** The system notification bar is now automatically hidden during app usage via `StatusBar.hide()`, giving `#app-header` full, unobstructed visibility without any notch or clock icon overlap.
+* **Transient Swipe-Down Reveal:** Swiping down from the very top edge of the screen reveals the native notification/status bar for a brief moment before it automatically glides away.
 
 ### 8. Smart Cart Swipe-to-Delete & Slider Scroller Restoration
 * **Swipe-to-Delete Restored:** Fixed global window binding for `handleCardTouchStart`, `handleCardTouchMove`, and `handleCardTouchEnd`. Cards now smoothly slide left or right with visual red-border feedback and trigger the deletion modal at a 65px drag threshold.
@@ -44,7 +44,9 @@
 * **Resolved "Downloading Update Fails":** Fixed SHA-256 checksum mismatch caused by Fastly CDN 300s edge caching on GitHub raw URLs by appending dynamic cache-busting timestamps (`?v=...`) to release zip URLs.
 * **Resilient Download Fallback:** Added automatic fallback handling in `otaUpdater.js` to ensure live bundle updates download and apply without interruption.
 
-### 10. Rider Performance Tracker (Admin Only)
+### 10. Rider Performance Tracker (Admin Only) & Infinite Loading Fix
+* **Resolved Stuck on Loading:** Fixed an uncaught TypeError in the database query layer (`startAt is not a function`) that previously caused the performance modal to stay stuck on the loading spinner. Added `startAt` and `endAt` range query support to `createSupabaseRef` along with a 6-second query timeout.
+* **Resilient Data Aggregation:** Aggregates delivery receipts, completed roster records, shift history, and daily attendance with safe fallbacks so metrics display immediately even over slow or intermittent connections.
 * **Dedicated Admin Analytics Hub:** Built an exclusive analytics modal (`rosterPerformanceTracker.js`) for administrators to identify and reward top-performing riders across 4 essential performance criteria:
   - 💰 **Most Income:** Cumulative delivery fees and commission generated.
   - 📦 **Most Customers Catered:** Total completed delivery orders.
