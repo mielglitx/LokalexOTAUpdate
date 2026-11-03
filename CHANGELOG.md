@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.0.90 (2026-11-04)
+
+### 1. Header Gap Elimination (No Gap UI)
+* **Status Bar Alignment:** Removed redundant top safe-area padding on `body` and `#app-header`, eliminating the unwanted top black bar/gap across Android and PWA devices.
+* **Pixel-Perfect Viewport Fit:** Aligns the app header seamlessly beneath the native Android status bar (`WindowCompat.setDecorFitsSystemWindows`), ensuring full vertical screen utilization.
+
+### 2. Smart Cart Permanent Button & Viewport Fix
+* **Fixed Bottom Generate Receipt Button:** Converted the "Generate Receipt" footer in the Smart Cart to a fixed bottom container (`fixed bottom-0 left-0 right-0 z-40`) with safe-area padding, ensuring the button is permanently anchored and always 100% visible regardless of display cutouts or scrolling.
+* **Scroll Padding & Track Adjustment:** Added generous bottom scroll padding (`pb-28`) to the cart items list so all item action buttons remain fully scrollable and never obscured by the receipt footer.
+
 ## Version 1.0.89 (2026-11-04)
 
 ### 1. Real-Time Chat Message Reactions & Edits
