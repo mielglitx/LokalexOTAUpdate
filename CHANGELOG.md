@@ -1,36 +1,30 @@
 # Lokalex App Release Notes
 
-## Version 1.0.91 (2026-11-04)
-
-### 1. Screen-Off Real-Time Chat Listener Fix
-* **Eliminated `requestAnimationFrame` Delay on Incoming Chats:** Removed render-frame scheduling from `customerChatMeta` listener in `chatFeedListener.js`. When the phone screen is locked or turned off, incoming message metadata, sound chimes, and native notifications now process immediately and synchronously instead of freezing until screen unlock.
-* **Dual-Engine Native Background Monitoring:** Added native Supabase REST endpoint polling to Android `LokalexForegroundService.java` alongside Firebase RTDB. The background service checks for new incoming chats every 5 seconds under a native partial wake lock, sounds the chime, posts status notifications, and wakes the screen even when the app is in deep sleep.
-* **Supabase Realtime Keep-Alive & Auto-Reconnect:** Enhanced `goOnline()` in `supabaseDb.js` to actively verify and reconnect dropped Supabase WebSocket connections upon background heartbeat pulses and lifecycle transitions.
-
-## Version 1.0.90 (2026-11-04)
-
-### 1. Header Gap Elimination (No Gap UI)
-* **Status Bar Alignment:** Removed redundant top safe-area padding on `body` and `#app-header`, eliminating the unwanted top black bar/gap across Android and PWA devices.
-* **Pixel-Perfect Viewport Fit:** Aligns the app header seamlessly beneath the native Android status bar (`WindowCompat.setDecorFitsSystemWindows`), ensuring full vertical screen utilization.
-
-### 2. Smart Cart Permanent Button & Viewport Fix
-* **Fixed Bottom Generate Receipt Button:** Converted the "Generate Receipt" footer in the Smart Cart to a fixed bottom container (`fixed bottom-0 left-0 right-0 z-40`) with safe-area padding, ensuring the button is permanently anchored and always 100% visible regardless of display cutouts or scrolling.
-* **Scroll Padding & Track Adjustment:** Added generous bottom scroll padding (`pb-28`) to the cart items list so all item action buttons remain fully scrollable and never obscured by the receipt footer.
-
 ## Version 1.0.89 (2026-11-04)
 
-### 1. Real-Time Chat Message Reactions & Edits
+### 1. Real-Time Chat Message Reactions & In-Place Edits
 * **Live In-Place Message Edit Updates:** When a customer edits a message on Facebook Messenger, the active chat modal instantly updates the message text in place without requiring you to close and reopen the chat.
 * **Original Message History:** Displays an `edited` badge along with the previous text crossed out under an `Original:` tag.
 * **Messenger Emoji Reactions:** Customer reactions (❤️, 👍, 😆, 😮, 😢, 😡) sync directly onto the chat bubbles in real time. Toggling or removing a reaction updates the count and badge live.
 * **Facebook Page Echoes Synchronization:** Replies sent directly from the Facebook Page / Meta Business Suite now automatically appear in the Lokalex app in real time without duplicates.
 
-### 2. Dedicated Supabase Webhook Integration
+### 2. Screen-Off Real-Time Chat Listener & Background Wake
+* **Eliminated `requestAnimationFrame` Delay on Incoming Chats:** Removed render-frame scheduling from `customerChatMeta` listener in `chatFeedListener.js`. When the phone screen is locked or turned off, incoming message metadata, sound chimes, and native notifications now process immediately and synchronously instead of freezing until screen unlock.
+* **Dual-Engine Native Background Monitoring:** Added native Supabase REST endpoint polling to Android `LokalexForegroundService.java` alongside Firebase RTDB. The background service checks for new incoming chats every 5 seconds under a native partial wake lock, sounds the chime, posts status notifications, and wakes the screen even when the app is in deep sleep.
+* **Supabase Realtime Keep-Alive & Auto-Reconnect:** Enhanced `goOnline()` in `supabaseDb.js` to actively verify and reconnect dropped Supabase WebSocket connections upon background heartbeat pulses and lifecycle transitions.
+
+### 3. Header Gap Elimination (No Gap UI)
+* **Status Bar Alignment:** Removed redundant top safe-area padding on `body` and `#app-header`, eliminating the unwanted top black bar/gap across Android and PWA devices.
+* **Pixel-Perfect Viewport Fit:** Aligns the app header seamlessly beneath the native Android status bar (`WindowCompat.setDecorFitsSystemWindows`), ensuring full vertical screen utilization.
+
+### 4. Smart Cart Permanent Button & Viewport Fix
+* **Fixed Bottom Generate Receipt Button:** Converted the "Generate Receipt" footer in the Smart Cart to a fixed bottom container (`fixed bottom-0 left-0 right-0 z-40`) with safe-area padding, ensuring the button is permanently anchored and always 100% visible regardless of display cutouts or scrolling.
+* **Scroll Padding & Track Adjustment:** Added generous bottom scroll padding (`pb-28`) to the cart items list so all item action buttons remain fully scrollable and never obscured by the receipt footer.
+* **Button Scroll Lock:** Fixed an issue where clicking item buttons (store, market, paid, onhand, NA) caused the smart cart item list to scroll to the top.
+
+### 5. Dedicated Supabase Webhook Integration & Stability
 * **Dedicated Cloudflare Worker:** Configured dedicated Supabase webhook architecture handling incoming messages, multi-photo attachments, videos, voice clips, read receipts, delivery confirmations, and postback button clicks.
 * **Inbox State Restoration:** Rescued archived active conversations and restored incoming chat routing directly to the active rider inbox feed.
-
-### 3. Stability & UI Fixes
-* **Smart Cart Button Scroll Lock:** Fixed an issue where clicking item buttons (store, market, paid, onhand, NA) caused the smart cart item list to scroll to the top.
 * **Overtime Commission Incentive Crash Fix:** Fixed `ReferenceError: overtimeReward is not defined` crash when toggling overtime incentive settings.
 
 ## Version 1.0.88 (2026-11-02)
