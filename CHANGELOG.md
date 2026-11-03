@@ -32,6 +32,22 @@
 * **Administrator Catering Monitoring:** Enabled incoming catering audio alerts for administrators and authorized dispatchers alongside the active catering rider.
 * **Instant Audio & Native Ringtone:** Incoming messages now reliably trigger both the Web Audio chime synthesizer and Android native notification alert according to the user's chime preferences.
 
+### 7. Immersive Sticky Status Bar (Transient Swipe-Down Notification Bar)
+* **Auto-Hidden Notification Bar:** The Android system status/notification bar is now automatically hidden during active app usage, giving the app header full, unobstructed visibility and eliminating any overlap with profile avatars or header buttons.
+* **Transient Swipe-Down Reveal:** Swiping down from the very top edge of the screen reveals the native notification/status bar for a brief moment before it automatically glides away (`BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE`).
+
+### 8. Rider Performance Tracker (Admin Only)
+* **Dedicated Admin Analytics Hub:** Built an exclusive analytics modal (`rosterPerformanceTracker.js`) for administrators to identify and reward top-performing riders across 4 essential performance criteria:
+  - 💰 **Most Income:** Cumulative delivery fees and commission generated.
+  - 📦 **Most Customers Catered:** Total completed delivery orders.
+  - ⏱️ **Most Time Worked:** Total duty hours worked excluding break periods.
+  - 📅 **Most Days Attended:** Total distinct calendar days attended on duty.
+* **Weekly & Monthly Reports:** Full period navigation with one-click toggling between Weekly (Monday-to-Sunday) and Monthly reports, plus previous/next period historical browsing.
+* **Champion Spotlight Cards:** Highlights 1st-place performers in each category with spotlight cards and trophies.
+* **Sortable Interactive Leaderboard:** Instantly sort all active riders by any criterion (Income, Orders, Time Worked, Attendance).
+* **One-Click Group Summary Copy:** Copies an emoji-formatted, ready-to-share text report directly to clipboard for Telegram/Messenger rider group chats.
+* **Continuous Shift Archiving:** Automatic persistence to `shiftHistory` on every clock-in, break, and clock-out event.
+
 ## Version 1.0.88 (2026-11-02)
 
 ### 1. Broken Image Resolution in Chat & Interactive Recovery
