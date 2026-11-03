@@ -1,10 +1,10 @@
 {
   "version": "1.0.89",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.89.zip",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "2f1f11abcc6b0b64eb1de0ff92c01dbf2706f013ba096d2c223e3877d55ac715",
-  "updatedAt": "2026-11-03T17:26:27.999Z",
-  "notes": "Immersive swipe-down status bar, Admin Performance Tracker (Weekly & Monthly reports), and notification chimes fix",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.89.zip?v=1793728560053",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793728560053",
+  "checksum": "6b93d1e58656964d69ef4f3a239dfd3e8721a42d3dd41f7492c6ace8bfa392dc",
+  "updatedAt": "2026-11-03T17:56:00.053Z",
+  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
