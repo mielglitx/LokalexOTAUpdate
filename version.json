@@ -1,10 +1,10 @@
 {
-  "version": "1.0.88",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.88.zip",
+  "version": "1.0.89",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.89.zip",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip",
-  "checksum": "02319e753b1efd98dce5569e6615d148b8c1984ef880de7823ceab203bb83f36",
-  "updatedAt": "2026-11-01T22:49:34.543Z",
-  "notes": "Broken image fix in chat, stale catering lock fix, and OT remittance duty boundary",
+  "checksum": "461e9ebaf1d550244d56d03c670a69e72ade82f84ccf416a9625eaf0c9a8834f",
+  "updatedAt": "2026-11-03T16:06:16.912Z",
+  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

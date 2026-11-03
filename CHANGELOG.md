@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 1.0.89 (2026-11-04)
+
+### 1. Real-Time Chat Message Reactions & Edits
+* **Live In-Place Message Edit Updates:** When a customer edits a message on Facebook Messenger, the active chat modal instantly updates the message text in place without requiring you to close and reopen the chat.
+* **Original Message History:** Displays an `edited` badge along with the previous text crossed out under an `Original:` tag.
+* **Messenger Emoji Reactions:** Customer reactions (❤️, 👍, 😆, 😮, 😢, 😡) sync directly onto the chat bubbles in real time. Toggling or removing a reaction updates the count and badge live.
+* **Facebook Page Echoes Synchronization:** Replies sent directly from the Facebook Page / Meta Business Suite now automatically appear in the Lokalex app in real time without duplicates.
+
+### 2. Dedicated Supabase Webhook Integration
+* **Dedicated Cloudflare Worker:** Configured dedicated Supabase webhook architecture handling incoming messages, multi-photo attachments, videos, voice clips, read receipts, delivery confirmations, and postback button clicks.
+* **Inbox State Restoration:** Rescued archived active conversations and restored incoming chat routing directly to the active rider inbox feed.
+
+### 3. Stability & UI Fixes
+* **Smart Cart Button Scroll Lock:** Fixed an issue where clicking item buttons (store, market, paid, onhand, NA) caused the smart cart item list to scroll to the top.
+* **Overtime Commission Incentive Crash Fix:** Fixed `ReferenceError: overtimeReward is not defined` crash when toggling overtime incentive settings.
+
 ## Version 1.0.88 (2026-11-02)
 
 ### 1. Broken Image Resolution in Chat & Interactive Recovery
