@@ -1,10 +1,10 @@
 {
   "version": "1.0.96",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793830885248",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793830885248",
-  "checksum": "fa03c96c6a929ee27e8520e566b02eb361e9c905175e006a30e001a0f9a2c6f9",
-  "updatedAt": "2026-11-04T22:21:25.248Z",
-  "notes": "Fix overtime commission duty calculation by honoring break allowances and shift history",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793831954331",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793831954331",
+  "checksum": "26d6579cfe9eca844355d835f2404ae4dd7d1b50af6f14e1ff832ff50d3987e4",
+  "updatedAt": "2026-11-04T22:39:14.331Z",
+  "notes": "Fix directoryGalleries syntax error and resolve Supabase chat table 404",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

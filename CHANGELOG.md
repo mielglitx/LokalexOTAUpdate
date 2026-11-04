@@ -9,6 +9,10 @@
 * **Corrupted Break Safeguard:** Capped runaway or unclosed break times at a maximum daily ceiling (120 minutes) so orphaned break states cannot wipe out valid evening overtime orders.
 * **Clock Time String Matching:** Eliminated timezone and epoch discrepancies by comparing wall-clock local time strings directly, preventing orders occurring before or within shift hours (including dummy `00:00` base rate calls) from wrapping into overtime.
 
+### 2. Directory Galleries & Supabase Schema Stability
+* **Fixed Directory Galleries Syntax:** Cleaned up character encodings and exception handling in `deleteMenuGalleryPage` (`directoryGalleries.js`), resolving IDE syntax/declaration warnings.
+* **Resolved Supabase 404 on 'public.chat':** Eliminated legacy dead listener on `chat` in `appListeners.js`, mapped team image shares to `teamChat/general`, and registered `chat` table mapping alias in `supabaseDb.js` to silence schema cache 404 warnings.
+
 ## Version 1.0.95 (2026-11-04)
 
 ### 1. Base Rate Display in Settlement Reports
