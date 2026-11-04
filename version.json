@@ -1,10 +1,10 @@
 {
-  "version": "1.0.93",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.93.zip?v=1793782658435",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793782658435",
-  "checksum": "e040c60b99add4ecaeae780ca4ee4962b9408f20d774c48d75373100fe3a9d42",
-  "updatedAt": "2026-11-04T08:57:38.435Z",
-  "notes": "Fix catering state retention and ensure persistent chat room action controls",
+  "version": "1.0.94",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.94.zip?v=1793793133217",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793793133217",
+  "checksum": "9f71e92f2f190cb9dace2c056bf69224b9cbe0183bfd7ea84587396714f614a0",
+  "updatedAt": "2026-11-04T11:52:13.217Z",
+  "notes": "Fix customer catering ownership separation for force-assigned orders and accelerate picture menu loading",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
