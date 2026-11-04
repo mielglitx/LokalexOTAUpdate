@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.0.93 (2026-11-04)
+
+### 1. Catering State Retention & Chat Room Action Controls
+* **Eliminated Background Catering Assignment Purge:** Removed destructive background routines in `chatFeedListener.js` and `chatModalUi.js` that previously wiped `cateredByRiderId`, `cateredByRiderName`, and `folder: 'catering'` back to `inbox` in the database whenever customer name fuzzy matching experienced momentary delays or variations.
+* **Persistent Chat Room Actions:** Ensured that once a rider caters a customer, the **Cater** button is strictly hidden, and the active **Cancel** and **Go to Cart** buttons remain permanently visible while viewing the chat room.
+* **Enhanced FB Name & Candidate Resolution:** `getThreadCustomerCandidates` now automatically includes resolved Facebook names and modal header customer names, preventing catering lookup failures on Messenger conversations.
+* **Metadata Merge Safeguard:** Merges incoming database metadata updates with established in-memory thread cache so incoming message events never overwrite active catering fields with incomplete payloads.
+
 ## Version 1.0.92 (2026-11-04)
 
 ### 1. Catering Audio Chimes & Notification Filtering

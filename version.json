@@ -1,10 +1,10 @@
 {
-  "version": "1.0.92",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.92.zip?v=1793765409530",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793765409530",
-  "checksum": "c5b6d2df16cc0db0c1a21b3284b0a4d3794a6f4d78622a96938e2421b1e0db07",
-  "updatedAt": "2026-11-04T04:10:09.530Z",
-  "notes": "Fix catering chime filtering for unassigned riders and fix wizard direct receipt sending",
+  "version": "1.0.93",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.93.zip?v=1793782658435",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793782658435",
+  "checksum": "e040c60b99add4ecaeae780ca4ee4962b9408f20d774c48d75373100fe3a9d42",
+  "updatedAt": "2026-11-04T08:57:38.435Z",
+  "notes": "Fix catering state retention and ensure persistent chat room action controls",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
