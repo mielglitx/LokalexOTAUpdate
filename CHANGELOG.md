@@ -10,8 +10,9 @@
 * **Clock Time String Matching:** Eliminated timezone and epoch discrepancies by comparing wall-clock local time strings directly, preventing orders occurring before or within shift hours (including dummy `00:00` base rate calls) from wrapping into overtime.
 
 ### 2. Directory Galleries & Supabase Schema Stability
-* **Fixed Directory Galleries Syntax:** Cleaned up character encodings and exception handling in `deleteMenuGalleryPage` (`directoryGalleries.js`), resolving IDE syntax/declaration warnings.
-* **Resolved Supabase 404 on 'public.chat':** Eliminated legacy dead listener on `chat` in `appListeners.js`, mapped team image shares to `teamChat/general`, and registered `chat` table mapping alias in `supabaseDb.js` to silence schema cache 404 warnings.
+* **Fixed Directory Galleries Syntax:** Cleaned up character encodings, identifier scoping, and exception handling in `deleteMenuGalleryPage` (`directoryGalleries.js`), resolving IDE syntax/declaration warnings.
+* **Resolved Supabase 404 on 'public.chat' & 'public.shift_history':** Eliminated legacy dead listener on `chat` in `appListeners.js`, mapped team image shares to `teamChat/general`, registered `chat` table mapping alias in `supabaseDb.js`, and routed `shiftHistory` queries to Firebase RTDB where historical shift records reside.
+* **Dev Mode Service Worker Registration:** Bypassed service worker registration when running in Vite development mode (`localhost:5173`) to eliminate unsupported MIME type `text/html` console warnings.
 
 ## Version 1.0.95 (2026-11-04)
 

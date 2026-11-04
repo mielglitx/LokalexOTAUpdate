@@ -1,10 +1,10 @@
 {
   "version": "1.0.96",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793831954331",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793831954331",
-  "checksum": "26d6579cfe9eca844355d835f2404ae4dd7d1b50af6f14e1ff832ff50d3987e4",
-  "updatedAt": "2026-11-04T22:39:14.331Z",
-  "notes": "Fix directoryGalleries syntax error and resolve Supabase chat table 404",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793832230504",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793832230504",
+  "checksum": "7e1f563ed28397d61e0dd9dc29789156bab76f135cea53b56725fa1a222458bf",
+  "updatedAt": "2026-11-04T22:43:50.504Z",
+  "notes": "Resolve directoryGalleries syntax, eliminate Supabase shiftHistory 404, and fix dev sw registration",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
