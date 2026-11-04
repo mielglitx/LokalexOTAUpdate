@@ -1,5 +1,18 @@
 # Lokalex App Release Notes
 
+## Version 1.0.92 (2026-11-04)
+
+### 1. Catering Audio Chimes & Notification Filtering
+* **Strict Assignment Filter:** Customer messages in the Catering folder now strictly chime **only for the rider actively catering that customer**.
+* **Eliminated False-Alarm Chimes:** Fixed fallback classification where catering threads were inadvertently assigned to the Inbox folder if the active caterer lookup was delayed or unmatched, which previously triggered audible inbox chimes for all idle riders and administrators.
+* **Overridden Stale Caterer IDs:** Always updates catering thread rider IDs directly with the active live roster caterer to ensure incoming message alerts never sound on devices of previous riders.
+
+### 2. Direct Receipt Sending from Wizard
+* **Direct Send Action Button:** Added a dedicated **"Send Receipt Directly"** action button in the checkout wizard view, enabling riders to validate fees, generate the high-resolution receipt, and deliver it to the customer with a single tap.
+* **Auto-Generating Image Canvas:** Automatically awaits image canvas generation if the user initiates a send before the preview finishes rendering, eliminating "Image receipt is still generating" delays.
+* **Universal Recipient Resolver:** Supports in-memory cached customer threads, Supabase metadata mapping, and Facebook Page resolvers so customer names match seamlessly without empty recipient lists or database errors.
+* **Fast Cloud Storage Relay:** Optimizes delivery by uploading the receipt image to Firebase Storage and transmitting direct HTTPS URLs and Meta CDN attachments to Facebook Messenger.
+
 ## Version 1.0.91 (2026-11-04)
 
 ### 1. Zero-Polling Architecture & Data Usage Optimization

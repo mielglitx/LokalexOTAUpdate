@@ -1,10 +1,10 @@
 {
-  "version": "1.0.91",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.91.zip?v=1793761693831",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793761693831",
-  "checksum": "b312b9e06024f5a48afd0f55a885d6adc6628e66a6ac72b91b2f3a31f109ddd8",
-  "updatedAt": "2026-11-04T03:08:13.831Z",
-  "notes": "Zero-polling architecture: removed 4s/5s intervals and restored 100% event-driven WebSockets",
+  "version": "1.0.92",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.92.zip?v=1793765409530",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793765409530",
+  "checksum": "c5b6d2df16cc0db0c1a21b3284b0a4d3794a6f4d78622a96938e2421b1e0db07",
+  "updatedAt": "2026-11-04T04:10:09.530Z",
+  "notes": "Fix catering chime filtering for unassigned riders and fix wizard direct receipt sending",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
