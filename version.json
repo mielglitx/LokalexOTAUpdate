@@ -1,10 +1,10 @@
 {
-  "version": "1.0.95",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.95.zip?v=1793803659304",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793803659304",
-  "checksum": "518a8ae3e3000bbd9a00e2e461bf5bdf21af486353c0e08dfbc6432852105d49",
-  "updatedAt": "2026-11-04T14:47:39.304Z",
-  "notes": "Fix base rate display in settlement report, fix chat message sorting and missing timestamp, support Facebook message edits in webhook",
+  "version": "1.0.96",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793830885248",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793830885248",
+  "checksum": "fa03c96c6a929ee27e8520e566b02eb361e9c905175e006a30e001a0f9a2c6f9",
+  "updatedAt": "2026-11-04T22:21:25.248Z",
+  "notes": "Fix overtime commission duty calculation by honoring break allowances and shift history",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

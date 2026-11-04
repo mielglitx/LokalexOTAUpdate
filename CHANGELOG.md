@@ -1,6 +1,24 @@
 # Lokalex App Release Notes
 
-## Version 1.0.93 (2026-11-04)
+## Version 1.0.96 (2026-11-05)
+
+### 1. Commission Overtime Calculation & Break Allowance Honoring
+* **Break Allowance Exclusion:** Fixed overtime duty calculation so that break allowances (default 60-minute standard lunch/meal break as configured in settings) are properly subtracted from gross shift elapsed time before evaluating the 8-hour duty threshold.
+* **Eliminated False Overtime Flags on Regular Shift Orders:** Orders completed between 4:00 PM and 5:00 PM (such as 4:08 PM, 4:37 PM, 4:40 PM) for riders starting at 8:00 AM are now correctly categorized as **Regular Commission**, rather than being mistakenly flagged as Overtime.
+* **Shift History & Logins Real-Time Sync:** Loaded and subscribed to Firebase `shiftHistory` and all rider `logins` records, ensuring historical dates (e.g., 2026-11-04) accurately access historical shift logins and actual recorded break minutes rather than defaulting to 0 break minutes.
+* **Corrupted Break Safeguard:** Capped runaway or unclosed break times at a maximum daily ceiling (120 minutes) so orphaned break states cannot wipe out valid evening overtime orders.
+* **Clock Time String Matching:** Eliminated timezone and epoch discrepancies by comparing wall-clock local time strings directly, preventing orders occurring before or within shift hours (including dummy `00:00` base rate calls) from wrapping into overtime.
+
+## Version 1.0.95 (2026-11-04)
+
+### 1. Base Rate Display in Settlement Reports
+* **Custom & Default Rate Precedence:** Fixed settlement report text generation so that configured base commission percentages (e.g. 20%) are displayed accurately instead of falling back to legacy settings.
+
+### 2. Chat Room Message Ordering & Timestamps
+* **Chronological Message Sequence:** Fixed chat message display ordering so latest messages appear at the bottom with accurate delivery timestamps.
+
+### 3. Facebook Webhook Message Edits Handling
+* **Meta Webhook Edits:** Added support for `message_edits` webhook payloads from Facebook Messenger.
 
 ### 1. Catering State Retention & Chat Room Action Controls
 * **Eliminated Background Catering Assignment Purge:** Removed destructive background routines in `chatFeedListener.js` and `chatModalUi.js` that previously wiped `cateredByRiderId`, `cateredByRiderName`, and `folder: 'catering'` back to `inbox` in the database whenever customer name fuzzy matching experienced momentary delays or variations.
