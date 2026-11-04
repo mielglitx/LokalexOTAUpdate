@@ -1,10 +1,10 @@
 {
-  "version": "1.0.89",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.89.zip?v=1793746373188",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793746373188",
-  "checksum": "c61f0bb72ea647f1fe6cf16594c5ff0815dc48a96f4b74759c5547dfffe7f494",
-  "updatedAt": "2026-11-03T22:52:53.188Z",
-  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
+  "version": "1.0.90",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.90.zip?v=1793761015907",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793761015907",
+  "checksum": "dd2af9c738b761199752c11ff335528958dd92060c8bbb5f0ff342d7d9031c0b",
+  "updatedAt": "2026-11-04T02:56:55.907Z",
+  "notes": "Roster multi-device sync, live FB message listener, catering glow & controls, and SmartCart chat shortcut",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

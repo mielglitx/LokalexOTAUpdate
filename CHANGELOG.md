@@ -1,5 +1,34 @@
 # Lokalex App Release Notes
 
+## Version 1.0.90 (2026-11-04)
+
+### 1. Roster Lineup Multi-Device Synchronization & Realtime Channel Isolation
+* **Resolved Subscriptions Callback Collision:** Fixed `cannot add 'postgres_changes' callbacks after subscribe()` in the database layer by allocating dedicated unique channel identifiers per active listener.
+* **Isolated Feature Listener Execution:** Wrapped every individual feature listener in isolated safe execution blocks in `appListeners.js`, guaranteeing that an error in any auxiliary setting will never halt core listeners (`roster`, `riders`, `logins`, `customerChatMeta`).
+* **Active Lineup Background Polling:** Integrated a resilient 5-second delta synchronizer for `roster`, ensuring all riders' lineup statuses (Available, Catering, Break, End) stay strictly synchronized across every rider and admin device without dropouts.
+
+### 2. Facebook Live Chat Listener & Real-Time Page Echoes
+* **Real-Time CDC Routing:** Corrected metadata subscription paths to directly listen to `customer_chat_meta` CDC change events with customer-specific filters (`id=eq.${custId}`).
+* **Seamless Message Polling:** Activated continuous 4-second background verification so newly incoming Facebook chats and Page echoes (from Meta Business Suite) load automatically with audio chimes and notifications without needing to click manual "Refresh".
+* **Dual Prefix Matching:** Supported both `fb_` prefixed IDs and standard room IDs simultaneously when querying room messages.
+
+### 3. Catering Chat Room Visual Glow & Action Controls
+* **Catering Glow Restored:** Automatically highlights open chat modals with an **emerald pulsing glow** (`catering-glow-my` + green ring) when you are catering the customer, and a **gold pulsing glow** (`catering-glow-gold` + amber ring) when catered by another rider.
+* **Restored Cancel & Go to Cart Buttons:** Fixed caterer resolution in `cartState.js` and `chatModalUi.js` using fuzzy rider matching (`isRiderMatch`), guaranteeing the **Cancel** button, **Go to Cart** button, and **Done** action controls remain visible and functional for active deliveries.
+
+### 4. SmartCart Shortcut in Chat
+* **Dedicated Quick Cart Access:** Placed a permanent **Cart** shortcut button directly in the chat footer toolbar beside *Quick*, *Menu*, and *Rates*, allowing immediate one-tap navigation into the customer's SmartCart tab.
+
+### 5. Instant Catering Auto-Message Delivery
+* **Reliable Greeting Dispatch:** Removed premature lineup status checks that previously aborted greeting dispatch with `Rider is not in Catering status`. Confirming a catering session now reliably sends the introductory auto-message instantly to the customer.
+
+### 6. Ultra-Fast Restaurant Menu "Send All"
+* **Non-Blocking Concurrent Dispatch:** Optimized batch sends in `chatSending.js` so message saves and UI rendering complete in < 1 second while Facebook Graph API transmissions pipeline asynchronously in the background.
+
+### 7. Cross-Platform Runtime Hardening
+* **Resilient onDisconnect Handlers:** Added safe property getters and resolvers for both `onDisconnect` and lowercase `ondisconnect`, permanently preventing `e.ondisconnect is not a function` errors.
+* **Dev Server Cleanliness:** Silenced localhost service worker MIME registration warnings on Vite development servers.
+
 ## Version 1.0.89 (2026-11-04)
 
 ### 1. Real-Time Chat Message Reactions & In-Place Edits
