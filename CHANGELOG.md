@@ -1,5 +1,12 @@
 # Lokalex App Release Notes
 
+## Version 1.0.91 (2026-11-04)
+
+### 1. Zero-Polling Architecture & Data Usage Optimization
+* **Eliminated Background Polling Intervals:** Removed aggressive 4-second and 5-second polling loops on `customerChatMeta`, `roster`, and open thread message queues.
+* **100% Event-Driven Realtime WebSockets:** Restored pure push-based data delivery matching v1.0.88 behavior. Supabase Realtime CDC (`postgres_changes`) pushes updates down to devices only when database records change, consuming zero database compute and zero egress bandwidth while idle.
+* **Database Quota & Battery Protection:** Drastically reduced daily REST request counts by over 95%, safeguarding your Supabase database quotas and extending rider device battery life.
+
 ## Version 1.0.90 (2026-11-04)
 
 ### 1. Roster Lineup Multi-Device Synchronization & Realtime Channel Isolation

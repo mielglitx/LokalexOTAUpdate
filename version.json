@@ -1,10 +1,10 @@
 {
-  "version": "1.0.90",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.90.zip?v=1793761015907",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793761015907",
-  "checksum": "dd2af9c738b761199752c11ff335528958dd92060c8bbb5f0ff342d7d9031c0b",
-  "updatedAt": "2026-11-04T02:56:55.907Z",
-  "notes": "Roster multi-device sync, live FB message listener, catering glow & controls, and SmartCart chat shortcut",
+  "version": "1.0.91",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.91.zip?v=1793761693831",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793761693831",
+  "checksum": "b312b9e06024f5a48afd0f55a885d6adc6628e66a6ac72b91b2f3a31f109ddd8",
+  "updatedAt": "2026-11-04T03:08:13.831Z",
+  "notes": "Zero-polling architecture: removed 4s/5s intervals and restored 100% event-driven WebSockets",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
