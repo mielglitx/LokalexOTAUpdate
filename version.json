@@ -1,10 +1,10 @@
 {
-  "version": "1.0.97",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.97.zip?v=1793848346575",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793848346575",
-  "checksum": "6f23ad8f6257bc6663315dc342d68044c56f29a1916007cbb277f49c39aa124c",
-  "updatedAt": "2026-11-05T03:12:26.575Z",
-  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
+  "version": "1.0.98",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.98.zip?v=1793849927670",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793849927670",
+  "checksum": "b679123a899276ff7784200b0fd75313efc7c23601c36e51483fcc84454ab8b2",
+  "updatedAt": "2026-11-05T03:38:47.670Z",
+  "notes": "Fixed commission sharing collision between Mark and Mark T. (Mark Tejada)",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

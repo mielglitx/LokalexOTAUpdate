@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.0.98 (2026-11-05)
+
+### 1. Fixed Rider Commission & Gross Sharing Collision (Mark vs Mark T.)
+* **Rider Account Disambiguation (`getAllKnownRiders` & `findKnownRiderId`):** Created a fleet-wide rider account resolver that unifies both active roster members and master logins. Ensures canonical identity lookup resolves both `Mark` (ID: `5752315`) and `Mark Tejada` / `Mark T.` (ID: `31570036`) regardless of whether either rider is actively on shift, on break, or offline.
+* **Strict Cross-Account ID Resolution in `isRiderMatch`:** Updated `isRiderMatch` to automatically resolve missing IDs against known accounts before evaluating name tokens. Non-matching non-admin IDs immediately return `false`, strictly preventing riders sharing a first name from inheriting or sharing deliveries.
+* **Guarded Daily Gross Map Lookup:** Updated `getRiderTodayGross` and `buildDailyGrossIndex` so that fallback name scans verify account ownership against the rider's ID. Prevented `Mark T.` from claiming `Mark`'s ₱235 delivery gross (and vice versa) on the rotation board lineup badges.
+* **Commission Filter & Ledger Isolation:** Enhanced `checkRiderFilterMatch` and `getCleanRiderList` in `commissionUI.js` to compare canonical rider IDs, ensuring `Mark` and `Mark Tejada` remain two completely separate selectable riders in the Admin Commission dropdown and ledger settlement reports.
+
 ## Version 1.0.97 (2026-11-05)
 
 ### 1. Fixed Uncaught ReferenceError on cancelAdvancedOrder
