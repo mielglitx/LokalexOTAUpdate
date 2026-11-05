@@ -1,10 +1,10 @@
 {
-  "version": "Sinigang",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vSinigang.zip?v=1793897049965",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793897049965",
-  "checksum": "27c7eeb3744d13fd91ed7f37cb9edc167de7780fb8082912bf6118d27016816a",
-  "updatedAt": "2026-11-05T16:44:09.965Z",
-  "notes": "100% Supabase migration, instant Send Receipt Directly modal close, break time loophole fixes, and completed chat folder protection",
+  "version": "Kare-Kare",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vKare-Kare.zip?v=1793904902467",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793904902467",
+  "checksum": "e5c3b1a4ea028de62ce7e50fc6e1dd79fc8fcbe9668fc8be93dcb67c7126d1cf",
+  "updatedAt": "2026-11-05T18:55:02.467Z",
+  "notes": "Modern Workspace UI, Feed Sources Lock toggle, and Facebook PSID 400 fix",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

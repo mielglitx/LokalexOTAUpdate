@@ -1,5 +1,30 @@
 # Lokalex App Release Notes
 
+## Version Kare-Kare (2026-11-06)
+
+### 1. Modern Workspace UI & Seamless Dual UI Switcher
+* **Dual UI Toggle:** Added an instant `✨ New UI` switch button at the upper right corner of the classic header, alongside persistent `Classic UI` switches in the modern header and Facebook-style drill-down menu.
+* **Modern Workspace:** Introduced a high-performance 4-panel workspace featuring:
+  - **Live Chats Feed:** Split-pane interface with customer thread cards on the left (with swipe actions) and an embedded real-time chat room on the right.
+  - **Message Categories:** Quick filtering across Inbox, Catering, Store, Follow Up, Done, and Applicant. Category pill counters and colored unread indicators now automatically hide when counts are 0, only highlighting when actual unread messages arrive.
+  - **Movable Floating Cart:** A draggable `🛒 Cart` bubble strictly bounded within the active chat room so riders can quickly open and edit cart items during conversations.
+  - **Facebook-Style Drill-Down Menu:** Nested interactive menus for Rider Settings, Quick Actions (Smart Cart, Advance Order, Commission), Directories (Stores, Riders, Customers, Rates), and Pathfinder.
+  - **Rider Status Dock:** Persistent bottom bar showing live rotation status (Available, Catering, Break, End) and today's accumulated gross earnings.
+
+### 2. Live Feed Sources Lock & Misclick Protection
+* **In-Header Lock/Unlock Control:** Added a dedicated `[🔒 Locked]` / `[🔓 Unlocked]` toggle button right beside the `[🔀 Sources]` filter in the Modern UI Message Categories bar.
+* **Direct Filter Unlocking:** Riders and admins can now tap the lock button to toggle protection on or off instantly directly in the New UI, enabling full customization of active Facebook Page and Web chat sources without error toasts.
+
+### 3. Facebook Graph API & PSID Error Elimination
+* **Eradicated HTTP 400 Bad Requests:** Resolved the `fbResolvers.js:61 GET .../conversations?user_id=fb_... 400 (Bad Request)` console spam.
+* **Supabase Phantom Record Purge:** Identified and permanently purged 87 legacy orphaned records prefixed with `fb_fb_` from both `customer_chat_meta` and `customer_chats` tables, ensuring only canonical customer IDs remain.
+* **Multi-Layer PSID Sanitization & Validation:** Hardened customer ID parsing with `/^(?:fb_|messenger_)+/i` and strict numeric validation (`/^\d+$/`) across Facebook resolver lookups, thread synchronization, and outbound reaction/reply bridges. Non-numeric or test keys are intercepted before making outbound network requests.
+
+### 4. Feed Retrieval & Live Chat Stability Fixes
+* **Resolved `ReferenceError: isApplicant is not defined`:** Re-instated applicant folder detection checks during chat metadata feed processing.
+* **Recovered Long-Tail Customer Records:** Expanded `limitToLast` query bounds in `chatFeedListener.js` and `supabaseDb.js` from 60 to 350 records to ensure active customer conversations (such as *Lecxe Bas Lagunero*) are never cut off by sorting limits. Added deep Supabase fallback on manual search queries.
+* **Hidden Floating Team Comms Bubble:** Cleaned up the screen overlay by hiding the legacy team chat blue bubble.
+
 ## Version Sinigang (2026-11-06)
 
 ### 1. 100% Supabase Migration & Real-Time Engine Optimization
