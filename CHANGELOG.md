@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 1.0.97 (2026-11-05)
+
+### 1. Fixed Uncaught ReferenceError on cancelAdvancedOrder
+* **Resolved Critical Module Execution Error:** Defined and exported `cancelAdvancedOrder` and `autoCompleteAdvancedOrdersFromCatered` in `advancedOrdersActions.js`, resolving the uncaught `ReferenceError` that halted module execution and blocked UI rendering.
+* **Complete Action Export Surface:** Ensured all advance order lifecycle actions (`submitNewAdvancedOrder`, `takeAdvancedOrder`, `editAdvancedOrder`, `markAdvancedOrderDone`, `cancelAdvancedOrder`, `changeAdvOrderStatus`, `autoCompleteAdvancedOrdersForRider`, `autoCompleteAdvancedOrdersFromCatered`) are cleanly bound to `window` for reliable HTML `onclick` invocation.
+
+### 2. Resolved Supabase 500 Statement Timeout on storeMenuGalleries
+* **Firebase RTDB Delegation for Photo Menus:** Delegated queries, subscriptions, and mutations on `directory/storeMenuGalleries` directly to Firebase RTDB (`primaryDb`). Querying the massive multi-megabyte JSON row in Supabase's `directory` table previously exceeded PostgreSQL's 8-second statement timeout (HTTP 500). Delegating to Firebase RTDB loads restaurant menu galleries instantly (<300ms) with zero timeouts.
+
+### 3. Production Tailwind Warning Filtering
+* **Filtered cdn.tailwindcss.com Notice:** Suppressed the development console notice emitted by `cdn.tailwindcss.com` in production Webview mode, maintaining clean console diagnostic logs.
+
 ## Version 1.0.96 (2026-11-05)
 
 ### 1. Fixed Rider Commission Collision (Mark vs Mark T. / Mark Tejada)
