@@ -1,5 +1,25 @@
 # Lokalex App Release Notes
 
+## Version Sinigang (2026-11-06)
+
+### 1. 100% Supabase Migration & Real-Time Engine Optimization
+* **Zero Firebase Dependency:** Migrated all remaining legacy collections (`directory/storeMenuGalleries` → `public.store_menus` and `shiftHistory` → `public.settings`) to Supabase and removed all Firebase SDK/RTDB dependencies.
+* **Multiplexed Real-Time CDC & Broadcast Delivery:** Consolidated Supabase Realtime subscriptions and added explicit `httpSend()` fallback when WebSocket channels are still handshaking, eliminating `Realtime send() is automatically falling back to REST API` console warnings.
+* **Snapdragon 450 & Low-Bandwidth Optimization:** Unified `customerChatMeta` and `customerChats/{id}/metadata` writes and eliminated synchronous textarea reflows (`scrollHeight`) and redundant DOM re-renders for lag-free typing and scrolling on entry-level Android devices.
+
+### 2. Instant Receipt Sending & Catering Workflow Fixes
+* **Instant Modal Close on `Send Receipt Directly`:** Clicking **Send Receipt Directly** now records the rider's commission fees in state and closes the wizard modal immediately (`0ms`), while PNG receipt rendering, image upload, Supabase persistence, and Facebook Messenger delivery run seamlessly in the background.
+* **Fixed Customer Cancellation Without Receipt:** Resolved a `ReferenceError` (`isSameDate` → `isSameDateStr`) in `checkCustomerReceiptExists` when cancelling a catered customer thread without a generated receipt.
+* **Completed Chat Folder Protection:** Prevented background Facebook Page folder sync (`syncFacebookPageFolderStatus`) and empty Meta webhook system events from resurrecting completed (`done`) customer threads back into the **Inbox**.
+
+### 3. Rider Break Time Integrity & Resume Support
+* **Exact Break Time Tracking & Resume:** Added second-level break tracking (`totalBreakSeconds`) alongside `totalBreakMinutes` and cross-checked both `roster` and `logins` records for the current day.
+* **Closed Break Reset Loopholes:** Prevented daily break usage from resetting to `0` when riders switch to **End** and back to **Available** or log out and back in on the same day, while still allowing riders to resume any remaining break minutes later in their shift.
+
+### 4. Persistent Login Vault & Refreshed Login UI
+* **Session Preservation Across Updates:** Added a multi-layer session vault (`persistSessionVault` / `restoreSessionVault`) so OTA bundle swaps, Service Worker refreshes, and APK updates never log riders out.
+* **Updated Login Screen:** Refreshed the rider login screen with the Lokalex logo and clearer, user-friendly instructions.
+
 ## Version Adobo (2026-11-05)
 
 ### 1. Permanent Rider Commission & Gross Income Precision

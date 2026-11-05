@@ -1,10 +1,10 @@
 {
-  "version": "Adobo",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vAdobo.zip?v=1793872540225",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793872540225",
-  "checksum": "fe431c70df16aa79afc429915169b71d432e4c969f1382ff2bacb84973459103",
-  "updatedAt": "2026-11-05T09:55:40.225Z",
-  "notes": "Fix commission returning to lower gross income, screen-off chat notifications, and haptic intervention error",
+  "version": "Sinigang",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vSinigang.zip?v=1793897049965",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793897049965",
+  "checksum": "27c7eeb3744d13fd91ed7f37cb9edc167de7780fb8082912bf6118d27016816a",
+  "updatedAt": "2026-11-05T16:44:09.965Z",
+  "notes": "100% Supabase migration, instant Send Receipt Directly modal close, break time loophole fixes, and completed chat folder protection",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
