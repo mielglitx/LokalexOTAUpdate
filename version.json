@@ -1,9 +1,9 @@
 {
   "version": "1.0.96",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793844904455",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793844904455",
-  "checksum": "9151c9da5da8f5a2f3af4ff423fab34c0df4e1b66ec13deedec4ee8a7b7d7c2a",
-  "updatedAt": "2026-11-05T02:15:04.455Z",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793847317978",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793847317978",
+  "checksum": "7ee511c6f0da8a3a0ab4a67ec3d7fdb3c879cd23f7da53a53c8d17cdeb037ea3",
+  "updatedAt": "2026-11-05T02:55:17.978Z",
   "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
