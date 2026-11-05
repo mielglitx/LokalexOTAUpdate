@@ -1,10 +1,10 @@
 {
-  "version": "1.0.98",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.98.zip?v=1793849927670",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793849927670",
-  "checksum": "b679123a899276ff7784200b0fd75313efc7c23601c36e51483fcc84454ab8b2",
-  "updatedAt": "2026-11-05T03:38:47.670Z",
-  "notes": "Fixed commission sharing collision between Mark and Mark T. (Mark Tejada)",
+  "version": "1.0.99",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.99.zip?v=1793866461769",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793866461769",
+  "checksum": "e060252bf638c5b59ae77edf1f8ba9d10d9480bcc5cb184e848bcc49e114599a",
+  "updatedAt": "2026-11-05T08:14:21.769Z",
+  "notes": "Optimize for low cellular data consumption: smart background polling, timestamp filtering, and limited chat feeds",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

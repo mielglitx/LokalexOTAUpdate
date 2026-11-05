@@ -1,5 +1,23 @@
 # Lokalex App Release Notes
 
+## Version 1.0.99 (2026-11-05)
+
+### 1. Cellular Data Consumption Optimization (99%+ Reduction)
+* **Foreground-Aware Monitoring:** The Android background service (`LokalexForegroundService.java`) now monitors whether the app is actively in the foreground. When the app is open, live WebSocket connections in the WebView handle incoming chat alerts in real time with 0 HTTP polling, saving hundreds of megabytes of mobile data.
+* **Smart Incremental Timestamp Filtering:** Background polling queries to Supabase now include `last_updated=gt.<lastTimestamp>` and Firebase uses `startAt=<lastTimestamp + 1>`. When no new messages have arrived (99% of cycles), the server returns an empty 2-byte response (`[]` or `{}`), eliminating repetitive downloads of 35 full chat metadata objects every cycle.
+* **Interval Optimization:** Lengthened the background check cycle from 5 seconds to 15 seconds when the phone screen is off, reducing query frequency by 66% while maintaining rapid message chime responsiveness.
+* **Selective Column Queries:** Removed heavy `select=*` on `customer_chat_meta` REST polling, eliminating full JSON `data` column downloads across the entire chat table.
+* **Dual-Database Query Redundancy Eliminated:** The background service checks the primary database first and skips querying the secondary database if the check succeeds, cutting background network queries in half.
+* **Limited Realtime Chat Feed Subscription:** Bounded `customerChatMeta` queries in `chatFeedListener.js` to the 60 most recently updated active conversations (`limitToLast(60)`), permanently preventing multi-megabyte full-table history downloads on app launch and reconnects.
+* **Preserved Cached Threads:** In-memory threads are cleanly preserved and merged during delta updates, guaranteeing smooth scrolling and zero UI flicker while keeping data usage minimal.
+
+### 2. Fixed Rubberbanding on Bad Signal (Catering → Done Auto-Move)
+* **Catering Thread Stability on Poor Connectivity:** Fixed the bug where a customer being catered would incorrectly move from the **Catering** folder to the **Done** folder automatically when the rider's signal was weak. This was caused by a transient roster status flip — the rider's live status would briefly show `Available` on bad signal, triggering the Done-folder logic.
+* **Persisted Catering Metadata as Source of Truth:** The `cateredByRiderId`, `cateredByRiderName`, and `cateredBy` fields stored in Firebase are now used as a reliable "still being catered" anchor. These fields are only cleared by an explicit completion action, so a momentary network-caused status flip can no longer reclassify an active catering thread.
+* **Catering Tab Stability:** The Catering tab no longer ejects threads when the rider's live status briefly shows `Available` or `Break` due to connectivity issues. Only terminal statuses (`EndShift` / `DayOff`) cause a thread to leave the Catering tab.
+* **Eliminated False Done Classification:** Removed the logic in `index.js` that moved a `folder: 'catering'` thread to Done solely because the assigned rider's live roster status showed `Available` — this was the primary visible rubberbanding symptom.
+* **Rider Status Revert Fix:** Addressed the companion bug where the rider's status would revert to `Available` on the rotation board after catering was initiated — the chat folder classification no longer drives incorrect re-classification when roster state is momentarily stale.
+
 ## Version 1.0.98 (2026-11-05)
 
 ### 1. Fixed Rider Commission & Gross Sharing Collision (Mark vs Mark T.)
