@@ -1,10 +1,10 @@
 {
   "version": "1.0.96",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793832230504",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793832230504",
-  "checksum": "7e1f563ed28397d61e0dd9dc29789156bab76f135cea53b56725fa1a222458bf",
-  "updatedAt": "2026-11-04T22:43:50.504Z",
-  "notes": "Resolve directoryGalleries syntax, eliminate Supabase shiftHistory 404, and fix dev sw registration",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.96.zip?v=1793844904455",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793844904455",
+  "checksum": "9151c9da5da8f5a2f3af4ff423fab34c0df4e1b66ec13deedec4ee8a7b7d7c2a",
+  "updatedAt": "2026-11-05T02:15:04.455Z",
+  "notes": "Restored native Picture-in-Picture mode and in-app OTA APK self-updater",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

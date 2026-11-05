@@ -2,14 +2,24 @@
 
 ## Version 1.0.96 (2026-11-05)
 
-### 1. Commission Overtime Calculation & Break Allowance Honoring
+### 1. Fixed Rider Commission Collision (Mark vs Mark T. / Mark Tejada)
+* **Isolated Rider Commission & Gross Badges:** Fixed `isRiderMatch` so distinct non-admin rider IDs immediately return `false` without falling through to name matching, preventing riders with the same first name (e.g., "Mark" and "Mark T." / "Mark Tejada") from inheriting each other's commission or orders.
+* **Disallowed Ambiguous Single-Word Name Fallback:** Prevented single-token names (e.g. "Mark") from matching multi-word full names (e.g. "Mark Tejada") when multiple riders in the fleet share that first name.
+* **Exact-Name Precedence in Daily Gross & Settlement:** Prioritized exact case-insensitive name matching before fuzzy matching in `buildDailyGrossIndex`, `getRiderTodayGross`, and `commissionUI.js`, ensuring gross total badges and customer breakdowns are cleanly isolated per rider.
+
+### 2. Advance Orders Scheduling & Booking Record Creation
+* **Fixed Supabase `limitToLast` Query Ordering:** Updated `supabaseDb.js` so `limitToLast` queries automatically order by `created_at DESC` (for `advanced_orders` and `receipts`) and `completed_at DESC` (for `catered_history`). Previously, unordered `LIMIT 40` queries in Postgres truncated at older rows from previous months and hid newly created advance bookings.
+* **Global Window Action Bindings:** Explicitly exposed `window.submitNewAdvancedOrder`, `window.editAdvancedOrder`, `window.takeAdvancedOrder`, `window.markAdvancedOrderDone`, and `window.cancelAdvancedOrder` on `window` for reliable HTML onclick event execution.
+* **Optimistic Local State Sync & Dual-Write:** Scheduled orders are now immediately prepended to `globalState.globalAdvancedOrders` in memory (0ms) and rendered in the list upon submission, with dual-write to active and backup databases and full error handling.
+
+### 3. Commission Overtime Calculation & Break Allowance Honoring
 * **Break Allowance Exclusion:** Fixed overtime duty calculation so that break allowances (default 60-minute standard lunch/meal break as configured in settings) are properly subtracted from gross shift elapsed time before evaluating the 8-hour duty threshold.
 * **Eliminated False Overtime Flags on Regular Shift Orders:** Orders completed between 4:00 PM and 5:00 PM (such as 4:08 PM, 4:37 PM, 4:40 PM) for riders starting at 8:00 AM are now correctly categorized as **Regular Commission**, rather than being mistakenly flagged as Overtime.
 * **Shift History & Logins Real-Time Sync:** Loaded and subscribed to Firebase `shiftHistory` and all rider `logins` records, ensuring historical dates (e.g., 2026-11-04) accurately access historical shift logins and actual recorded break minutes rather than defaulting to 0 break minutes.
 * **Corrupted Break Safeguard:** Capped runaway or unclosed break times at a maximum daily ceiling (120 minutes) so orphaned break states cannot wipe out valid evening overtime orders.
 * **Clock Time String Matching:** Eliminated timezone and epoch discrepancies by comparing wall-clock local time strings directly, preventing orders occurring before or within shift hours (including dummy `00:00` base rate calls) from wrapping into overtime.
 
-### 2. Directory Galleries & Supabase Schema Stability
+### 4. Directory Galleries & Supabase Schema Stability
 * **Fixed Directory Galleries Syntax:** Cleaned up character encodings, identifier scoping, and exception handling in `deleteMenuGalleryPage` (`directoryGalleries.js`), resolving IDE syntax/declaration warnings.
 * **Resolved Supabase 404 on 'public.chat' & 'public.shift_history':** Eliminated legacy dead listener on `chat` in `appListeners.js`, mapped team image shares to `teamChat/general`, registered `chat` table mapping alias in `supabaseDb.js`, and routed `shiftHistory` queries to Firebase RTDB where historical shift records reside.
 * **Dev Mode Service Worker Registration:** Bypassed service worker registration when running in Vite development mode (`localhost:5173`) to eliminate unsupported MIME type `text/html` console warnings.
