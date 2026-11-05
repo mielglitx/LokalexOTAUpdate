@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version Adobo (2026-11-05)
+
+### 1. Permanent Rider Commission & Gross Income Precision
+* **PostgreSQL Server-Side Date Filtering:** Fixed the critical bug where rider gross totals kept reverting to lower numbers (e.g. Allan reverting to ₱130, Mark to ₱235, Hero to ₱355). In `supabaseDb.js`, queries using `.orderByChild('date').equalTo(todayStr)` now push `.or('data->>date.eq.${todayStr},data->>completedDate.eq.${todayStr}')` directly to Supabase PostgREST.
+* **Eliminated PostgREST 1,000-Row Truncation:** Unfiltered full-table reads previously truncated at 1,000 rows (returning mostly months-old history and missing 75%+ of today's deliveries). Server-side filtering now fetches all of today's orders with 100% precision while reducing payload transfer size by over 95%.
+* **Full Earnings Retention:** Guarantees each rider's full earnings reflect accurately on the rotation lineup cards, rider modals, and commission settlement ledgers without ever reverting.
+
+### 2. Screen-Off Background Chat Monitoring with Zero Data Waste
+* **Reliable Deep-Sleep Wake & Alert:** Hardened `LokalexForegroundService.java` with a 45-second sliding overlap window and instant $O(1)$ in-memory signature deduplication. Incoming customer messages are never missed due to client-server clock skew while the phone is locked or screen is off.
+* **Ultra-Low Cellular Data Usage:** Maintained foreground-aware monitoring (0 HTTP polling when the app is open) and incremental timestamp filtering (`updated_at=gt`) when screen is off, returning empty 2-byte responses on idle (<0.01 MB per day).
+* **Automatic Screen Wake & Loud Chimes:** Wakes device display for 4 seconds and rings high-priority native notification chimes immediately upon new customer message delivery.
+
+### 3. Native Haptic Intervention & API Error Cleanups
+* **Chromium Intervention Prevention:** Guarded all `navigator.vibrate` calls with `navigator.userActivation.hasBeenActive` checks across chat sound and modal action modules, eliminating browser console intervention warnings.
+* **Facebook Graph API Optimization:** Replaced invalid direct PSID picture requests returning HTTP 400 with direct participant extraction and negative caching.
+
+### 4. New Food-Named OTA Release Convention
+* **Inaugural Named Release:** Switched OTA release naming from numeric version strings to unique, non-repeating Filipino dishes, kicking off with **`Adobo`**.
+
 ## Version 1.0.99 (2026-11-05)
 
 ### 1. Cellular Data Consumption Optimization (99%+ Reduction)

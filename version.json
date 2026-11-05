@@ -1,10 +1,10 @@
 {
-  "version": "1.0.99",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.99.zip?v=1793866461769",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793866461769",
-  "checksum": "e060252bf638c5b59ae77edf1f8ba9d10d9480bcc5cb184e848bcc49e114599a",
-  "updatedAt": "2026-11-05T08:14:21.769Z",
-  "notes": "Optimize for low cellular data consumption: smart background polling, timestamp filtering, and limited chat feeds",
+  "version": "Adobo",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vAdobo.zip?v=1793872540225",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793872540225",
+  "checksum": "fe431c70df16aa79afc429915169b71d432e4c969f1382ff2bacb84973459103",
+  "updatedAt": "2026-11-05T09:55:40.225Z",
+  "notes": "Fix commission returning to lower gross income, screen-off chat notifications, and haptic intervention error",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
