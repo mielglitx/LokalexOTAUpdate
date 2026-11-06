@@ -1,5 +1,27 @@
 # Lokalex App Release Notes
 
+## Version Lechon (2026-11-06)
+
+### 1. Preserved Edited Chat Messages & Revert Protection
+* **Guarded Edited Messages on Reply:** Fixed the issue where customer messages indicated as edited (`📝 edited` badge) had their edits removed and reverted to pre-edit text whenever a rider or customer sent a message.
+* **Meta Graph API Revert Guard:** Meta Graph API `GET /messages` serves static pre-edit historical bodies; guarded `syncCurrentThreadFromMetaGraph`, `syncIncomingMessageFromMeta`, `child_added`, `child_changed`, and `sendRiderToCustomerChat` to strictly preserve edited message text, `originalText`, `isEdited: true`, and edit timestamps.
+* **Webhook Server Dual-Write Integrity:** Updated `cloudflare-worker-supabase.js` and `cloudflare-worker.js` to persist `originalText` in message_edit payloads to guarantee the `Original:` strikethrough diff block displays accurately across devices.
+
+### 2. Modern Workspace: Category Auto-Select & Clean Empty State
+* **Folder Switching Auto-Open:** Selecting any folder (Inbox, Catering, Store, Follow Up, Done, Applicant) automatically opens the first customer thread card in that folder.
+* **Zero-Thread Clear:** If a folder has no open conversations (e.g., "No threads in catering"), the right-side chat room is instantly cleared to a clean placeholder rather than lingering on the previous thread.
+* **Instant Category Card Migration:** Moving a thread (Catering, Follow Up, Done, Inbox) immediately removes it from the current folder without requiring manual folder switching.
+
+### 3. Rider Login List & Profile Inspector Enhancements
+* **Inline Inspector Navigation:** Clicking a rider in the Modern login list populates the bottom Rider Profile Inspector and smoothly scrolls directly to it without opening the full modal.
+* **One-Tap Phone Call:** Made the mobile contact number in the Rider Profile Inspector clickable (`tel:`) with a quick-dial `[📞 Call]` button.
+* **Scheduled Day-Off Indicators:** Displays each rider's assigned day-off (e.g., `Every Sun`, `Every Wed`) next to their name. Unassigned riders show a `[+ Set Day-Off]` button.
+* **Role-Based Day-Off Access:** Riders can only view/edit the day-off button beside their own name, while Admins retain full visibility and scheduling controls for all riders.
+* **Animated Vacation Status:** If a rider's scheduled day-off falls on the current day, an animated vacation badge (`🏖️ Day Off`) pulses with a bouncing beach umbrella icon.
+
+### 4. Direct Feed Sources Lock/Unlock Control
+* **Header Lock Button:** Added `[🔒 Locked]` / `[🔓 Unlocked]` toggle button directly beside `[🎛 Sources]` in the Modern UI header to easily manage filter lock protection without error toasts.
+
 ## Version Kare-Kare (2026-11-06)
 
 ### 1. Modern Workspace UI & Seamless Dual UI Switcher

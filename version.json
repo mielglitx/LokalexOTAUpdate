@@ -1,10 +1,10 @@
 {
-  "version": "Kare-Kare",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vKare-Kare.zip?v=1793904902467",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793904902467",
-  "checksum": "e5c3b1a4ea028de62ce7e50fc6e1dd79fc8fcbe9668fc8be93dcb67c7126d1cf",
-  "updatedAt": "2026-11-05T18:55:02.467Z",
-  "notes": "Modern Workspace UI, Feed Sources Lock toggle, and Facebook PSID 400 fix",
+  "version": "Lechon",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vLechon.zip?v=1793923207118",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793923207118",
+  "checksum": "09f65d915792a6c959f7feaf8db7e784d81bd5a15774176ef82e16c9a9286be1",
+  "updatedAt": "2026-11-06T00:00:07.118Z",
+  "notes": "Preserved edited messages on reply, Modern UI category empty clear, day-off vacation badges & one-tap call",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
