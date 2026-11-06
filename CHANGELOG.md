@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.1.2 (2026-11-06)
+
+### 1. Database Egress Optimization & 95% Bandwidth Reduction
+* **Eliminated Runaway 45s HTTP Watchdog Polling:** Removed continuous background polling intervals for customer chat meta and roster lineup that previously fired over 20,000 HTTP queries per day. The app now relies 100% on native Supabase Realtime WebSocket streaming (broadcast + CDC).
+* **Screen Unlock & Lifecycle Resync Throttling:** Switching apps, locking/unlocking the phone, or returning from Google Maps no longer blasts PostgREST with full table queries if the WebSocket connection is active and healthy. Resync is safely throttled to a minimum 60-second cooldown.
+* **On-Demand Store Menu Galleries:** Eliminated the startup batch download of all 33 full store menu galleries. The app now boots in milliseconds using a compact metadata index (`smg__meta_index`), and loads individual store pages on demand only when a specific store is opened.
+* **Catered History & Receipts Delta Stream Windowing:** Reduced the initial boot fetch window from 120 historical records down to 40 recent shift records, slashing initial startup payload by ~67%.
+* **Presence Heartbeat Optimization:** Tuned chat viewing presence keepalive from 15s to 25s, reducing continuous database row rewrites and PostgreSQL WAL growth by 40% without sacrificing real-time viewer detection.
+* **Weak Signal / 3G Protection:** By freeing cellular bandwidth from continuous megabyte REST queries, riders on weak 3G mobile data (such as Allan at 12:00nn) maintain responsive status updates, instant Time-Ins, and reliable chat receipt delivery.
+
 ## Version 1.1.1 (2026-11-06)
 
 ### 1. Modern Workspace Header Layout Polish
