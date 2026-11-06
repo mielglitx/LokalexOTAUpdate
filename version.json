@@ -1,10 +1,10 @@
 {
   "version": "1.1.1",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.1.zip?v=1793977723218",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793977723218",
-  "checksum": "1a4f4e38799fcd50b3cb073a23c9e35e0cd242a94f83337a329641f868b33aaa",
-  "updatedAt": "2026-11-06T15:08:43.218Z",
-  "notes": "Version 1.1.1: Header Classic UI button relocated, PiP removed, Admin Settings icon updated",
-  "nativeVersion": "1.0.78",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.1.zip?v=1793978204292",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793978204292",
+  "checksum": "594fce15b26789950f9c2a30b000d6a00ffc8e5eefe1ad801723d21eaf8bd466",
+  "updatedAt": "2026-11-06T15:16:44.292Z",
+  "notes": "Version 1.1.1: Release APK Base Update and OTA Bundle",
+  "nativeVersion": "1.1.1",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
