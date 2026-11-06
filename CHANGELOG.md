@@ -1,5 +1,29 @@
 # Lokalex App Release Notes
 
+## Version Adobo (2026-11-06)
+
+### 1. Available Queue Cooldown Countdown Timer
+* **Rotations Queue Cooldown Badges:** In Modern UI Tab 2 (`Lokalex Rider Rotations`), riders who set their status to Available now display a real-time countdown badge (`⏳ mm:ss`) throughout their queue cooldown period (e.g. 10 minutes).
+* **Live 1-Second Ticker:** Updates cooldown remaining times live without re-rendering the DOM or resetting scroll position; automatically resorts the queue when cooldown expires.
+* **Status Dock Integration:** If the active logged-in rider is Available and in cooldown, the bottom status dock button (`#modern-btn-status-avail`) shows the live cooldown timer badge.
+
+### 2. Complete Catering Customer Card & Admin Controls (Old UI Parity)
+* **Customer Time & Quick Chat Link:** Catering cards display `👤 CustomerName ( • hh:mm AM [xm] )`; tapping the customer title directly navigates to their chat thread.
+* **Forced Cater Badges:** Accurately renders `⚡ Force Catered (Self)` or `⚡ Force Catered (AdminName)`.
+* **Action Buttons:** Added `[✓ Done]`, `[🔗 Link]`, `[🗺️ Map]`, `[🔀 Swap]`, `[⊘ Void]`, `[✏️ Edit]` (admin/TL), and `[📥 Get]` (rider claim) matching the old UI design and role permissions.
+* **Admin Header Actions:** Rider card headers in Catering and Break include the `⚡ Action` dropdown for status overrides and voiding active orders.
+
+### 3. Fixed Modern Rider Login List Empty Display
+* **Scope Initialization Fix:** Resolved an uncaught `ReferenceError` caused by an undefined `roster` reference inside `renderModernLoginsTab()` that interrupted list population.
+* **Timestamp & Resume Guard:** Hardened session resumption logic against string and `NaN` timestamps to prevent calculation errors.
+* **Defensive Rendering:** Wrapped both Logged In and Not Logged In item mappers in try/catch blocks with clean empty states.
+
+### 4. Fixed "Send All" & "Send Rate" Confirmation Modals in New UI
+* **Modern UI Chat Detection:** Updated `isChatCurrentlyActive()` in `directoryGalleries.js` and `directoryRouting.js` to recognize embedded customer chats in the New UI instead of only checking classic modal visibility.
+* **Customer Name Resolution:** Dynamic `getEffectiveChatCustomerName()` resolves the active recipient name from `#modern-chat-room-title` or `#rider-chat-cust-name`.
+* **Confirmation Modal Trigger:** Tapping "Send All" in Restaurant Menu Directory or "Send Rate" in Rates Directory now reliably displays the confirmation popup modal.
+* **Toast Visibility Elevation:** Elevated notification container z-index to `10000050` so toasts are never hidden beneath modals.
+
 ## Version Bulalo (2026-11-06)
 
 ### 1. Fix Receipt Customer Defaulting to "Sample" & 0 Commission

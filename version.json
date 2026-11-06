@@ -1,10 +1,10 @@
 {
-  "version": "Bulalo",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vBulalo.zip?v=1793926381498",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793926381498",
-  "checksum": "8b958191c25101275c3439d7603b5d813e9887a9efc6e9547734e5d502afb900",
-  "updatedAt": "2026-11-06T00:53:01.498Z",
-  "notes": "Auto-bind catered customer on receipts & Inspector account role",
+  "version": "1.0.101",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.101.zip?v=1793933410077",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793933410077",
+  "checksum": "113294b50ae9e34114773f0af23a02ddcc105f8be16d1893080b56d966d390f8",
+  "updatedAt": "2026-11-06T02:50:10.077Z",
+  "notes": "Version Adobo: Cooldown timers, catering customer controls, and modern UI chat send fixes",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
