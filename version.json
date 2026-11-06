@@ -1,10 +1,10 @@
 {
-  "version": "1.0.101",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.0.101.zip?v=1793933410077",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793933410077",
-  "checksum": "113294b50ae9e34114773f0af23a02ddcc105f8be16d1893080b56d966d390f8",
-  "updatedAt": "2026-11-06T02:50:10.077Z",
-  "notes": "Version Adobo: Cooldown timers, catering customer controls, and modern UI chat send fixes",
+  "version": "1.1.0",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.0.zip?v=1793976714093",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793976714093",
+  "checksum": "15cbfbe4552d53d00959aa5be3b8dd59b0f751ed1a5d901d2b9d5a4d256f98bf",
+  "updatedAt": "2026-11-06T14:51:54.093Z",
+  "notes": "Version 1.1.0: Resilient Optimistic Status Handshake, Universal Photo Data Saver, and Modern UI Scrolling Polish",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

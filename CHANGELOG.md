@@ -1,5 +1,29 @@
 # Lokalex App Release Notes
 
+## Version 1.1.0 (2026-11-06)
+
+### 1. Resilient Optimistic Status Handshake & Background Outbox Auto-Sync
+* **Zero-Delay Time-In & Status Handshake:** Tapping **Time In**, **Available**, **Break**, or **End** updates local state, IndexedDB device cache, and the UI immediately (0ms latency) with the exact timestamp.
+* **Weak Signal & Flaky Cellular Resilience:** Eliminates the bug where poor 2G/3G connections or packet drops caused the app to fail or reject rider login (e.g., Allan at 12:00nn). The app no longer throws blocking errors or reverts rider status; pending mutations are safely captured in a persistent offline outbox (`lokalex_status_mutation_outbox`).
+* **Automated Fast-Retry Sync Worker:** Outbox mutations automatically retry and sync to the cloud database every 4 seconds as soon as the cellular connection is restored.
+* **Top Header Live Handshake Status Pill:** Added a live status indicator next to the header clock (`🟡 Syncing...`, `🟢 Synced`, `🔵 Saved (Syncing)`) for transparent feedback on weak connections.
+
+### 2. Universal 95% Photo & Receipt Downsampling (Data Saver Mode)
+* **Automatic Client-Side Canvas Compression:** Integrated `compressImageToDataUrl` in `imageUpload.js` to downsample all camera photos and delivery receipts to max 720px width at 0.45 JPEG quality (~35 KB–50 KB).
+* **High-Speed Uploads on Cellular Data:** Prevents 3 MB–8 MB raw smartphone camera images from congesting database rows and wasting mobile data plans, speeding up chat receipt delivery to under 1 second.
+* **HD Mode Toggle:** Riders and admins who need higher resolution for fine print can still switch on HD mode (1080px / 0.70 quality).
+
+### 3. Cache-First Service Worker Media Caching
+* **Offline Audio & Static Asset Storage:** Added a dedicated `CacheFirst` route in `sw.js` for images, icons, and audio chimes, storing them locally for up to 30 days. Repeat visits and notifications consume zero cellular data.
+
+### 4. Fluid Touch Momentum Scrolling on Modern UI Tabs
+* **Full Mobile Scrolling Parity:** Unlocked seamless vertical momentum scrolling (`touch-action: pan-y; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain;`) across all four tabs: Live Chats Feed, Lokalex Rider Rotations, Rider Login List, and Catered Customer List.
+* **Eliminated Squished Layout on Rider Login List:** The "Logged IN" container expands naturally on mobile devices so riders can scroll directly down to Not Logged In and the Rider Profile Inspector without getting trapped by nested scrollbars.
+
+### 5. Chat Delta Sync & Double-Write Elimination
+* **Atomic Batch Chat Loading:** Opening a customer conversation loads cached messages atomically rather than rendering bubble-by-bubble. Realtime `.on('child_added')` is anchored strictly to future timestamps.
+* **50% Metadata Write Reduction:** Removed redundant dual-writing to `customer_chats` for chat metadata, routing writes exclusively to `customer_chat_meta`.
+
 ## Version Adobo (2026-11-06)
 
 ### 1. Available Queue Cooldown Countdown Timer
