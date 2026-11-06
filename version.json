@@ -1,10 +1,10 @@
 {
-  "version": "Lechon",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vLechon.zip?v=1793923207118",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793923207118",
-  "checksum": "09f65d915792a6c959f7feaf8db7e784d81bd5a15774176ef82e16c9a9286be1",
-  "updatedAt": "2026-11-06T00:00:07.118Z",
-  "notes": "Preserved edited messages on reply, Modern UI category empty clear, day-off vacation badges & one-tap call",
+  "version": "Sisig",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vSisig.zip?v=1793923868004",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793923868004",
+  "checksum": "03c3ef75fd5d0ec838d95715faed86c45f6e1c65405c94c8888ab9a42a52f12e",
+  "updatedAt": "2026-11-06T00:11:08.004Z",
+  "notes": "Eliminated duty time served loophole on sign-out & resume",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

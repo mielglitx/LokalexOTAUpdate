@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version Sisig (2026-11-06)
+
+### 1. Eliminated Duty Time Served Loophole on Sign-Out & Resume
+* **Stopped Clock on Sign-Out:** When a rider signs out, logs out of their device, or sets their status to End, duty time tracking now strictly stops counting immediately.
+* **Multi-Session Shift Continuity:** When a rider returns later in the day to continue their shift (e.g. Ron logging in at 4:04 AM for a few seconds, logging out, and resuming at 7:09 AM), the app now starts a fresh session timer for the resumed period (`07:09 AM`) and accumulates only the actual minutes worked across past sessions.
+* **Instant Session Resume Heuristic:** Automatically detects and displays the actual active resumption time in both the Modern Rider Login list and the Rider Profile Inspector, eliminating the inflated hours bug.
+* **Universal Logout Auto-Clockout:** Added automatic clock-out triggers to `logout()` and `executeUniversalLogout()` so logging out of the device properly sets shift status to End and persists exact duty minutes to the database.
+
 ## Version Lechon (2026-11-06)
 
 ### 1. Preserved Edited Chat Messages & Revert Protection
