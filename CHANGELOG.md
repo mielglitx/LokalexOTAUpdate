@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version Bulalo (2026-11-06)
+
+### 1. Fix Receipt Customer Defaulting to "Sample" & 0 Commission
+* **Active Customer Auto-Binding:** Resolved the bug where creating a receipt for an actively catered customer defaulted to "Sample", preventing the receipt from being credited to the rider and resulting in 0 commission when marked done.
+* **Wizard Customer Auto-Sync:** In `setupWizardClientDetails()`, the checkout wizard now strictly verifies active catering sessions and automatically binds to the actively catered customer instead of retaining `"Sample"`.
+* **Smart Cart Slot & Customer Selector Priority:** In `getEffectiveCartClient()` and `renderCartCustomerSelector()`, active catering assignments are prioritized over sample receipts and displayed at the top of the dropdown selector.
+* **Catering Initiation Auto-Sync:** Starting a catering order in `confirmCateringStatus()` and modern chat room actions (`goToCustomerCartFromChat`, `caterCurrentChatCustomer`) immediately synchronizes smart cart slots 1:1 and sets the active cart customer name.
+* **Receipt Finalization Guard:** In `generateFinalReceipt()` and `completeReceiptDone()`, actively catered customer names are automatically preserved even if the name input is temporarily cleared.
+
+### 2. New Inspector Account Type with Full Admin Powers
+* **Inspector Role Integration:** Added the `Inspector` account type in Manage Profile, Create Rider Modal, Quick Change Role dropdown, and Admin Roster settings.
+* **Unrestricted Admin Powers:** Inspector accounts have full admin capabilities, unrestricted feature access, and directory credit exemptions (`Exempt (∞)`).
+* **Roster Rotation & Login List Exclusion:** Inspectors are completely hidden from the rider login list, active lineup, and rotation queues as they are inspectors/admins and not delivery riders.
+
 ## Version Sisig (2026-11-06)
 
 ### 1. Eliminated Duty Time Served Loophole on Sign-Out & Resume

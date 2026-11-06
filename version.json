@@ -1,10 +1,10 @@
 {
-  "version": "Sisig",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vSisig.zip?v=1793923868004",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793923868004",
-  "checksum": "03c3ef75fd5d0ec838d95715faed86c45f6e1c65405c94c8888ab9a42a52f12e",
-  "updatedAt": "2026-11-06T00:11:08.004Z",
-  "notes": "Eliminated duty time served loophole on sign-out & resume",
+  "version": "Bulalo",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-vBulalo.zip?v=1793926381498",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793926381498",
+  "checksum": "8b958191c25101275c3439d7603b5d813e9887a9efc6e9547734e5d502afb900",
+  "updatedAt": "2026-11-06T00:53:01.498Z",
+  "notes": "Auto-bind catered customer on receipts & Inspector account role",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
