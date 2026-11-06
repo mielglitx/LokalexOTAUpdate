@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.1.1 (2026-11-06)
+
+### 1. Modern Workspace Header Layout Polish
+* **Removed PiP Floating Button:** Removed the `[PiP]` button from the modern header bar to free up header space and prevent accidental touches.
+* **Relocated Classic UI Button:** Moved the Classic mode switch to the far right (where PiP used to be, following Battery) and converted it into a sleek, clean amber button clearly labeled **Classic**.
+* **Eliminated Header Truncation:** Moving the switch button to the right gives rider and admin greeting names ample horizontal breathing room on mobile devices.
+
+### 2. Admin Settings Menu Icon Fix
+* **Crisp FontAwesome Shield Icon:** Fixed the blank icon circle in the Facebook-style Hamburger Menu for **Admin Settings (A–Z)** by replacing the unsupported platform emoji with an official, high-contrast `<i class="fa-solid fa-user-shield"></i>` icon.
+
 ## Version 1.1.0 (2026-11-06)
 
 ### 1. Resilient Optimistic Status Handshake & Background Outbox Auto-Sync

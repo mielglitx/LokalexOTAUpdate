@@ -1,10 +1,10 @@
 {
-  "version": "1.1.0",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.0.zip?v=1793976714093",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793976714093",
-  "checksum": "15cbfbe4552d53d00959aa5be3b8dd59b0f751ed1a5d901d2b9d5a4d256f98bf",
-  "updatedAt": "2026-11-06T14:51:54.093Z",
-  "notes": "Version 1.1.0: Resilient Optimistic Status Handshake, Universal Photo Data Saver, and Modern UI Scrolling Polish",
+  "version": "1.1.1",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.1.zip?v=1793977723218",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1793977723218",
+  "checksum": "1a4f4e38799fcd50b3cb073a23c9e35e0cd242a94f83337a329641f868b33aaa",
+  "updatedAt": "2026-11-06T15:08:43.218Z",
+  "notes": "Version 1.1.1: Header Classic UI button relocated, PiP removed, Admin Settings icon updated",
   "nativeVersion": "1.0.78",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
