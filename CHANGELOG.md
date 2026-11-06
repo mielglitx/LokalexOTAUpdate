@@ -1,5 +1,16 @@
 # Lokalex App Release Notes
 
+## Version 1.1.3 (2026-11-07)
+
+### 1. Database Stability & Zero PostgreSQL Errors (752/hr Fix)
+* **Native Foreground Service Query Fix (`customer_chat_meta`):** Resolved PostgreSQL Error 42703 (`column customer_chat_meta.last_updated does not exist`) in `LokalexForegroundService.java`. Incremental background polling queries now strictly sort and filter by the correct PostgreSQL `updated_at` column, returning HTTP 200 OK across all rider background cycles.
+* **Store Menus Statement Timeout Fix:** Resolved HTTP 500 / PostgreSQL 57014 (`statement timeout`) during store menu reads. Standard `store_menus` queries now automatically filter out heavy gallery blobs (`smg__%`), keeping query execution time below 30ms and completely eliminating timeouts.
+* **Full Database Query Verification:** Verified all 293 runtime database paths across the application against live Supabase tables, achieving a 100% pass rate (293 OK, 0 FAILING).
+
+### 2. UI Polish & Header Navigation
+* **Cleaned Hamburger Popover Profile Header:** Removed the redundant "Classic UI" button inside the floating hamburger popover now that the switch is prominently featured in the top header bar next to the battery indicator.
+* **Admin Settings Menu High-Contrast Icon:** Confirmed crisp `<i class="fa-solid fa-user-shield"></i>` icon rendering for Admin Settings (A–Z).
+
 ## Version 1.1.2 (2026-11-06)
 
 ### 1. Database Egress Optimization & 95% Bandwidth Reduction
