@@ -1,10 +1,10 @@
 {
-  "version": "1.1.3",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.3.zip?v=1794007017214",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794007017214",
-  "checksum": "2322320843398337c667c9878186408db7357dbd9db94f9879a14e6f72cc5803",
-  "updatedAt": "2026-11-06T23:16:57.214Z",
-  "notes": "v1.1.3: Fix native foreground service customer_chat_meta column error and store_menus statement timeout",
-  "nativeVersion": "1.1.3",
+  "version": "1.1.4",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.4.zip?v=1794008982977",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794008982977",
+  "checksum": "bccfe589464644fca1fd96ce0f335b8a00e8d3152fcc743a92c7d917a4055448",
+  "updatedAt": "2026-11-06T23:49:42.977Z",
+  "notes": "v1.1.4: Fix Facebook Messenger delivery integrity, prevent false seen on unsent messages, and add auto-timeout retry",
+  "nativeVersion": "1.1.4",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

@@ -1,5 +1,13 @@
 # Lokalex App Release Notes
 
+## Version 1.1.4 (2026-11-07)
+
+### 1. Facebook Messenger Delivery Integrity & False "Seen" Elimination
+* **Strict Message ID (`mid`) Verification:** Eliminated the bug where a message that failed to reach Facebook was falsely marked as "Seen" or "Delivered". Outbound messages to Messenger now strictly require a confirmed Meta message ID (`mid`) before they can ever transition to "Sent", "Delivered", or "Seen".
+* **Initial Sending Clock State:** Messages to Messenger now begin in a genuine `sending` state (`🕒 Sending...`) instead of optimistically assuming instant delivery.
+* **Auto-Timeout & One-Tap Retry:** If Facebook Meta Graph API or the Cloudflare Worker bridge does not respond or times out within 12 seconds, the message bubble automatically displays a high-visibility `⚠️ Sending failed • Retry` button so riders and admins can immediately re-send without losing text.
+* **Webhook Read-Receipt Guard:** Fixed the Cloudflare webhook server and local webhook workers to never mark unconfirmed or failed messages as "Seen" when processing customer read receipts (`watermark`).
+
 ## Version 1.1.3 (2026-11-07)
 
 ### 1. Database Stability & Zero PostgreSQL Errors (752/hr Fix)
