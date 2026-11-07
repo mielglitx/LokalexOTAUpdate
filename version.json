@@ -1,10 +1,10 @@
 {
-  "version": "1.1.4",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.4.zip?v=1794008982977",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794008982977",
-  "checksum": "bccfe589464644fca1fd96ce0f335b8a00e8d3152fcc743a92c7d917a4055448",
-  "updatedAt": "2026-11-06T23:49:42.977Z",
-  "notes": "v1.1.4: Fix Facebook Messenger delivery integrity, prevent false seen on unsent messages, and add auto-timeout retry",
-  "nativeVersion": "1.1.4",
+  "version": "1.1.5",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.5.zip?v=1794019817990",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794019817990",
+  "checksum": "5bd0c9f8550a5de35d76b2aa27c6cc09b464254a7733bfd5c2a7561624c701aa",
+  "updatedAt": "2026-11-07T02:50:17.990Z",
+  "notes": "v1.1.5: High-res receipt & QR fix, remove floating cart, pin and highlight active customer in catering feed",
+  "nativeVersion": "1.1.5",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

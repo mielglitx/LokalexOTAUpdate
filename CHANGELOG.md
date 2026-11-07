@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 1.1.5 (2026-11-07)
+
+### 1. High-Resolution Digital Receipt & QR Scanner Fix
+* **Eliminated Receipt Blur & Garbled Text:** Fixed the bug where clicking "Send Receipt Directly" or "Send to Customer" dispatched a low-resolution, blurry receipt. Vertical receipts are now protected from aggressive downsampling, preserving 1200px–1380px native canvas resolution with high-fidelity 0.94 JPEG encoding.
+* **100% Detectable GCash QR Code:** Integrated bundled vector QR code generation with standard 4-module quiet zones and high-contrast boundaries. QR codes on dispatched receipts are now razor-sharp, instantly scanning across GCash and bank scanner apps without fail.
+* **Direct High-Res Messenger Dispatch:** Outbound receipt image data URLs sent to Facebook Messenger via Meta Graph API and Cloudflare Worker retain full readability and uncompressed clarity without double-lossy compression.
+
+### 2. Live Chat Interface Cleanup
+* **Removed Floating Cart Button:** Removed the redundant floating `🛒 Cart` button inside the active chat view that previously hovered over messages. Riders continue to have seamless access to Smart Cart via the persistent `🛒 Go to Cart` header bar banner.
+
+### 3. Catering Folder Pinning & Vibrant Green Customer Highlight
+* **Catered Customer Card Pinned to Top:** In the `Catering` folder of Live Chats Feed, the customer thread actively assigned to and catered by the logged-in rider is automatically moved to the very top of the list.
+* **Distinctive Green Highlight Border:** Added a vibrant, unmistakable green highlight border (`border-2 border-emerald-400/500`) with an emerald glow and "Your Customer" indicator around the rider's active catering customer card, enabling instant recognition at a single glance.
+
 ## Version 1.1.4 (2026-11-07)
 
 ### 1. Facebook Messenger Delivery Integrity & False "Seen" Elimination
