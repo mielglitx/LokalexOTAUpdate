@@ -1,10 +1,10 @@
 {
-  "version": "1.1.6",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.6.zip?v=1794032090983",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794032090983",
-  "checksum": "1fe93a064cc2400ee1ebc6d8310b1d251a2ab4a4a95aa0824c8304c1586b088b",
-  "updatedAt": "2026-11-07T06:14:50.983Z",
-  "notes": "v1.1.6: Fix menu & receipt sending without preceding text, resolve chat message loading empty state, restore TL rotation powers",
-  "nativeVersion": "1.1.6",
+  "version": "1.1.7",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.7.zip?v=1794033039340",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794033039340",
+  "checksum": "cd8dae1e4180b395a526df950f169ad502c51baf50abbc6263e4fffdb50c2974",
+  "updatedAt": "2026-11-07T06:30:39.340Z",
+  "notes": "Lokalex Base App & OTA Update",
+  "nativeVersion": "1.1.7",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
