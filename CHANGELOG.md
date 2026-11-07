@@ -1,5 +1,25 @@
 # Lokalex App Release Notes
 
+## Version 1.1.8 (2026-11-07)
+
+### 1. Restaurant Menu Directory On-Demand Download & Dispatch Fix
+* **Eliminated Menu Send Failures:** Resolved the bug where riders were unable to send menu pictures to customers (`⚠️ No saved menu photos found`) or view menus (`[View]`) when menu photos had not yet been cached locally.
+* **On-Demand Auto-Download:** Tapping `[Send All]` or `[View]` now automatically detects lightweight metadata stubs, triggers an instant background fetch with visual progress indicator (`⏳ Downloading [Store] menu photos...`), caches the real images in IndexedDB and RAM, and seamlessly dispatches the high-resolution menu photos to the customer.
+* **Multi-Key Fallback:** Added comprehensive multi-candidate key resolution (`stores_<name>`, normalized slugs, composite keys) across IndexedDB and cloud database so no store menu is ever missed.
+
+### 2. Customer ID Resolution & Instant Chat History Loading
+* **Fixed False "No messages yet" from Rider Rotations:** Clicking a customer's name in the Lokalex Rider Rotation tab or Modern Workspace now automatically resolves the customer's true ID (e.g. Meta Messenger PSID `fb_...`) from `cachedCustomerThreadsMap`. This ensures full chat history (e.g., all 29+ messages) loads immediately instead of querying the customer's name as an invalid room ID.
+* **Feed Card Layout Polish:** Refined the "YOU" rider customer badge in the Catering feed card header so it remains clean and never squashes customer names on narrow mobile screens.
+
+### 3. Database Health & Egress Optimization
+* **PostgreSQL Alias Column Guide (`last_updated`):** Provided the direct SQL alias for `customer_chat_meta.last_updated` to completely eliminate older APK 400 Bad Requests and drop Postgres errors from 752 to 0.
+
+## Version 1.1.7 (2026-11-07)
+
+### 1. TL Supervisory Powers in Rider Rotation
+* **Restored Force Status Dropdowns for Team Leaders:** Resolved an issue where Team Leaders (TL) were missing supervisory dropdowns (Available, Catering, Break, End Shift) in the Lokalex Rider Rotation tab.
+* **Enriched Rider Roster Cache:** Synced `ridersAccountMap` directly with roster data to ensure TL permissions persist across all live updates.
+
 ## Version 1.1.6 (2026-11-07)
 
 ### 1. Menu & Receipt Photo Delivery (Preceding Text Elimination)
