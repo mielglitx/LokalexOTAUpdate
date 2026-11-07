@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 1.1.9 (2026-11-08)
+
+### 1. Fix False Message Send Failures (Facebook Messenger Delivery)
+* **Eliminated Premature Timeout:** Resolved the issue where messages successfully sent to customers on Facebook Messenger were erroneously marked as `Sending failed • Retry` in the app. Fixed the client timeout logic so it strictly applies only to active sending states (`status === 'sending'`) and never overrides delivered or sent messages.
+* **Extended Cellular Timeout Window:** Increased the webhook bridge timeout from 15s to 35s to prevent client abortions while Meta Graph API processes high-resolution media or handles high cellular latency.
+* **Automatic Echo & Graph API Healing:** When Facebook delivers an echo webhook or thread sync confirms delivery, the app automatically reconciles and heals any pending or falsely failed bubble back to `Sent`, clears the error badge, links the authentic Facebook message ID (`mid`), and synchronizes the real status to the database.
+
+### 2. UI Polish & Button Animations
+* **Smooth Refresh Animations:** Added active `fa-spin` spinning animations and responsive click transitions to the **Refresh Chats** button in the Modern UI message categories bar and the **Refresh Rotations** button in the rotations toolbar.
+* **Universal Rotation Refresh:** Ensured all users (Admins, Team Leaders, and regular Riders) have an accessible, animated refresh button in the Modern Rotations tab to instantly sync the latest lineup.
+* **Interactive Resend / Retry Feedback:** Modernized the failed message **Retry** button with an animated spinner (`fa-arrows-rotate fa-spin`), active press animation, and immediate visual status updates upon retrying.
+
 ## Version 1.1.8 (2026-11-07)
 
 ### 1. Restaurant Menu Directory On-Demand Download & Dispatch Fix
