@@ -1,10 +1,10 @@
 {
-  "version": "1.1.5",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.5.zip?v=1794019817990",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794019817990",
-  "checksum": "5bd0c9f8550a5de35d76b2aa27c6cc09b464254a7733bfd5c2a7561624c701aa",
-  "updatedAt": "2026-11-07T02:50:17.990Z",
-  "notes": "v1.1.5: High-res receipt & QR fix, remove floating cart, pin and highlight active customer in catering feed",
-  "nativeVersion": "1.1.5",
+  "version": "1.1.6",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.1.6.zip?v=1794032090983",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794032090983",
+  "checksum": "1fe93a064cc2400ee1ebc6d8310b1d251a2ab4a4a95aa0824c8304c1586b088b",
+  "updatedAt": "2026-11-07T06:14:50.983Z",
+  "notes": "v1.1.6: Fix menu & receipt sending without preceding text, resolve chat message loading empty state, restore TL rotation powers",
+  "nativeVersion": "1.1.6",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

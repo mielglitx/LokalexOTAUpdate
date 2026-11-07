@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 1.1.6 (2026-11-07)
+
+### 1. Menu & Receipt Photo Delivery (Preceding Text Elimination)
+* **Pure Image Dispatch:** Fixed an issue where sending a restaurant menu photo or digital receipt to Facebook Messenger dispatched a text message payload alongside or before the image, causing Meta Graph API upload errors or blocked photo delivery.
+* **Separated Caption Guard:** Outbound menu photos and receipts to Messenger now strictly dispatch as clean, pure image payloads (`text: ""`, `skipSeparateCaption: true`), ensuring 100% reliable image delivery to Facebook customers without Meta parameter rejections.
+
+### 2. Chat Conversation History Loading & Empty State Fix
+* **Eliminated False "No messages yet" State:** Fixed a bug where conversations with existing chat history (e.g. captured messages and metadata) prematurely displayed "No messages yet." when opened.
+* **Network Timeout & Recovery:** Removed the aggressive 3-second timeout that falsely overwrote the message container with an empty message state during slower mobile network queries. If database queries take longer or encounter cache misses, loading states remain intact, and automatic Meta Graph API sync is triggered to recover chat history directly from Facebook.
+* **Enhanced Supabase Room Query Matching:** Updated database message reads to robustly match both `room_id` and customer ID prefixes (`id.like.<custId>_*`), preventing missed historical messages across all thread formats.
+* **Feed Card Customer Badge Polish:** Optimized the "Your Customer" badge layout on mobile screens in the Live Chats feed so customer names and message snippets remain clear, prominent, and readable without horizontal compression.
+
+### 3. Team Leader (TL) Powers in Lokalex Rider Rotation
+* **Restored Force Status Actions for Team Leaders:** Resolved an issue where Team Leaders (e.g. Mark) could not see or access the "⚡ Force Action" controls (Available, Catering, Break, End Shift) in the Lokalex Rider Rotation view.
+* **Unified Permission Targeting:** Updated `canForceCaterTarget` and `isTL` to recognize Team Leaders across all login configurations and grant status change dropdowns when `canForceStatus` is enabled by Admin. Team Leaders can now seamlessly manage regular roster lines directly within the rotation view.
+
 ## Version 1.1.5 (2026-11-07)
 
 ### 1. High-Resolution Digital Receipt & QR Scanner Fix
