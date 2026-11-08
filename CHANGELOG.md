@@ -22,6 +22,11 @@
 * **Top Network Endpoints Profiler:** Added a dedicated **"Top Network Endpoints"** breakdown in the monitor, itemizing exact bandwidth consumed by each endpoint (e.g. `App Web Assets (Vite/PWA)`, `Supabase customer_chats`, `Facebook Messenger Graph API`, `Rider Roster RTDB`).
 * **Accurate Code Bundle Attribution:** Reclassified Vite script bundles and PWA asset fetches from generic "System" into `App Updates & Code Bundles` for 100% transparency.
 
+### 4. False Update Loop & Native Version Parity Fix
+* **Resolved Persistent Update Loop:** Fixed the bug where the app repeatedly prompted riders with `May Mahalagang Base App Update (APK)! Bagong Bersyon: v1.2.5, Kasalukuyang APK: v1.2.0` even when the rider was already running the v1.2.5 update.
+* **Decoupled Web OTA from Base APK Version Requirements:** Corrected `manifest.nativeVersion` in `version.json` to reflect the true minimum required native APK (`1.2.0`), so web OTA bundles never falsely trigger a full APK reinstall loop.
+* **Synchronized Built-In Version Constants:** Updated `CURRENT_BUILT_IN_VERSION` to `1.2.5`, aligned Android Gradle `versionName` to `1.2.5` (`versionCode 125`), and enhanced `getCurrentAppVersion()` to prioritize active and stored OTA versions over stale native fallback values.
+
 ## Version 1.2.4 (2026-11-08)
 
 ### 1. On-Demand Image Thumbnail Mode (Tap-to-Download)
