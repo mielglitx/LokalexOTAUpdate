@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.2.1 (2026-11-08)
+
+### 1. Shift Time-In Reset Bug Fix (Preserving Shift Start Across Breaks & Re-logins)
+* **Preserved Initial Time-In Across Breaks:** Eliminated the faulty `availableTimestamp` heuristic in `renderModernLoginList`, `openModernRiderProfile`, and `openRiderInfoModal`. Previously, if a rider had been on shift for over 30 minutes, took a break, and returned to Available, their Time-In was erroneously overwritten with the timestamp of when they finished their break. Time-In is now strictly anchored to their genuine shift start (`firstLoginTime` / `loginTime`).
+* **Preserved Time-In on End-Shift Resume:** Fixed `updateRosterStatusData` so that when a rider ends shift for a couple of minutes and clocks in again on the same day, their `loginTime` and `firstLoginTime` are preserved from their morning shift start rather than being replaced with the resume timestamp. Session elapsed minutes are tracked via `sessionLoginTimestamp` without resetting their official shift Time-In.
+
+### 2. Direct Catering Transition & Login List Auto-Healing Loophole Fix
+* **Eliminated the Catering Shift-Start Loophole:** Fixed `updateRosterStatus` and `updateRosterStatusData` where `recordLogin` was previously only triggered if `status === 'Available'`. If a rider was on End Shift and directly tapped "Catering" (or was assigned catering by an Admin/TL, or catered a customer from chat), `recordLogin` remained false, leaving the rider unrecorded in the `logins` table and missing from the Login List.
+* **Auto-Healing for Active Caterers:** Both `Available` and `Catering` statuses now automatically trigger `recordLogin = true` if the rider is starting shift or has no active login record today. Added an active auto-healing check in `renderModernLoginsTab` so that any rider actively catering or available is immediately guaranteed a login record in the database and visible in the Login List.
+
 ## Version 1.2.0 (2026-11-08)
 
 ### 1. Massive Mobile Data & Supabase Egress Reduction (~95% Bandwidth Cut)
