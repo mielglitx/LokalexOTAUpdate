@@ -1,5 +1,27 @@
 # Lokalex App Release Notes
 
+## Version 1.2.5 (2026-11-08)
+
+### 1. Google Maps Link Detection & Direct Native App Navigation
+* **Fixed "Treated as Image" Bug:** Resolved the issue where customer-shared Google Maps links (`maps.app.goo.gl`, `maps.google.com`, `goo.gl/maps`, `maps.apple.com`, `waze.com`) or Facebook location attachments were mistakenly classified as photos and rendered into broken `<img>` tags.
+* **Strict Map Link Filtering:** Chat renderers now strictly filter out map links from image lists, preventing HTML webpages from being fed into image elements.
+* **📍 Dedicated Google Maps Location Card:** Map links now render as an interactive, styled Google Maps Location Card featuring:
+  * A prominent location pin icon and customer's destination address/link.
+  * An **"Open in Google Maps"** action button.
+* **Direct Native Maps App Launch:** Tapping **"Open in Google Maps"** invokes native Android/Capacitor App URL handling (`App.openUrl`), launching the native Google Maps app directly on the rider's device for instant turn-by-turn navigation.
+
+### 2. Miniature Visual Picture Thumbnails (~30 KB Preview)
+* **Real Visual Previews Instead of Text Cards:** Replaced generic placeholder text cards (`[icon] Attached Photo [LOAD]`) with actual visual miniature picture previews (~30 KB compressed preview via Facebook's native CDN thumbnail or lazy-loaded miniature).
+* **Instant Visual Recognition:** Riders can instantly recognize the customer's food photo, store item, or receipt directly in the message stream without having to blind-tap a placeholder button.
+* **On-Demand Full HD Modal Viewer:** Tapping any miniature picture preview immediately opens the interactive, full-screen pinch-to-zoom HD image viewer (`openImageViewerModal`), loading full-resolution media only when explicitly inspected.
+* **Album Photo Grid:** Multi-image attachments render in a clean visual grid where each photo is an interactive thumbnail that opens full-screen HD on tap.
+
+### 3. Accurate Data Gathering & Monitoring Transparency
+* **Elapsed Tracking Time Display:** The Data Usage Monitor now explicitly displays the exact elapsed monitoring duration (e.g. `⏱️ Monitored: 18 mins` or `2h 15m`) and the exact session start timestamp (e.g. `Tracking started: Nov 8, 7:05 PM`).
+* **Real-Time Data Transfer Rate:** Displays active bandwidth consumption rate (e.g. `Rate: 1.2 MB/min` or `42.5 KB/min`) computed over the active measurement window.
+* **Top Network Endpoints Profiler:** Added a dedicated **"Top Network Endpoints"** breakdown in the monitor, itemizing exact bandwidth consumed by each endpoint (e.g. `App Web Assets (Vite/PWA)`, `Supabase customer_chats`, `Facebook Messenger Graph API`, `Rider Roster RTDB`).
+* **Accurate Code Bundle Attribution:** Reclassified Vite script bundles and PWA asset fetches from generic "System" into `App Updates & Code Bundles` for 100% transparency.
+
 ## Version 1.2.4 (2026-11-08)
 
 ### 1. On-Demand Image Thumbnail Mode (Tap-to-Download)
