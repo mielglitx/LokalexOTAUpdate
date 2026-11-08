@@ -1,5 +1,38 @@
 # Lokalex App Release Notes
 
+## Version 1.2.2 (2026-11-08)
+
+### 1. Fix: Customers in Inbox Marked as Being Catered
+* **Strict Active Catering Validation:** Fixed `getActiveRosterCaterer` in `chatFeedState.js`. Previously, a loose fallback matched any thread if the rider named in older metadata had `status === 'Catering'`, even if that rider was currently catering a completely different customer. The fallback is now strictly restricted to threads explicitly inside the `catering` folder with verified customer name or ID matching.
+* **Auto-Clear Stale Rider Assignment on Move to Inbox:** Updated `processCustomerChatMetaData` so that when a thread has `folder === 'inbox'`, all catering metadata (`cateredByRiderName`, `cateredByRiderId`, `cateredBy`, `forcedBy`, and `isForcedCater`) is immediately sanitized to `null` and `false`.
+* **Database & Memory Reopen Thread Sanitization:** Updated `reopenThreadToInbox` in `chatFeedRender.js` to explicitly wipe out catering assignments from both Supabase Realtime/REST (`customerChats` / `customerChatMeta`) and in-memory caches when a thread is reopened to Inbox.
+* **Modern UI & Classic UI Badge Suppression:** Ensured that cards in the Inbox category never render catering badges, green cater highlights, or amber catering pills, ensuring Inbox stays 100% clean.
+
+### 2. Modern Workspace UI: Light / Dark Mode System
+* **Light / Dark Mode Header Button:** Added a responsive theme toggle button (`#modern-theme-toggle-btn`) in the Modern UI header toolbar with dynamic Sun/Moon iconography.
+* **High-Contrast Light Theme Palette:** Designed and implemented a complete Light Mode theme (`.modern-theme-light`) for all Modern UI views:
+  * **Header & Profile Bar:** Clean crisp white surfaces with slate-900 typography, subtle borders, and styled battery/clock indicators.
+  * **4-Tab Navigation & Badges:** High-contrast tab buttons with soft emerald active indicator tabs and legible badge counts.
+  * **Message Categories Filter Bar:** Polished category pills (`Inbox`, `Catering`, `Store`, `Follow Up`, `Done`, `Applicant`) with high contrast in both active and inactive states.
+  * **Customer List Feed:** Elevated card styling, crisp customer names, legible message previews, and clear status badges.
+  * **Live Chat Room & Composer:** Clear white incoming bubbles, soft gray card backgrounds, legible timestamps, and styled text composer input.
+  * **Lokalex Rider Rotations:** Restyled 3-column rotation boards (`Available`, `Catering`, `Break`), TL badges, and gross revenue chips with high contrast text.
+  * **Rider Login List:** Clean white shift status cards for `Clocked-In Today` and `Clocked-Out` with prominent Time-In displays.
+  * **Catered Customer List:** Crisp customer delivery cards with fees and timestamps.
+  * **Bottom Status Footer:** Styled footer dock (`Available`, `Catering`, `Break`, `End`, and Gross Total pill) optimized for daylight visibility.
+* **Persistent Setting:** Theme selection is automatically saved in `localStorage` (`lokalex_modern_theme`) and maintained across app launches and reloads.
+
+### 3. Roster Table Bandwidth Optimization (94% Payload Cut)
+* **Removed Heavy Base64 Avatars:** Stripped 15–40 KB embedded Base64 photo strings from the `roster` and `riders` database tables and converted them to lightweight UI avatar references.
+* **Reduced Status Sync Payload:** Shrank the entire `roster` table size from ~165 KB down to ~10 KB per status sync, saving ~155 KB per sync for every active rider and slashing cellular bandwidth consumption.
+
+### 4. Store Menu Binary Caching & Supabase Storage Integration
+* **Client IndexedDB Image Caching:** Implemented automatic IndexedDB binary caching (`menuImagesCache`) for menu photos so they are downloaded only once and served offline/locally on repeat views or dispatches.
+* **Cloud Storage Upload Support:** Connected `uploadImage` in `src/utils/imageUpload.js` to direct Supabase Cloud Storage (`store-menus`, `avatars`, `chat-media`), eliminating inline Base64 storage in database tables.
+
+### 5. Supabase Logs & Diagnostics Summary
+* **Statement Timeout Root Cause:** Investigated `supabase_logs.csv` and `supabase_logs_(5).json`. Statement timeouts (57014) and 500 errors were traced to Node diagnostic scripts running full-table queries against multi-megabyte `store_menus` tables. Real-world rider mobile traffic showed 100% healthy 200/201/204 response rates with zero timeouts.
+
 ## Version 1.2.1 (2026-11-08)
 
 ### 1. Shift Time-In Reset Bug Fix (Preserving Shift Start Across Breaks & Re-logins)
