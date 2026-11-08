@@ -1,5 +1,35 @@
 # Lokalex App Release Notes
 
+## Version 1.2.3 (2026-11-08)
+
+### 1. High-Contrast Light Mode Legibility Overhauls (New UI)
+* **Catered Customer List Contrast Fix:** Replaced washed-out yellow/amber text with crisp, bold slate-900 typography (`#0F172A`) for all customer names. Restyled rider delivery chips with soft mint backgrounds and solid dark emerald typography (`#047857`). Enhanced start, receipt, and done timestamps alongside duration badges (`⏱️`) for 100% legibility in bright daylight.
+* **Rider Login List Restyling:** Eliminated murky dark translucent rows inside light mode. Replaced them with crisp white/slate card surfaces (`#F8FAFC`) featuring bold slate-900 rider names, dark slate Time-In timestamps (`#1E293B`), deep emerald "On Duty" indicators, and high-contrast red "Not Logged In" headers.
+* **Navigation Tabs Legibility:** Fixed washed-out active tab text on `Rider Login List`, `Live Chats Feed`, `Lokalex Rider Rotations`, and `Catered Customer List`. Active tabs now display bold forest green text (`#065F46`), an emerald bottom indicator (`#059669`), and a soft mint background.
+* **Bottom Status Footer Bar Polish:** Upgraded `Available`, `Catering`, `Break`, `End`, and `Gross: P0` buttons with high-contrast text, legible borders, and solid active states.
+
+### 2. Live Mobile Data Usage Monitor & Network Profiler
+* **Live Network Traffic Interceptor (`src/utils/dataUsageTracker.js`):** Built an automated data tracking engine that measures cellular and WiFi data consumption across all app network calls (REST queries, Supabase Realtime CDC, WebSockets, Facebook Graph API, and media downloads).
+* **Live Header Data Pill (`#modern-header-data-pill`):** Integrated a real-time data consumption indicator in the top header toolbar next to the battery badge (e.g. `📊 14.2 MB`), allowing riders to monitor app data usage at all times.
+* **Feature Data Breakdown:** Categorizes data consumption across 7 core app modules:
+  * `💬 Customer Chats & Media`
+  * `📖 Restaurant Menus & Photos`
+  * `🚴 Rider Rotations & Status Sync`
+  * `🧾 Receipts & Catering Logs`
+  * `📍 Directory & Maps`
+  * `🔄 App Updates (OTA Packages)`
+  * `⚙️ System & Auth Configuration`
+* **Multi-Window Time Filtering:** Riders can filter and analyze their data usage across:
+  * **10 Minutes** (`10m`)
+  * **30 Minutes** (`30m`)
+  * **1 Hour** (`1h`)
+  * **5 Hours** (`5h`)
+  * **1 Day** (`1d`)
+  * **1 Week** (`1w`)
+  * **1 Month** (`1mo`)
+* **Top Consumer Highlight & Progress Bars:** Highlights the single biggest data-consuming feature with visual colored percentage bars and exact KB/MB metrics.
+* **Convenient Access:** Accessible by tapping the header data pill or from the Modern Hamburger Menu (`Settings -> Data Usage Monitor`).
+
 ## Version 1.2.2 (2026-11-08)
 
 ### 1. Fix: Customers in Inbox Marked as Being Catered
