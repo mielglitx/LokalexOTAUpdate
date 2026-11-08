@@ -1,5 +1,15 @@
 # Lokalex App Release Notes
 
+## Version 1.2.0 (2026-11-08)
+
+### 1. Massive Mobile Data & Supabase Egress Reduction (~95% Bandwidth Cut)
+* **Fixed Runaway Chat Sync Loop (`syncIncomingMessageFromMeta`):** Fixed a timestamp comparison bug (`lastMsgTime > newestLoadedTime - 3000`) and `"You: "` prefix mismatch that previously caused every rider's phone to re-query the active customer's chat history on every single global metadata update. Added strict signature deduplication so active chats only fetch when genuinely newer messages exist.
+* **Eliminated 50-Row Over-Fetching (`supabaseDb.js`):** Removed the `Math.max(query.limit * 3, 50)` multiplier in `handleCustomerChatsOnce` and switched to indexed `room_id` lookups, cutting per-thread message queries from 50 rows (~4–5 MB) down to 10–12 rows.
+* **Eliminated Duplicate `.on('child_added')` Initial Reads:** Prevented `deltaQuery.on('child_added')` and `liveQuery.on('child_added')` from executing a second redundant HTTP `SELECT` query immediately after `once('value')`.
+* **Room-Scoped Realtime CDC & In-Memory Document Caching:** Scoped `customer_chats` Realtime Postgres CDC channels to the active `room_id` (`room_id=eq.<custId>`) so riders no longer download other riders' menu photo bursts over WebSockets. Added in-memory `docCache`, `globalCustomerMetaCache`, and `globalCustomerChatsMsgCache` so single-document updates and status changes (`sent`/`seen`) execute with zero pre-update `SELECT` egress.
+* **Automatic Base64-to-CDN URL Replacement & Lightweight DB Previews:** Outbound receipts and menu gallery photos now deliver full high-resolution images to Facebook Messenger while storing lightweight previews in `customer_chats` and automatically replacing base64 strings with 100-byte Facebook CDN URLs once delivered.
+* **Cached Page Access Token & Throttled Presence/Reconnects:** Cached `adminSettings/facebookApis` in memory (`getFbPageAccessToken`), throttled `markChatThreadSeen` and `resyncActiveSubscriptions`, and eliminated redundant unread metadata writes when opening already-read threads.
+
 ## Version 1.1.9 (2026-11-08)
 
 ### 1. Fix False Message Send Failures (Facebook Messenger Delivery)
