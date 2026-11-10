@@ -16,6 +16,10 @@
 * **Worker In-Memory LRU Cache Eviction:** Added bounded LRU cache capping at 500 entries in `webhook-server/cloudflare-worker.js` to prevent isolate memory leaks during high traffic.
 * **Native Android UI Parity:** Updated Kotlin native screen models (`ChatFeedScreen.kt`) to enforce locked catering states and synchronize web build assets.
 
+### 4. Flutter Native App Release Build (v1.2.18+138)
+* **Embedded Webview Bundle Update:** Synchronized full production distribution assets (`dist/*`) into Flutter InAppWebView local assets (`assets/web/`).
+* **Release APK Packaged:** Compiled and signed release APK with Android Gradle plugin and tree-shaken resources (`Lokalex-Flutter-release.apk` / 45.4 MB).
+
 ## Version 1.2.17 (2026-11-10)
 
 ### 1. Live Chat Feed Sanitization & Inbound Auto-Resurrection

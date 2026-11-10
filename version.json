@@ -6,5 +6,6 @@
   "updatedAt": "2026-11-10T15:55:00.000Z",
   "notes": "Lokalex Update v1.2.18: Fixed Done Thread Resurrection Loop & Safety Checkbox Modal",
   "nativeVersion": "1.2.0",
-  "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
+  "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
+  "flutterApkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/Lokalex-Flutter-release.apk"
 }
