@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 1.2.8 (2026-11-10)
+
+### 1. New UI (Modern Workspace) Set as Main UI
+* **Default Application Workspace:** Promoted the New UI (modern split-screen workspace with live chats feed, color-coded badges, rotations lineup, and docked room) to be the primary, default UI for all riders and team members.
+* **Seamless Auto-Migration:** Automatically transitions existing devices and fresh installs to the New UI without losing any sessions, settings, or credentials.
+* **Instant Cold-Start Paint:** Added zero-latency pre-routing (`instant-session-modern`) and background styling to launch directly into the New UI with zero flicker or flash of the legacy interface.
+* **Dual UI Toggle Preserved:** Riders who still wish to view the Classic layout can toggle it via the top header **"Classic"** pill or the Settings menu in the drill-down hamburger navigation.
+* **Hardware Back Button Navigation:** Integrated Android hardware back button listeners to cleanly dismiss open Modern menus, drill-down popovers, and quick day-off modals.
+
+## Version 1.2.7 (2026-11-10)
+
+### 1. Fix Customer Chat Card Moving to Done When Catered
+* **Reset Completion Metadata on Cater:** Fully resets all historical completion fields (`completedAt: null`, `completedByRiderId: null`, `status: 'active'`, `folder: 'catering'`) in Firebase RTDB and local memory cache when a rider caters an order.
+* **Prevented False Stale Cleanups:** Fixed early returns in `getActiveRosterCaterer` and guarded `chatFeedRender` so returning customers who previously completed orders are never erroneously swept into the Done folder.
+* **Folder Filter Alignment:** Strictly aligned all folder classification rules across Modern UI, Classic UI, and background resolvers to keep actively catered customers exclusively in the Catering tab.
+
 ## Version 1.2.6 (2026-11-10)
 
 ### 1. Automatic Catering Tab Switch & Instant Chat Room Loading

@@ -1,10 +1,10 @@
 {
-  "version": "1.2.7",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.7.zip?v=1794274875106",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794274875106",
-  "checksum": "521300c40cc7bdc20d3121ea6aeb019e2f3ef7107c5438b5822a6d9e1094c31d",
-  "updatedAt": "2026-11-10T01:41:15.106Z",
-  "notes": "v1.2.7: Fix customer chat card erroneously moving to Done when catered; clear stale completedAt timestamps",
+  "version": "1.2.8",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.8.zip?v=1794276450847",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794276450847",
+  "checksum": "1062fab09bbb826a1e718f9c2cacef9a6268b08b008414ddf9e377c61f0fcd39",
+  "updatedAt": "2026-11-10T02:07:30.847Z",
+  "notes": "v1.2.8: Set New UI (Modern Workspace) as main default UI; instant cold-start paint and auto-migration",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
