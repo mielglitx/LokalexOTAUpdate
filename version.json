@@ -1,10 +1,10 @@
 {
-  "version": "1.2.10",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.10.zip?v=1794283033324",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794283033324",
-  "checksum": "6d151ceee85b9bc21c6dfab4fa23331c494db474ce389dfc2a2088d5c016c256",
-  "updatedAt": "2026-11-10T03:57:13.324Z",
-  "notes": "Scheduled delivery reminder banner in New UI and alarm trip modal routing",
+  "version": "1.2.11",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.11.zip?v=1794291685813",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794291685813",
+  "checksum": "88451f8c4a1b5fc940ac6bba11b97b7a76bb1753d6f12526e8dc3bc9b7b11965",
+  "updatedAt": "2026-11-10T06:21:25.813Z",
+  "notes": "fix: resolve catering customer completion stuck and inbox demotion routing (v1.2.11)",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
