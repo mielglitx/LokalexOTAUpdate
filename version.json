@@ -1,10 +1,10 @@
 {
-  "version": "1.2.11",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.11.zip?v=1794291685813",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794291685813",
-  "checksum": "88451f8c4a1b5fc940ac6bba11b97b7a76bb1753d6f12526e8dc3bc9b7b11965",
-  "updatedAt": "2026-11-10T06:21:25.813Z",
-  "notes": "fix: resolve catering customer completion stuck and inbox demotion routing (v1.2.11)",
+  "version": "1.2.12",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.12.zip?v=1794294899220",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794294899220",
+  "checksum": "e311529b1621f67aebb71a8355c88dcb489500fec075a82530e30d2f09c4b61d",
+  "updatedAt": "2026-11-10T07:14:59.220Z",
+  "notes": "fix: resolve folder glitching, cater prompt scope error, and completed order catering retention",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
