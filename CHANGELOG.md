@@ -1,5 +1,14 @@
 # Lokalex App Release Notes
 
+## Version 1.2.9 (2026-11-10)
+
+### 1. Fix Catered Customer Chat Not Moving to Catering Folder
+* **Instant In-Memory Roster Status Update:** Synchronously sets the catering rider's status to `Catering` and assigns the customer name in local memory (`globalState.rosterMembers`) before waiting for the network WebSocket echo. This eliminates the race condition where `getFastCaterer` or `renderRiderCustomerChatFeed` rendered prior to network receipt.
+* **Resilient Key & PSID Thread Matching:** Enhanced `applyChatCaterUpdate` to normalize all target ID variants (`rawPsid`, `fb_${rawPsid}`, `messenger_${rawPsid}`, `id_${rawPsid}`) across Firebase RTDB (`customerChats` and `customerChatMeta`) and performs an exhaustive in-memory sweep across `cachedCustomerThreadsMap` by both normalized keys and customer name.
+* **Eliminated Premature Fallback Wiping:** Removed destructive cleanup routines in `chatFeedRender` and `chatFeedListener` that erroneously demoted active catering threads back to `inbox` when background roster echoes were pending or when incoming delta updates were received.
+* **Modern UI Customer Header Candidate Resolution:** Fixed `getThreadCustomerCandidates` in `chatFeedState` to properly inspect `modern-chat-room-title` in addition to legacy chat header elements, ensuring customer name resolution succeeds seamlessly in Modern UI.
+* **Dual Category & Filter Synchronization:** Synchronizes both `modernChatCategory` and `activeRiderChatFilter` to `'catering'` upon catering, guaranteeing the customer card appears immediately in the Catering tab with the green rider outline and "YOU" badge.
+
 ## Version 1.2.8 (2026-11-10)
 
 ### 1. New UI (Modern Workspace) Set as Main UI

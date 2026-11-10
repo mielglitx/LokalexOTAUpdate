@@ -1,10 +1,10 @@
 {
-  "version": "1.2.8",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.8.zip?v=1794276450847",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794276450847",
-  "checksum": "1062fab09bbb826a1e718f9c2cacef9a6268b08b008414ddf9e377c61f0fcd39",
-  "updatedAt": "2026-11-10T02:07:30.847Z",
-  "notes": "v1.2.8: Set New UI (Modern Workspace) as main default UI; instant cold-start paint and auto-migration",
+  "version": "1.2.9",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.9.zip?v=1794278253428",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794278253429",
+  "checksum": "a14e80e262341b0668ec55ee39c62b67a9897b45c8b3335db77226d31332d404",
+  "updatedAt": "2026-11-10T02:37:33.429Z",
+  "notes": "v1.2.9: Fix catered customer not moving to Catering category; preserve instant in-memory roster catering state",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
