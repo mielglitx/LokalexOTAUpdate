@@ -1,5 +1,33 @@
 # Lokalex App Release Notes
 
+## Version 1.2.16 (2026-11-10)
+
+### 1. Fix Cloudflare Webhook Overwriting Completed Chats (Done -> Catering Bug)
+* **Outbound Echo Deduplication:** Implemented fast-path deduplication on Facebook Messenger webhook echoes (`item.message.is_echo`). Outbound messages sent from Lokalex riders or auto-completion triggers are indexed via `midIndex` and skipped immediately on echo, preventing race conditions.
+* **Cache Stale Guard & Authoritative Lookups:** Fixed `MEM_CUSTOMER_CACHE` in Cloudflare Worker so outbound sends immediately invalidate cached customer state. Removed false cache bypass suppressions to ensure echoes and new events always query authoritative database records.
+* **Immutable State Protection on Webhook Echoes:** Enforced strict immutable state rules on webhook echoes: outbound messages from the page can never mutate a completed order back to `catering`, nor clear `completedAt` / `completedBy` metadata.
+* **Worker Consolidation:** Consolidated multiple legacy worker scripts into a single, clean, pure Supabase worker (`webhook-server/cloudflare-worker.js`).
+
+### 2. Fix Quick Response Drawer White Line Bug
+* **Non-Destructive Cleanup on Room Locks:** Removed `quick-replies-drawer` from the banner cleanup loop in `modernUiController.js`. Locked chat rooms now properly hide the drawer without wiping its inner HTML (`quick-replies-chips-container`).
+* **Self-Healing Drawer Structure:** Added `ensureQuickRepliesDrawerStructure()` in `threadQuickReplies.js` to automatically restore the drawer header, counter badge, and chips container if missing or cleared.
+* **Unified Dark Theme Styling:** Themed the quick replies drawer and cards to the modern dark palette (`#182229` / `#121a1f`) with amber highlights, preventing white container bleed.
+
+### 3. Fix Top Tab Bar Label & Badge Overlap
+* **Vertical Stacking on Mobile:** Updated Rotations, Logins, and Catered tabs to use `flex-col sm:flex-row`, placing tab titles on the top line and status badges on the bottom line on mobile screens.
+* **Strict Overflow Bounds:** Added `min-w-0 overflow-hidden truncate max-w-full text-[9.5px] sm:text-[10px]` to all tabs and badges so long statuses (`Catering`, `Break`) fit comfortably within the 4-column grid without overlapping adjacent tabs.
+
+### 4. Remove ePayment Fee from Wizard Receipts
+* **Unified One Price Law Compliance:** Removed the ₱15 transfer fee from delivery wizard calculations (`epayFee = 0`).
+* **Updated Receipt Labels:** Receipts and breakdown modals now display `COD Total (Cash/GCash to Pay)` with zero extra fee.
+
+### 5. Stale Lineup Fix on Screen Sleep / App Resume
+* **Socket Bounce on Resume:** Automatically refreshes dead sockets via `db.goOffline()` and `db.goOnline()` when the phone wakes or resumes from background.
+* **Authoritative REST Verification:** Lineup verification queries a fresh HTTPS REST endpoint with `cache: 'no-store'` before allowing a rider to cater, preventing stale queue bypasses.
+
+### 6. Header Top Bar De-Crowding
+* **Streamlined Mobile Top Bar:** Removed redundant Clock and Battery pills on mobile devices (accessible via hamburger popover) to give the top bar breathing room.
+
 ## Version 1.2.10 (2026-11-10)
 
 ### 1. Scheduled Order Alert Banner in New UI

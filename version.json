@@ -1,10 +1,10 @@
 {
-  "version": "1.2.15",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.15.zip?v=1794305238671",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794305238671",
-  "checksum": "f3036a951775beabcbe5be9effe9f1070f18ca6a0f744fc67ec40a86696abe9b",
-  "updatedAt": "2026-11-10T10:07:18.671Z",
-  "notes": "Lokalex Base App & OTA Update",
+  "version": "1.2.16",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.16.zip?v=1794310178675",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794310178675",
+  "checksum": "e436b1da176631d8c4d32d01e32a169a4b7017941db961732c650a3fb871f86e",
+  "updatedAt": "2026-11-10T11:29:38.675Z",
+  "notes": "Lokalex Update v1.2.16",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
