@@ -1,10 +1,10 @@
 {
-  "version": "1.2.14",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.14.zip?v=1794302250971",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794302250971",
-  "checksum": "9c5bdd80165e15f3d9b294d098f109ab976c50c0c4b5928d0170cca5fc55eb3f",
-  "updatedAt": "2026-11-10T09:17:30.971Z",
-  "notes": "fix(ota): silence Capgo cloud telemetry and configure Vite dev server HMR",
+  "version": "1.2.15",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.15.zip?v=1794305238671",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794305238671",
+  "checksum": "f3036a951775beabcbe5be9effe9f1070f18ca6a0f744fc67ec40a86696abe9b",
+  "updatedAt": "2026-11-10T10:07:18.671Z",
+  "notes": "Lokalex Base App & OTA Update",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
