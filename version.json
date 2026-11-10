@@ -1,10 +1,10 @@
 {
-  "version": "1.2.13",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.13.zip?v=1794295963130",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794295963130",
-  "checksum": "04bd3ad6402b435e3bbd5063981926e6f4dfaa7245e25df8dc27c7de431d0dc6",
-  "updatedAt": "2026-11-10T07:32:43.130Z",
-  "notes": "feat(admin): add comprehensive error capturing and diagnostic extraction module",
+  "version": "1.2.14",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.14.zip?v=1794302250971",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794302250971",
+  "checksum": "9c5bdd80165e15f3d9b294d098f109ab976c50c0c4b5928d0170cca5fc55eb3f",
+  "updatedAt": "2026-11-10T09:17:30.971Z",
+  "notes": "fix(ota): silence Capgo cloud telemetry and configure Vite dev server HMR",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
