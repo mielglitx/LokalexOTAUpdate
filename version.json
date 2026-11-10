@@ -1,10 +1,10 @@
 {
-  "version": "1.2.9",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.9.zip?v=1794278253428",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794278253429",
-  "checksum": "a14e80e262341b0668ec55ee39c62b67a9897b45c8b3335db77226d31332d404",
-  "updatedAt": "2026-11-10T02:37:33.429Z",
-  "notes": "v1.2.9: Fix catered customer not moving to Catering category; preserve instant in-memory roster catering state",
+  "version": "1.2.10",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.10.zip?v=1794283033324",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794283033324",
+  "checksum": "6d151ceee85b9bc21c6dfab4fa23331c494db474ce389dfc2a2088d5c016c256",
+  "updatedAt": "2026-11-10T03:57:13.324Z",
+  "notes": "Scheduled delivery reminder banner in New UI and alarm trip modal routing",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

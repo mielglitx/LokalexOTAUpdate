@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 1.2.10 (2026-11-10)
+
+### 1. Scheduled Order Alert Banner in New UI
+* **Real-Time Visual Urgency Banner:** Added `#modern-adv-order-banner` to the New UI (Modern Workspace) top section, directly beneath the app header, visible across all modern tabs without blocking the chat feed or bottom dock.
+* **Escalating Visual States & Alarm Synchronization:**
+  * **30-Minute Notice:** Blue banner with clock icon notifying of upcoming scheduled delivery.
+  * **15-Minute Reminder:** Amber banner with bell icon warning of impending scheduled delivery.
+  * **5-Minute Warning / Overdue:** High-visibility pulsing red banner with warning icon for imminent or overdue orders.
+* **Direct Order Inspection:** Tapping the banner or the **"View Order"** action button silences the dual-tone audio alarm and immediately displays the Advance Orders Modal (`openAdvancedOrdersModal()`) to view or cater scheduled orders.
+* **Smart Alert Snooze & Escalate (`X` button):** Riders can dismiss or snooze the banner/alarm for the current threshold. Future escalated urgency thresholds (e.g. progressing from 15m to 5m) automatically re-trigger the alarm and unhide the banner.
+* **UI Mode Synchronization:** Switching between Classic UI and New UI dynamically evaluates and re-renders active scheduled delivery alert banners.
+
 ## Version 1.2.9 (2026-11-10)
 
 ### 1. Fix Catered Customer Chat Not Moving to Catering Folder
