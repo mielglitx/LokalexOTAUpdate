@@ -1,10 +1,10 @@
 {
-  "version": "1.2.12",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.12.zip?v=1794294899220",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794294899220",
-  "checksum": "e311529b1621f67aebb71a8355c88dcb489500fec075a82530e30d2f09c4b61d",
-  "updatedAt": "2026-11-10T07:14:59.220Z",
-  "notes": "fix: resolve folder glitching, cater prompt scope error, and completed order catering retention",
+  "version": "1.2.13",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.13.zip?v=1794295963130",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794295963130",
+  "checksum": "04bd3ad6402b435e3bbd5063981926e6f4dfaa7245e25df8dc27c7de431d0dc6",
+  "updatedAt": "2026-11-10T07:32:43.130Z",
+  "notes": "feat(admin): add comprehensive error capturing and diagnostic extraction module",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
