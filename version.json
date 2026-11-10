@@ -1,10 +1,10 @@
 {
-  "version": "1.2.16",
+  "version": "1.2.18",
   "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.16.zip?v=1794310178675",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794310178675",
   "checksum": "e436b1da176631d8c4d32d01e32a169a4b7017941db961732c650a3fb871f86e",
-  "updatedAt": "2026-11-10T11:29:38.675Z",
-  "notes": "Lokalex Update v1.2.16",
+  "updatedAt": "2026-11-10T15:55:00.000Z",
+  "notes": "Lokalex Update v1.2.18: Fixed Done Thread Resurrection Loop & Safety Checkbox Modal",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }

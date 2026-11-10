@@ -1,5 +1,37 @@
 # Lokalex App Release Notes
 
+## Version 1.2.18 (2026-11-10)
+
+### 1. Fix Customer "Done" Reverting to Inbox (China StClair Resurrection Bug)
+* **Eliminated False-Resurrection Loop:** Fixed race condition where marking any customer thread (e.g. *China StClair*) as Done triggered false auto-resurrection back into the Inbox because the customer's prior message was treated as an unread incoming event (`completedAt <= 0 || lastMsgTime >= completedAt`).
+* **Strict Buffer & Timestamp Check:** Enforced strict guard requiring positive completion timestamp (`completedAt > 0`), timestamp strictly greater than completion (`lastMsgTime > completedAt + 3000`), and active unread flag (`unreadForRider === true`) before any completed thread can be resurrected.
+* **Persistent Done Status Retention:** Hardened `chatFeedListener.js`, `chatFeedRender.js`, and Facebook Page sync in `fbResolvers.js` to unconditionally preserve Done status across background feed refreshes and Meta Business Suite polling passes.
+* **Dual-Key Lifecycle Sync:** Enhanced `executeThreadDone` in `threadLifecycle.js` to synchronously sanitize both raw key and `fb_` prefixed key in Supabase database metadata with `folder: 'done'`, `status: 'completed'`, and `unreadForRider: false`.
+
+### 2. Universal Safety Confirmation Modal
+* **Intuitive Checkbox Confirmation:** Replaced typing "confirm" across critical operations with a streamlined, tamper-proof checkbox toggle ("Yes, I understand and confirm this action") and dynamic OK/Cancel buttons.
+* **Full Backward Compatibility:** Maintained complete API compatibility with existing modal wrappers and caller hooks across the application.
+
+### 3. Cloudflare Webhook & Native Kotlin Alignment
+* **Worker In-Memory LRU Cache Eviction:** Added bounded LRU cache capping at 500 entries in `webhook-server/cloudflare-worker.js` to prevent isolate memory leaks during high traffic.
+* **Native Android UI Parity:** Updated Kotlin native screen models (`ChatFeedScreen.kt`) to enforce locked catering states and synchronize web build assets.
+
+## Version 1.2.17 (2026-11-10)
+
+### 1. Live Chat Feed Sanitization & Inbound Auto-Resurrection
+* **Instant Inbox Resurrection on Customer Chats:** Inbound customer messages (`!rawLastMsg.startsWith('You:')`) now immediately resurrect dormant/closed threads straight back to `inbox` with `status: 'active'` and `unreadForRider: true`. This guarantees incoming inquiries are never silently hidden in Done or missed while actively messaging.
+* **Facebook Webhook Server Auto-Reply Preservation:** Cloudflare Worker (`cloudflare-worker.js`) now deeply merges incoming thread metadata, ensuring automated business hours/transfer notices preserve `folder: 'inbox'` and notify riders without getting buried.
+
+### 2. Strict Live-Roster Catering Enforcement & Phantom Lock Elimination
+* **Active Roster Verification:** Integrated real-time rider catering verification against `catered/` roster records. A thread is strictly marked as catered only if the catering rider currently holds an active catering session.
+* **Auto-Purge Stale Catering Metadata:** Threads erroneously carrying stale catering flags (`cateredRiderId`, `cateredRiderName`, `cateredTimestamp`) when no rider is actively catering them are automatically sanitized and restored to the unassigned Inbox queue.
+* **Category Auto-Relock on Navigation:** When navigating away from the Catering tab or switching between message categories, uncommitted/unlocked chat threads are immediately re-locked and input containers wiped clean to prevent previous message bleed across conversations.
+
+### 3. Stability & Navigation Bug Fixes
+* **Reference & Syntax Error Fixes:** Resolved `ReferenceError: hasActiveCaterFields is not defined` and `ReferenceError: reconcileCustomerThreadsWithRoster is not defined` within live chat feed processing.
+* **Modern UI Category Navigation:** Fixed `TypeError: window.selectModernChatCategory is not a function` by attaching direct event listeners to tab filter pills and ensuring global function binding on modern UI controller initialization.
+* **Chat Message DOM Hygiene:** Explicitly clears message containers when closing customer chat modals or switching categories, preventing ghost messages from showing under different customer headers.
+
 ## Version 1.2.16 (2026-11-10)
 
 ### 1. Fix Cloudflare Webhook Overwriting Completed Chats (Done -> Catering Bug)
