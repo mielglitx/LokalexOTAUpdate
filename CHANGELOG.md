@@ -1,5 +1,25 @@
 # Lokalex App Release Notes
 
+## Version 1.2.6 (2026-11-10)
+
+### 1. Automatic Catering Tab Switch & Instant Chat Room Loading
+* **Auto-Focus Active Catering Room:** When a rider clicks **"Cater"** on any customer (from the chat header, the chat card action strip, or the catering prompt modal), the app now automatically switches to the **Catering** tab/category and immediately loads that customer's chat room.
+* **Unified Experience Across Modes:** Works consistently in both Modern UI (`window.selectModernCustomerChat`) and Classic UI (`window.openRiderCustomerChatModal`).
+
+### 2. Automatic Inbox Switch on Order Completion ("Done")
+* **Immediate Queue Visibility:** When a rider marks an order as **"Done"**, the app automatically transitions to the **Inbox** tab/category so the rider can immediately view pending uncatered orders.
+* **Streamlined Workflow:** Applied consistently across chat thread completion (`confirmAndExecuteDone`, `executeThreadDone`), swipe actions (`handleThreadSwipeDone`), and roster delivery completions (`completeSingleCateringCustomer`).
+
+### 3. Catering Chat Card Selection & Lock Screen Fixes
+* **Resolved Single-Card Stuck Bug:** Fixed an issue where clicking on any card other than the first one in the Catering tab was ignored or forcibly snapped back to the first card.
+* **Normalized Chat Thread ID Matching:** Stripped Facebook and Messenger ID prefixes (`fb_`, `messenger_`) so `activeRiderChatCustId` accurately aligns with thread IDs during feed updates and re-renders.
+* **Non-Destructive Listener Cleanup:** Cleaned up active room listeners without nullifying `activeRiderChatCustId`, ensuring locked chat cards stay selected and responsive to rider interaction.
+
+### 4. Dynamic Theme Synchronization & Chat Box Contrast
+* **Fixed Stuck Light Mode in Modern UI:** Resolved the issue where switching from Classic UI in light mode to Modern UI left the docked chat box stuck with Classic light mode styling.
+* **HTML Root Theme Sync:** `applyModernTheme()` now dynamically synchronizes `<html class="dark">` and `<html class="light">`, root background colors, and color-scheme properties, ensuring Tailwind dark mode styles take effect immediately upon switching.
+* **Seamless UI Mode Toggling:** Restores the user's saved Classic UI theme preference when toggling back to Classic UI.
+
 ## Version 1.2.5 (2026-11-08)
 
 ### 1. Google Maps Link Detection & Direct Native App Navigation

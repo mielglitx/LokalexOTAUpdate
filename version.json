@@ -1,10 +1,10 @@
 {
-  "version": "1.2.5",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.5.zip?v=1794149287053",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794149287053",
-  "checksum": "a931eda06758ab468f91245ee0c8fc976857fec6ecac710940f2a08265f60438",
-  "updatedAt": "2026-11-08T14:48:07.053Z",
-  "notes": "Lokalex Base App & OTA Update",
+  "version": "1.2.6",
+  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.6.zip?v=1794270967582",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794270967582",
+  "checksum": "1cf5d1711661a2cff1da6e7a7d9f39069d72a46ed782eb2eee5a59d02fb05324",
+  "updatedAt": "2026-11-10T00:36:07.582Z",
+  "notes": "v1.2.6: Auto catering/done tab routing, catering card selection fix, light mode sync",
   "nativeVersion": "1.2.0",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk"
 }
