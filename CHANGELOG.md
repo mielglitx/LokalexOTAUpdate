@@ -1,5 +1,35 @@
 # Lokalex App Release Notes
 
+## Version 2.5.5 (2026-11-17)
+
+### 1. Android "Install Unknown Apps" (`REQUEST_INSTALL_PACKAGES`) Pre-Install Gate & Auto-Resume
+* **Pre-Install Permission Guard (`ApkUpdateDownloader.kt`):** Before firing package installation intents on Android 8.0+ (API 26+), verifies `packageManager.canRequestPackageInstalls()`. If missing, preserves the downloaded `.apk` path in `pendingApkFile` and smoothly redirects to `Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES` (`package:${context.packageName}`).
+* **Auto-Resume Without Re-Download (`MainActivity.kt`):** Registered an `ActivityResultLauncher` (`StartActivityForResult`) to intercept when the user returns from system Settings. Combined with `onResume()` verification, automatically resumes and launches the Android package installer prompt for the downloaded APK as soon as permission is granted.
+* **Startup & In-Dialog Permission Checklist (`BackgroundPermissionHelper.kt`):** Added `canInstallUnknownApps` and `openInstallUnknownAppsSettings` helpers, surfacing a 1-tap **Enable** setup banner on `MainScreen.kt` and an in-dialog alert badge inside `AppUpdateDialog` so riders can proactively enable APK update permissions.
+
+### 2. Native OpenStreetMap (osmdroid) Interactive Map Picker
+* **Full Google Maps SDK Replacement:** Replaced Google Maps SDK and WebView Leaflet HTML implementations with native `org.osmdroid.views.MapView` embedded via Compose `AndroidView`, eliminating proprietary Play Services map dependencies and API keys.
+* **Interactive Map Controls & Visual Pin (`OsmMapPickerDialog`):** Features interactive zoom controls (+ / −), live GPS re-center (🎯) with loading indicator, floating center pin (`📍`) with pinpoint target, and real-time pinned coordinate readouts.
+* **Universal Multi-Provider Coordinate Parser (`LokalexLocationHelper.kt`):** Robustly parses coordinates from OSM links (`mlat`/`mlon`), Google Maps queries (`q=`, `@`, `loc:`), Apple Maps, `geo:` URIs, and raw `lat,lng` strings. Formats standard OpenStreetMap marker URLs using `Locale.US`.
+* **Screen Integrations:** Embedded across Customer/Store Directory (`DirectoryDialog.kt`), Cart & Receipt Wizard address field (`CartReceiptScreen.kt`), and Chat composer `location pin` chip (`ChatConversationPane.kt` & `ChatFeedScreen.kt`).
+
+### 3. Inset-Safe Height-Bounded Modals & Pinned Action Bars
+* **Touch-Safe Button Visibility:** Constrained dialog surfaces across `DirectoryDialog.kt`, `CreateCustomerDirectoryDialog`, `AddAddressModal`, and `AddCustomerModal` using `Modifier.fillMaxWidth(0.95f).heightIn(max = screenHeightDp * 0.88f).navigationBarsPadding().imePadding()`.
+* **Three-Part Column Architecture:** Separated layouts into a pinned top header, scrollable middle content (`LazyColumn` or `verticalScroll`), and a pinned bottom action bar (`heightIn(min = 48.dp)`), completely eliminating button clipping and unclickable elements on gesture navigation devices.
+
+### 4. Authoritative Commission Sync & Server-Verified Deletion
+* **Authoritative Server Scope Replacement:** Replaces cached records with the authoritative server list returned for the queried date, pruning deleted rows rather than naively appending duplicates.
+* **Persistent Deleted-ID Tombstones:** Implemented `deletedReceiptTombstones` in `SharedPreferences` filtering voided and soft-deleted records from rider gross totals, net take-home, and customer breakdowns.
+* **Multi-Tier Delete Mutations:** Executes hard Supabase `DELETE` with soft-delete fallback (`status: "VOIDED", is_deleted: true`), clearing linked entries in `catered`, `catered_history`, and `commission_penalties`.
+
+### 5. IME Soft Keyboard Resize & Non-Blocking Media Dispatch
+* **`adjustResize` & Auto-Scroll:** Applied `imePadding()` to the chat composer while avoiding double navigation bar padding when keyboard is up. Automatically scrolls to the latest message upon keyboard display or text field focus.
+* **Lifecycle-Independent Media Queue:** Created a background `mediaDispatchScope` decoupled from Compose dialog lifecycles, immediately creating optimistic bubbles and dismissing modals while image upload and receipt generation process in the background.
+
+### 6. Bi-Directional Message Reactions & Direct Facebook Page Sync
+* **Nested & Flat Reaction Parser:** Correctly parses Cloudflare Worker reactions (`{"❤️": {"<senderId>": true}}`) alongside flat emoji maps, cleanly updating sender reaction counts.
+* **Reaction Cache Invalidation:** Overwrites reactions, status, and edit flags on existing cached messages in `ChatMessageLocalCache.kt`.
+
 ## Version 2.4.9 (2026-11-17)
 
 ### 1. Instant Chat Card Category & Folder Reactivity
