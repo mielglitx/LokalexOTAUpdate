@@ -1,5 +1,28 @@
 # Lokalex App Release Notes
 
+## Version 2.5.7 (2026-11-18)
+
+### 1. Outbound Message, Photo, Camera & Receipt Sending Fixes
+* **Worker `/api/send-reply` & Canonical Room Normalization (`ChatRepository.kt`, `ChatFeedScreen.kt`):**
+  * Normalized outbound PSIDs cleanly: strips `fb_` / `messenger_` prefixes for Cloudflare Worker `recipientId` while always persisting Supabase `customer_chats` rows under canonical `room_id = "fb_<psid>"`.
+  * Attaches active `apiId` from `facebookApis` / `facebook_channels` alongside explicit `Content-Type: application/json` headers, omits blank `text` fields on media payloads, and sanitizes `replyToMid` to only send valid Meta `mid.$...` / `m_...` IDs (never sending `"null"` or local/temp IDs).
+  * Moved `dispatchTextMessage` onto `mediaDispatchScope` (`SupervisorJob`) so closing dialogs or switching tabs never cancels in-flight sends, and replaced the overly broad send lock with identical-message 1200ms debounce so Insta-Reply & back-to-back messages always send.
+* **Synchronous `cacheDir/outbound_media/` Media Caching (`MediaUploadRepository.kt`, `ChatFeedScreen.kt`, `CartReceiptScreen.kt`, `ChatRoomComponents.kt`):**
+  * Synchronously copies selected gallery `content://` URIs, camera/editor bitmaps, and rendered receipt JPEGs into `context.cacheDir/outbound_media/` **before** closing modals or launching background uploads—eliminating expired URI `SecurityException` and `FileNotFoundException`.
+  * Upgraded Supabase Storage uploads with explicit `Content-Type`, automatic `POST` + `PUT` retry, and strict public HTTPS URL enforcement for Messenger threads.
+  * Added `CoroutineExceptionHandler` and full `try / catch` error surfacing across every background upload queue: failures now log exact details via `AppErrorTracker`, mark the bubble `"failed"` with 1-tap retry in `ChatMessageLocalCache` and UI, and show a visible error Toast so failures are never silent.
+
+### 2. Fixed Duplicate Image Thumbnails in Single-Image Bubbles
+* **Base-Path & Facebook CDN URL Deduplication (`ChatMeta.kt`, `ChatRepository.kt`, `ChatConversationPane.kt`, `ChatRoomComponents.kt`):** Deduplicates `images` by exact URL, normalized base path (`substringBefore("?").substringBefore("#")`), and Facebook CDN `asset_id` / filename keys so `image_data.url` vs `payload.url` or CDN edge-host copies never render duplicate thumbnails.
+* **Clean Optimistic-to-Server Image Replacement (`ChatMessageLocalCache.kt`, `ChatRepository.kt`, `ChatFeedScreen.kt`, `MediaUploadRepository.kt`):** Replaced naive list concatenation with `ChatMessage.resolveMergedImageUrls`, cleanly replacing optimistic `data:` / `file://` / `temp_...` Supabase previews with confirmed `mid_...` server images without producing 2–3 thumbnails for a single sent photo.
+
+### 3. Preserved Rider Sender Name on Outbound Messages (Stopped Reverting to `[Page]` / `Page Admin`)
+* **Immediate `mid` & Rider Attribution Linking (`ChatRepository.kt`, `MediaUploadRepository.kt`):** Immediately patches outbound Supabase rows and local SQLite cache entries with `mid` / `metaMid`, `sender = riderName`, `senderType = "rider"`, `isFromPage = false`, and `isPageEcho = false`, backed by an in-memory ±20s attribution registry.
+* **Protected Rider Attribution Across Sync & Merge (`ChatMeta.kt`, `ChatMessageLocalCache.kt`, `ChatRepository.kt`, `ChatFeedScreen.kt`, `ChatConversationPane.kt`):** Known rider names now always win over `"Page Admin"`, `"Facebook Page"`, `"Lokalex Delivery"`, and `is_echo` webhook rows regardless of arrival order, while genuine direct Facebook Page replies keep the `[Page]` badge.
+
+### 4. Insta-Replies Cleanup
+* **Removed Hardcoded Built-In Templates (`LokalexRepository.kt`, `ChatFeedScreen.kt`):** Removed hardcoded `Cater Greeting`, `Closing Message`, and default `On the way` / `Nandito na` / `Papunta na` templates so **Insta-Replies** displays only your saved custom Supabase replies—each with **Edit (✏️)** and **Delete (trash)** buttons.
+
 ## Version 2.5.5 (2026-11-17)
 
 ### 1. Android "Install Unknown Apps" (`REQUEST_INSTALL_PACKAGES`) Pre-Install Gate & Auto-Resume
