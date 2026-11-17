@@ -1,5 +1,28 @@
 # Lokalex App Release Notes
 
+## Version 2.4.2 (2026-11-17)
+
+### 1. Full Jetpack Compose Native Release & Safe In-Place Upgrade (Build 242)
+* **Unified Package Upgrade Compatibility:** Bumped native release metadata to `v2.4.2` (`versionCode 242`) with matching signing certificate (`com.lokalex.rider`), allowing seamless in-place APK installation over both Android WebView (`v1.2.x` / `v2.1.x`) and earlier Native builds without `INSTALL_FAILED_VERSION_DOWNGRADE` or signature mismatch.
+* **Live Package Version & Direct APK Downloader:** Updated `LokalexMenuDialog`, `ReleaseNotesDialog`, and `AppUpdateDialog` to display the live `PackageManager` version/build code, perform safe manual `version.json` checks without false downgrade prompts, and download/install verified `.apk` packages directly via `MainActivity.installDownloadedApk` and `FileProvider`.
+
+### 2. Scheduled Folder, Advance Order Sections & Multi-Stage Alarms
+* **Scheduled Category & `+ Schedule` Action:** Renamed the `Follow Up` category tab and menu action to `Scheduled` / `• + Schedule` (preserving backward compatibility with legacy `"followup"` / `"follow_up"` / `"Scheduled"` metadata tags). Tapping `• + Schedule` tags the thread and launches the Advance Orders modal pre-filled with the active customer's name.
+* **Sorted Collapsible Sections & Rider Controls:** Reorganized Advance Orders into Pending (scheduled ascending), Delivered (delivered descending), and Cancelled groups with inline Claim, Assign Rider, Mark Done, Mark Cancel, and Edit Order (DatePicker, TimePicker, Notes) actions.
+* **Multi-Stage Alarms & Interactive Top Banner:** Added background/foreground alarm evaluations (`30 mins before`, `15 mins before`, `5 mins before`, `On Scheduled Time`) with milestone deduplication, 5-minute Snooze, dual-tone audio alerts, system notifications, and a tap-to-scroll pulsing highlight inside `AdvanceOrdersDialog`.
+
+### 3. Commission Rule Resolution Priority & Strict Admin Editing
+* **Strict Rate Priority Order:** Removed hardcoded `15%` regular fallback so commission resolution strictly evaluates **Specific Promo Date Rule -> Recurring Day Rule -> Individual Rider Override (Rider ID / normalized Name) -> Configured Default Rate**, applied consistently across rider cards, company due totals, net take-home, and generated text reports (including Admin 0% exemption).
+* **Commission Settings & Role Locks:** Added interactive Promo DatePicker, numeric inputs, and full-field saving inside `AdminCommissionSettingsDialog`, and restricted manual commission records, date penalties, receipt edits, and rule saves strictly to `isTrueAdmin`.
+
+### 4. Cart & Receipt Wizard Validation, Locking & Receipt Improvements
+* **Strict 3-Condition Item Validation & Market/Handling Exclusivity:** Enforced item completeness checks (`On Hand`, `Market/Store`, `Price > 0 or Paid`) before receipt generation, restricted discounts to fees only, and applied Market Fee vs. Handling Fee exclusivity when carts are 100% Market or 100% Store.
+* **Auto-Lock & Dimming Overlays:** Automatically locks the cart upon receipt generation, send, or Done, displays a dimmed overlay with change calculator and unlock confirmation on Steps 1 & 2, downscales/compresses direct receipt JPEG images for fast sending, and renders a larger top header logo.
+
+### 5. Day-Off Stars & Moon Highlights, Modularity & Chat Reliability
+* **Scheduled Day-Off Today Highlight:** Riders logged in or active on their scheduled day off (`Asia/Manila`) display a glowing stars-and-moon border (`Modifier.dayOffStarsAndMoonBorder`) and `🌙 DAY OFF` pill across Login and Rotation cards.
+* **Inbox/Done Folder Guards, Chimes & Modular Repositories:** Hardened Inbox/Done folder transitions and realtime message deduplication, improved `RingtoneManager` chime playback, added `HorizontalPager` image viewer with edit/document download support, and modularized repositories (`ChatRepository`, `MediaUploadRepository`, `RosterAndShiftRepository`) and chat UI panes.
+
 ## Version 1.2.18 (2026-11-10)
 
 ### 1. Fix Customer "Done" Reverting to Inbox (China StClair Resurrection Bug)
