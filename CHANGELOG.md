@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version 2.4.7 (2026-11-17)
+
+### 1. Resilient Receipt Verification & Multi-Key Matching
+* **Candidate Alias & Normalized Matching (`isCustomerNameMatch`):** Upgraded `hasReceiptForCustomer` in `LokalexRepository.kt` to match receipts by cleaned numeric PSID, candidate alias tokens (`|`, `/`), or normalized customer names (stripping legacy `customers_` prefixes).
+* **Removed Fragile `minSessionTs` Threshold:** Eliminated the timestamp cutoff that previously rejected valid receipts generated earlier in the session or prior to server timestamp touch updates.
+* **Active Cart Session Verification:** Integrated `CartWizardDraftPrefs` active session checks for the current day where `wizardStage >= 3`, `receiptLocked == true`, `receiptGeneratedAtMs > 0L`, `loggedToSupabase == true`, or a valid `receiptId` is saved.
+
+### 2. Reactive Concurrency & Inline Progress in Rotations
+* **Reactive Button Progress (`inFlightDoneMap`):** Replaced non-reactive concurrency sets with `remember { mutableStateMapOf<String, Boolean>() }` and rendered an inline `CircularProgressIndicator` on the customer row's `Done` button while the completion request is in flight.
+* **Fuzzy Target Chat Resolution & Dynamic Refresh:** Resolved `targetChat` using candidate customer name matching and numeric ID equality, with a dynamic receipt refresh fallback from Supabase before displaying `"⚠️ Please generate a receipt for [Customer Name] before marking Done."`
+* **Automated End Chat & Roster Transition to Available:** Automatically dispatches the closing auto-message to the customer thread, updates `customer_chat_meta` (`category = "Done"`), evicts the customer from `ActiveCateringLocalCache`, and seamlessly updates the rider's roster status back to `Available` (`isForcedCater = true`) when 0 active orders remain.
+
+### 3. Unified "• Done" Menu Action in Chat & Roster Sync
+* **Admin/TL Override & Cache Eviction:** Allowed `isTrueAdmin` and `hasEffectiveAdminAccess` overrides in `canMarkDoneWithoutReceipt`, added `ActiveCateringLocalCache` eviction to `executeMarkCustomerDone`, and upgraded `releaseCustomerFromRosterCatering` to use `isCustomerNameMatch` and auto-transition to `Available`.
+* **Completed Order Filtering:** Upgraded `getUnreceiptedActiveCustomersForRider` in `RosterAndShiftRepository.kt` to ignore already-completed (`isDone` / `isCancelled`) orders.
+
+### 4. UI Cleanups
+* **Directory Dialog:** Corrected `+ + Add Location` button label to `+ Add Location`.
+
 ## Version 2.4.6 (2026-11-17)
 
 ### 1. Multi-Tier Chat Deduplication & In-Place Optimistic Reconciliation
