@@ -1,11 +1,11 @@
 {
-  "version": "2.4.3",
+  "version": "2.4.4",
   "url": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
   "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
-  "checksum": "06d19f70e922ce099f77328b6d494ad412276d8dba7bd8104c1e690aa24145b4",
-  "updatedAt": "2026-11-17T03:38:00.000Z",
-  "notes": "Lokalex Native Compose v2.4.3 (Build 243): Customer Seen (✓✓ Seen) & Rider Read Badges, Sub-bubble Edited Original Text History, and Scannable Compact Insta-Reply Template Cards",
-  "nativeVersion": "2.4.3",
+  "checksum": "ed5c83a3492e62b28ec0217f1242098e821e1190ec29dbd4c3e7ce641ba47223",
+  "updatedAt": "2026-11-17T05:22:00.000Z",
+  "notes": "Lokalex Native Compose v2.4.4 (Build 244): Admin & TL Force Status Controls, Rotation Receipt Validation Gates, Directory Sync Pagination, and In-App Download Progress Bar",
+  "nativeVersion": "2.4.4",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
   "flutterApkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/Lokalex-Flutter-release.apk"
 }

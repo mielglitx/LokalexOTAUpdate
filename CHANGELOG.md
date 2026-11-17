@@ -1,5 +1,31 @@
 # Lokalex App Release Notes
 
+## Version 2.4.4 (2026-11-17)
+
+### 1. Admin & Permitted Team Leader (TL) Force-Status Controls
+* **2x2 Force-Status Actions Grid in Rotations:** Inside the rotation rider detail modal (`RiderQueueDetailsDialog`), Admin and permitted Team Leaders now have a 2x2 grid of action buttons:
+  * **`🟢 Available`**: Shows confirmation prompt, resets the rider's available queue timestamp, clears active orders, and updates status to `Available`.
+  * **`🛵 Cater`**: Directly opens `CaterCustomerDialog` with customer input and recent active inbox chat picker, setting status to `Catering`.
+  * **`☕ Break`**: Directly opens `RiderBreakDialog` to choose break durations (15m, 30m, 45m, 60m, Unlimited), setting status to `Break`.
+  * **`🛑 End Shift`**: Shows a high-contrast confirmation alert, clocks the rider out, and terminates duty (`status = "End"`).
+* **Team Leader Permission Toggle & Gate:** Added `canForceStatus` to `TL_PERMISSIONS_LIST` with a dedicated toggle in Admin TL Settings (`Allow TL to Force Rider Status (Available / Cater / Break / End)`) backed by `canForceRiderStatus(currentUser)`. Unauthorized riders and TLs without permission retain a clean read-only inspection modal.
+* **Immediate Lineup Refresh & Receipt Gate Bypass:** Manual Admin/TL status overrides pass `isForcedCater = true` and `forcedBy` to bypass self-serve receipt guards, trigger immediate lineup refreshes via `refreshRoster()`, and provide instant feedback toasts.
+
+### 2. Rotation Receipt Validation Gates & Shift Reversion
+* **Receipt Gate on Customer "Done":** When tapping "Done" on a customer in the Catering section of Rotations, the app checks if an official receipt has been generated. If none exists, completion is blocked with a warning: `⚠️ Please generate a receipt for [Customer] before marking Done.`
+* **Auto-Revert to Available:** Once all active deliveries for a rider are marked Done, the rider's roster status automatically reverts to `Available` with a refreshed queue timestamp.
+* **Receipt Gate on Status Dock "Available":** When a rider taps `Available` on the status dock while holding unreceipted active orders, the transition is prevented until receipts are created or orders completed.
+
+### 3. Full Directory Sync Pagination & UI Layout Fixes
+* **Paginated Full Directory Sync:** Removed the PostgREST 1,000-row limit in `LokalexRepository.kt` by paginating in chunks with Range headers until all records are synced, ensuring stores (e.g., Mayummy) and customers (e.g., Kurt Gabres) are never cut off.
+* **Customer Data Cleanup:** Automatically filters out raw numeric-only Messenger PSID entries from top-level customer cards and strips legacy `customers_` prefixes from customer names.
+* **Store Card "Send Menu" Button Layout:** Corrected row flex/weight wrapping so the orange "Send Menu" button remains horizontally oriented across all screen densities.
+* **Leaflet Map Picker & Address Modal:** Fixed map picker coordinates extraction, full address display, and GPS auto-fill in `AddAddressModal` and `DirectoryDialog`.
+
+### 4. Real-Time In-App APK Download Progress Bar
+* **Chunked Streaming Downloader:** Implemented `ApkUpdateDownloader.kt` streaming updates via OkHttp in 32KB chunks with 100ms UI throttled state emissions.
+* **Smooth Visual Progress UI:** Displays an animated `LinearProgressIndicator` in the Update Dialog and top status banner, showing real-time percentage (`48%`) and downloaded size (`14.2 MB / 28.5 MB`) with indeterminate fallback if Content-Length is missing.
+
 ## Version 2.4.3 (2026-11-17)
 
 ### 1. Customer Seen & Rider Read Indicators
