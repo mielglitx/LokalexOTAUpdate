@@ -1,5 +1,24 @@
 # Lokalex App Release Notes
 
+## Version 2.4.8 (2026-11-17)
+
+### 1. Ungated Done Flow
+* **Unrestricted Order Completion:** Removed the receipt verification gate from customer `Done` buttons across both the **Rotations** tab (`RotationsScreen.kt`) and the **Chat menu** (`• Done` in `ChatFeedScreen.kt` & `ChatConversationPane.kt`). Riders and staff can now mark active customers `Done` immediately without being blocked by missing receipts.
+
+### 2. Strict Receipt Lock on Void & Cancel with Admin/TL Override
+* **Lock Against Accidental Order Annulment:** Strictly blocks regular riders from executing **Void** (`RotationsScreen.kt`) or **• Cancel** (`ChatFeedScreen.kt` / `ChatConversationPane.kt`) once a receipt has already been created for that customer/thread (`psid`, numeric ID, or customer name/alias). Regular riders receive a warning toast: `"🔒 Cannot void or cancel — a receipt has already been generated for [Customer Name]."`.
+* **Authorized Admin & TL Annulment:** Administrators (`hasEffectiveAdminAccess`) and Team Leaders with force-status permissions (`canForceRiderStatus`) can override the lock. Upon confirmation, `repository.voidReceiptsForCustomer` automatically removes the linked receipt records from Supabase `receipts`, `catered`, and `catered_history`, purges active Cart Wizard drafts, and voids the catering assignment.
+
+### 3. Instant Chat Done Optimistic Transition & 15-Second Grace Window
+* **Frame-1 Folder Relocation:** Marking a thread `Done` immediately updates in-memory `ChatMeta` (`category = "Done"`, `folder = "done"`, `status = "completed"`, `cateredBy = null`, `isDone = true`) on frame 1, clearing it from `Inbox` and `Catering` and moving it to the `Done` folder without waiting for network round-trips.
+* **15-Second Anti-Poll-Overwrite Protection:** Recorded thread IDs in `lastMarkedDoneAtByThread` guard against background delta polling and roster synchronization overwriting the thread back to `Catering` during the propagation grace window.
+* **Auto-Message & Auto-Available Transition:** Sends the closing automated end-chat message, evicts the customer from `ActiveCateringLocalCache`, and checks remaining active bookings: if 0 active orders remain for the rider, automatically reverts their roster status to `Available` (`isForcedCater = true`).
+
+### 4. Direct OkHttp Streaming APK Downloader
+* **Fast Direct Connection:** Replaced slow system `DownloadManager` queuing with direct OkHttp streaming on `Dispatchers.IO` (`connectTimeout = 10_000`, `readTimeout = 30_000`, redirect follow enabled).
+* **Live Progress & Throttled UI Updates:** Immediately transitions state to `isDownloading = true` and `progress = 0f` on tap, streaming 32KB chunks directly into `context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)/Lokalex-Update.apk` and emitting smooth byte progress (`150ms` throttle) to Compose UI.
+* **Automatic Package Installation:** Automatically verifies APK archive integrity and invokes the Android package installer via `FileProvider` upon hitting 100%.
+
 ## Version 2.4.7 (2026-11-17)
 
 ### 1. Resilient Receipt Verification & Multi-Key Matching
