@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 2.5.8 (2026-11-18)
+
+### 1. Fixed Active & Unfinished Chat Threads Jumping Back to the Done Folder
+* **Full Completion-Field Cleanup Across Supabase & Local State (`ChatMeta.kt`, `ChatRepository.kt`, `ChatFeedScreen.kt`, `RosterAndShiftRepository.kt`):**
+  * Whenever a thread is reopened by a customer message, moved via **Undone**, assigned to **Catering**, or moved to **Inbox / Scheduled (Follow-Up) / Applicant / Stores**, all completion fields (`completedAt`, `completedBy`, `completedByRiderId`, `completedByRiderName`, `lastMarkedDoneAt`, `is_done`, `isDone`) are explicitly cleared (`null` / `false`) with `status = "active"` across both `customer_chat_meta` **and** `customer_chats` (`${custId}_metadata` rows), as well as local `ChatMeta` state and `lokalex_done_guard_prefs`.
+* **Explicit Non-Done Folder Precedence During Sync & Polling (`ChatRepository.kt`, `RosterAndShiftRepository.kt`, `ChatFeedScreen.kt`, `ChatThreadListPane.kt`):**
+  * Threads with an explicit active folder (`inbox`, `catering`, `followup`/`scheduled`, `applicant`, `stores`) and `status != "completed"` are never auto-coerced into `"done"` by leftover `completedAt`, legacy `category = "Done"`, or expired local done-guard timestamps (local done-guard is now strictly bounded to a 15-second post-Done grace window).
+  * Fixed `ChatFeedScreen.kt` state sync (`chatMetaMap` and `selectedChat`) so reopened non-done threads from Supabase immediately replace stale local `Done` state instead of staying trapped in Done.
+  * Prevented un-owned `"catering"` threads from being coerced into `"done"` in `reconcileChatsWithRoster` (returning them cleanly to `"inbox"` / `"active"`).
+  * Fixed duplicate PSID alias merging (`<psid>` vs `fb_<psid>`) so a newer active row (e.g., after Undone or a rider/customer reply) beats an older stale `done` row.
+* **Reliable Customer Auto-Reopen & Active Outbound Preservation (`ChatRepository.kt`, `ChatFeedScreen.kt`):**
+  * New customer replies (`timestamp > completedAt`, or arriving while `folder == "done"`) automatically reopen threads to `folder = "inbox"`, `status = "active"`, `completedAt = null` across local state and Supabase.
+  * Outbound rider text/media replies in `"inbox"` or `"catering"` preserve the active folder and `status = "active"`, never flipping an active thread to `"done"`.
+
 ## Version 2.5.7 (2026-11-18)
 
 ### 1. Outbound Message, Photo, Camera & Receipt Sending Fixes
