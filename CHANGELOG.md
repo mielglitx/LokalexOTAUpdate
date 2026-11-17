@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 2.4.3 (2026-11-17)
+
+### 1. Customer Seen & Rider Read Indicators
+* **Customer Seen Badge (`✓✓ Seen`):** Outbound messages now display a vivid sky-cyan `✓✓ Seen` indicator once read by the customer (via Messenger read watermarks, customer read timestamps, or subsequent customer inbound replies).
+* **Rider Avatar & Initial Badges:** Outbound and customer messages render compact amber circular initial badges alongside a `"Seen by [Rider Name(s)] • [Time]"` summary underneath the specific message each rider in the shift has last read, synced across riders via Supabase Realtime (`_threadSeenBy`).
+
+### 2. Edited Message History Sub-Label
+* **Preserved Initial Text & Sub-Label:** Extended message webhook and Supabase message decoders to track `original_message`, `originalMessage`, `original_text`, `originalText`, and `edit_history`.
+* **Tap-To-Expand Original Text:** Underneath any edited bubble, renders a subtle, muted sub-label showing `✏️ Edited • Original: "[original message text]"` with tap-to-expand support for long edits.
+
+### 3. Compact & Scannable Insta-Reply Cards
+* **Redesigned Quick-Reply Layout:** Restructured template cards into a streamlined two-line format featuring the bold template title on line 1 and a single-line ellipsized preview (`maxLines = 1, overflow = TextOverflow.Ellipsis`) on line 2 with tight vertical padding.
+* **Component Extraction (`CompactQuickReplyItemCard`):** Modularized reusable compact item cards in `ChatRoomComponents.kt` and `LokalexSubMenuDialogs.kt` (`QuickRepliesDialog`), allowing more templates to fit on-screen while preserving full tap-to-insert and 1-tap send capabilities.
+
 ## Version 2.4.2 (2026-11-17)
 
 ### 1. Full Jetpack Compose Native Release & Safe In-Place Upgrade (Build 242)

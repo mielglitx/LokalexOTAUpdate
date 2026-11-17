@@ -1,11 +1,11 @@
 {
-  "version": "2.4.2",
-  "url": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist-v1.2.16.zip?v=1794310178675",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/dist.zip?v=1794310178675",
-  "checksum": "e436b1da176631d8c4d32d01e32a169a4b7017941db961732c650a3fb871f86e",
-  "updatedAt": "2026-11-17T02:49:00.000Z",
-  "notes": "Lokalex Native Compose v2.4.2 (Build 242): Full Native Compose Upgrade with Scheduled Advance Orders & Multi-Stage Alarms, Commission Rule Priority, Day-Off Highlights, and Cart Validation",
-  "nativeVersion": "2.4.2",
+  "version": "2.4.3",
+  "url": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
+  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
+  "checksum": "06d19f70e922ce099f77328b6d494ad412276d8dba7bd8104c1e690aa24145b4",
+  "updatedAt": "2026-11-17T03:38:00.000Z",
+  "notes": "Lokalex Native Compose v2.4.3 (Build 243): Customer Seen (✓✓ Seen) & Rider Read Badges, Sub-bubble Edited Original Text History, and Scannable Compact Insta-Reply Template Cards",
+  "nativeVersion": "2.4.3",
   "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
   "flutterApkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/Lokalex-Flutter-release.apk"
 }
