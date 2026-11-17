@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 2.4.9 (2026-11-17)
+
+### 1. Instant Chat Card Category & Folder Reactivity
+* **Immediate Frame-1 Card Relocation:** Resolved the issue where a chat card remained in its active category list after status changes (`Done`, `Cater`, `Undone`, `Followup` / `Scheduled`, `Applicant`, `Cancel`) until manually switching category tabs. Replaced the un-keyed `remember` in `ChatFeedScreen.kt` with a Compose `mutableStateMapOf<String, ChatMeta>()` (`chatMetaMap`) and keyed `derivedStateOf { chatMetaMap.values.map ... }`. Because reads on `chatMetaMap.values` automatically register snapshot observers, any folder or category transition removes the card from the active category list on frame 1 without needing tab switches.
+* **Synchronous Main-Thread Optimistic State Machine:** Created `updateChatMetaOptimistic(targetId, transform)` in `ChatFeedScreen.kt`, executing immutable `.copy(...)` transformations directly on the main thread across all user actions (`executeMarkCustomerDone`, `onQuickCater`, `onQuickMarkUnread`, `onMenuCaterClick`, `onMenuUnreadClick`, `onMenuUndoneClick`, `onMenuApplicantClick`, `onMenuFollowUpClick`, and cancel order confirmation) before triggering asynchronous network operations.
+* **Stable Thread Identity Pipeline (`psid`):** Added `val psid: String get() = customerId.ifBlank { id.removePrefix("fb_") }` in `ChatMeta.kt` and wired `items(displayChats, key = { it.psid.ifBlank { it.stableUniqueKey } })` in `ChatThreadListPane.kt` for guaranteed stable Compose item identity and smooth exit animations.
+* **Reactive Category Header Counters:** Passed `chatMetaMap.values.toList()` to `ChatCategoriesHeaderBar` so category tab unread counters reflect optimistic moves immediately.
+
+### 2. Facebook Page Message Synchronization & Non-Text Attachment Fix
+* **Global Tail Overlap Sync (`fetchRecentGlobalMessages`):** Replaced strict `id=gt.$lastMaxId` increments with a 15-second overlap window (`timestamp=gt.(cursor - 15s)`) and added global tail polling of the latest 80 messages across all threads on 6-second ticks, merging idempotently into SQLite via `saveMessagesGrouped` across rooms.
+* **Non-Text & Attachment-Only Message Preservation:** Prevented blank-text message drops in `parseChatMessageFromJson` by inspecting attachments for stickers (`🏷️ [Sticker]`), locations (`📍 [Location]`), links (`🔗 [Title]`), voice/video/file attachments, or generic fallback (`[Attachment]`).
+* **Auto-Surfacing New & Returning Customers:** Synthesizes missing `ChatMeta` records into `Inbox` / `Unread` when new messages arrive from unindexed PSIDs; automatically reopens threads from `"Done"`, `"Cancelled"`, or `"Closed"` into `Inbox` / `Unread` whenever a customer message arrives after the completion boundary. Upgraded `customer_chat_meta` query limits to `limit=500`.
+* **Force Message Update via Cloudflare Worker Relay:** Wired `POST https://dry-firefly-ee76.lokaledeliver.workers.dev/api/sync-messages` (`limitMessages = 20`, `limitConversations = 25` / `recipientId = cleanPsid`) coupled with full Supabase tail bypass (`limit = 100` for active thread, `limit = 200` global), infinite spinning icon feedback, and toast notification (`"✅ Synced latest messages from Facebook Page"`). Accessible via header 1-tap refresh button and the 3-dots chat menu (`• Force Message Update`).
+
 ## Version 2.4.8 (2026-11-17)
 
 ### 1. Ungated Done Flow
