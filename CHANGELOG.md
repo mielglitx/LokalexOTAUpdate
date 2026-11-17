@@ -1,5 +1,25 @@
 # Lokalex App Release Notes
 
+## Version 2.4.5 (2026-11-17)
+
+### 1. Directory Customer PSID Sanitization & Real Name Restoration
+* **Automatic PSID & Name Inversion Detection:** Fixed customer directory cards displaying raw numeric Facebook Messenger PSIDs (e.g. `26058989460442650`, `26155948474078057`, `26610832338612974`) under `# SECTION` by detecting when the stored `title` is numeric while the customer's actual human name is stored in `subtitle` (e.g., `Bavelyn Abacan Mariano`, `Len Valdez`, `Jennifer Galicia`). The parser now automatically swaps the real customer name into the primary title and preserves address/landmarks in the subtitle.
+* **Legacy Prefix Stripping:** Strips legacy webhook prefixes such as `customers_` and `customer_` along with pipe delimiters (e.g., `"customers_asia tangonan | asia presentacion"` -> `"Asia Tangonan"`).
+* **Purge Phantom Records & Map Link Normalization:** Drops raw numeric entries with no human customer name from the customer directory and automatically parses raw Google Maps URLs located in `subtitle` or `detail` into clickable `📍 Open in Google Maps` links with default `"Camiling, Tarlac"` location text.
+
+### 2. Add/Edit Record Form Layout & Navigation Bar Inset Fix
+* **Pinned Action Bar Window Insets:** Configured `WindowCompat.setDecorFitsSystemWindows(dialogWindow, false)` and partitioned `navigationBarsPadding().imePadding()` exclusively on the pinned bottom action bar `Surface` inside `DirectoryRecordFormView`. This completely fixes the issue where the `[Cancel]` and `[✓ Save Record]` buttons were pushed 95% off the bottom edge of the screen on gesture navigation devices.
+* **Contextual FAB Visibility:** Automatically hides the floating `+` FAB while actively inside the Add/Edit Store or Customer form.
+
+### 3. Store Card "Send Menu" Button Horizontal Flex Fix
+* **Fixed Button Orientation:** Enforced `defaultMinSize(minWidth = 76.dp)` and `maxLines = 1` with `softWrap = false` on the orange `Send Menu` button on Store cards, completely eliminating the vertical letter-by-letter collapse (as observed on `Aling Inday`).
+
+### 4. Commission Record Idempotency Locks & 5-Minute Deduplication
+* **In-Flight Concurrency Locks:** Implemented `inFlightReceiptLocks` in `saveReceiptToSupabaseDetailed` and concurrency sets in `RotationsScreen.kt` to prevent duplicate submissions from rapid double-tapping on "Done" or "Send Receipt".
+* **10-Minute Pre-Insert Duplicate Check:** Before inserting a delivery receipt to Supabase, queries existing records for the same rider, customer, date, and fee amount; skips redundant inserts if an identical record was saved within 10 minutes.
+* **Client-Side Deduplication (`deduplicateReceipts`):** Merges duplicate receipts within a 5-minute window matching rider, customer, date, and gross fee in `CommissionScreen.kt`, while strictly preserving legitimate penalty adjustments.
+* **Draft `receiptId` Persistence:** Retains and updates the canonical `receiptId` in `CartWizardDraftPrefs` across draft loads and saves to prevent duplicate receipt rows when re-editing or resending an active customer order.
+
 ## Version 2.4.4 (2026-11-17)
 
 ### 1. Admin & Permitted Team Leader (TL) Force-Status Controls

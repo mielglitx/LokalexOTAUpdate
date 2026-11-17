@@ -1,11 +1,13 @@
-{
-  "version": "2.4.4",
-  "url": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
-  "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
-  "checksum": "ed5c83a3492e62b28ec0217f1242098e821e1190ec29dbd4c3e7ce641ba47223",
-  "updatedAt": "2026-11-17T05:22:00.000Z",
-  "notes": "Lokalex Native Compose v2.4.4 (Build 244): Admin & TL Force Status Controls, Rotation Receipt Validation Gates, Directory Sync Pagination, and In-App Download Progress Bar",
-  "nativeVersion": "2.4.4",
-  "apkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/app-release.apk",
-  "flutterApkUrl": "https://raw.githubusercontent.com/mielglitx/LokalexOTAUpdate/main/Lokalex-Flutter-release.apk"
+﻿{
+    "version": "2.4.5",
+    "url": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
+    "fallbackUrl": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
+    "checksum": "61b24c75787e324bc60c9f9c6fc5aa1cd23894f63f7db212e8f3f27b47c0d97f",
+    "updatedAt": "2026-11-17T06:00:00Z",
+    "notes": "Lokalex Native Compose v2.4.5 (Build 245): Directory Customer Sanitization & PSID Cleaning, Pinned Add/Edit Form Layout, Store Send Menu Horizontal Button, and Commission Record Deduplication & Idempotency Locks",
+    "nativeVersion": "2.4.5",
+    "apkUrl": "https://raw.githubusercontent.com/mielglitx/LKLXAppKotlineUpdate/main/app-release.apk",
+    "isApkUpdate": true,
+    "isApkOnly": true,
+    "forceApk": true
 }
