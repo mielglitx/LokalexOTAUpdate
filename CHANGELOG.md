@@ -1,5 +1,26 @@
 # Lokalex App Release Notes
 
+## Version 2.4.6 (2026-11-17)
+
+### 1. Multi-Tier Chat Deduplication & In-Place Optimistic Reconciliation
+* **Canonical Key Hierarchy (`stableUniqueKey`):** Introduced a multi-tier canonical key pipeline on chat messages prioritizing:
+  1. Client Optimistic ID (`client_msg_id` / `effectiveClientId`): Attached to every outbound optimistic message and preserved across server confirmation echoes so the Compose key never mutates mid-flight.
+  2. Messenger `mid` / Server ID: Primary key for customer inbound and cross-device rider messages.
+  3. Deterministic Content Fallback: `${sender}_${timestamp}_${text.hashCode()}`.
+* **In-Place Optimistic Bubble Replacement:** When confirmed server rows return via Supabase or Realtime, they match against the optimistic bubble by `client_msg_id` (with a tight 15-second fallback window for role/content) and replace the entry in-place rather than appending a second bubble.
+* **Idempotent Retry Guard:** Message retries consistently reuse the original `client_msg_id` (`retryExistingId`), guaranteeing network retries never generate duplicate chat entries.
+* **SQLite Cache Reconciliation:** Automatically deletes replaced temporary optimistic bubbles from `ChatMessageLocalCache` when confirmed server rows or Messenger `mid` entries arrive, and returns deduplicated messages on frame 1.
+
+### 2. Zero-Wait Frame 1 Load & Incremental Delta Cursors
+* **Instant Local-First Emission:** Immediately emits cached messages from `ChatMessageLocalCache` on frame 1 with zero spinner wait when opening a thread, followed by a background fetch of the latest 60 messages (`order=timestamp.desc&limit=60`) to backfill recent messages.
+* **Slim Column Projections & Cursor Tracking:** Replaced unbounded message queries with explicit column selections (`select=id,room_id,sender_id,message,timestamp,data` on `customer_chats` and `select=id,data,updated_at` on `customer_chat_meta`).
+* **Delta Sync by Timestamp & ID:** Tracks `threadLastTimestampCursors` and `threadLastMessageIdCursors`, querying only new messages with `timestamp=gt.$cursor` (and `id=gt.$afterId`) without re-downloading older history.
+
+### 3. Adaptive Foreground Polling & Stable Compose Rendering
+* **Fast 2-Second Active Thread Polling:** Adaptive polling queries deltas every 2 seconds for the open active conversation (with instant wakeup on Supabase Realtime events and FCM push notifications).
+* **Lightweight 6-Second Background Metadata Polling:** Added an independent 6-second delta sync on `customer_chat_meta` for lightweight folder and unread badge updates without wasting mobile bandwidth.
+* **Jank-Free LazyColumn Rendering:** Applied deterministic `key = { it.stableUniqueKey }` lambdas and `derivedStateOf` sorting on `filteredChats`, `displayChats`, and `displayMessages`, preventing list recompositions, layout flicker, and scroll jumping.
+
 ## Version 2.4.5 (2026-11-17)
 
 ### 1. Directory Customer PSID Sanitization & Real Name Restoration
