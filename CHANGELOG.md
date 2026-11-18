@@ -1,5 +1,21 @@
 # Lokalex App Release Notes
 
+## Version 2.6.4 (2026-11-18)
+
+### 1. Photo Viewer `Download SHD` Action Bar & All-Image Inline `SHD` Pill Badges
+* **Photo Viewer Top & Bottom `Download SHD` Controls (`ChatRoomComponents.kt`):**
+  * Added a prominent emerald **`Download SHD`** button (with `Icons.Default.Download` and live saving spinner) directly beside the blue **`Edit Image`** button in the Photo Viewer top action bar (`statusBarsPadding()` + responsive non-wrapping layout), plus `navigationBarsPadding()` on the bottom bar so Android gesture navigation bars never clip controls.
+  * Enabled one-tap lossless SHD saving to `Pictures/Lokalex` (`"Saved in SHD to Pictures/Lokalex"`) for **all** images opened in the Photo Viewer—both customer-received photos and rider-sent receipts/images.
+* **High-Contrast Inline `SHD` Pill Badges (`ChatRoomComponents.kt`, `ChatConversationPane.kt`):**
+  * Upgraded inline chat image thumbnails (`ChatPhotoGrid` / `ChatSinglePhotoTile`) to show a visible, high-contrast bottom-end **`SHD` + Download icon** pill badge on both received and sent images so riders can save photos directly from the chat thread without opening the Photo Viewer.
+
+### 2. Complete Chronological In-App Change Log & Supabase `app_releases` Merge
+* **Structured Development History (`LokalexSubMenuDialogs.kt`, `app/build.gradle`):**
+  * Enabled `BuildConfig` generation and populated `LOKALEX_CHANGELOG_HISTORY` covering every major release milestone from `v2.4.0` through `v2.6.4` (OpenStreetMap `osmdroid`, Supabase + Cloudflare Worker migration, atomic first-booker-wins catering, 0ms message deduplication, SHD image downloader, Store Menu manager, live per-second roster clocks, role-gated Unlimited Break & End-Shift auto-Done, silent keep-alive + battery exemption, inline base64 fallback, and Postgres `21000` batch upsert deduplication).
+* **Remote `app_releases` Merge & Admin Publisher (`LokalexRepository.kt`, `LokalexSubMenuDialogs.kt`, `MainScreen.kt`):**
+  * Added `fetchRemoteAppReleases()`, `parseChangelogBullets(...)`, `mergeChangelogEntries(...)`, and `publishAppReleaseNote(...)` so remote notes (newline bullets, markdown lists, or JSON arrays) merge cleanly by `versionName` without ever letting an empty remote changelog blank out local release notes.
+  * Upgraded `ReleaseNotesDialog` into a polished version timeline with `INSTALLED` / `LATEST` badges, categorized `New` / `Fixed` / `Improved` tags, and an inline Admin **`Publish`** editor.
+
 ## Version 2.6.3 (2026-11-18)
 
 ### 1. Lossless SHD Image Downloading for Received Chat Photos
