@@ -1,5 +1,30 @@
 # Lokalex App Release Notes
 
+## Version 2.6.3 (2026-11-18)
+
+### 1. Lossless SHD Image Downloading for Received Chat Photos
+* **Original Full-Resolution `MediaStore` Downloader (`MediaUploadRepository.kt`, `LokalexRepository.kt`):**
+  * Added `downloadImageShdToGallery` streaming original bytes directly over OkHttp on `Dispatchers.IO` with zero bitmap downscaling or JPEG re-compression, preserving 100% original resolution and sharpness (unwrapping Supabase `/render/image/public/` transforms while keeping signed `fbcdn.net` tokens intact).
+  * Saves directly into `Pictures/Lokalex` via `MediaStore.Images.Media.EXTERNAL_CONTENT_URI` (`IS_PENDING` handling on Android 10+) so Gallery and Google Photos index saved payment receipts and ID photos immediately.
+* **Download SHD UI Controls (`ChatRoomComponents.kt`, `ChatConversationPane.kt`, `ChatFeedScreen.kt`):**
+  * Added a subtle circular **Download / SHD** corner badge button on received customer image bubbles and a prominent **`Download SHD`** button inside the full-screen photo lightbox/viewer with loading spinner and `"Saved in SHD to Pictures/Lokalex"` confirmation toast.
+
+### 2. Automatic `< 2 MB` Inline Image Fallback & Postgres `21000` Upsert Deduplication
+* **Zero-Block Image Relay on Storage Bucket Failures (`MediaUploadRepository.kt`):**
+  * When all probed Supabase Storage bucket candidates (`chat-media`, `receipts`, `uploads`, `media`) fail with `NoSuchBucket` or HTTP `400`/`404` on an image or receipt (`mime.startsWith("image/")`), images under `2 MB` now automatically return a `data:$mime;base64,...` URI (compressing larger images cleanly) so `/api/send-reply` delivers directly to Meta Graph API without aborting with `Storage HTTP 400`.
+* **Pre-Flight PostgREST Batch Upsert Deduplication (`LokalexRepository.kt`, `ChatRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * Added `LokalexRepository.deduplicateUpsertBatch(items, conflictKey = "id")`, `buildUpsertRequestBody(...)`, and a global OkHttp pre-flight deduplication interceptor (`createUpsertDedupeInterceptor`) that collapses duplicate single or composite conflict keys via `LinkedHashMap` with non-null nested field merging, eliminating PostgreSQL `21000` (`ON CONFLICT DO UPDATE command cannot affect row a second time`) errors.
+
+### 3. Rider-Scoped Catering Alerts & Badges, Read-State Fix, Live Roster Bar & Instant Room Refresh
+* **Scoped Catering Sound & Unread Badges (`ChatAlertNotifier.kt`, `LokalexForegroundService.kt`, `LokalexFirebaseMessagingService.kt`, `MainScreen.kt`, `ChatThreadListPane.kt`, `ChatFeedScreen.kt`):**
+  * Suppressed incoming message chimes, vibration, and push alerts for threads catered by another rider while preserving alerts for unassigned `Inbox` threads and the current rider's own catered orders.
+  * Scoped the top `Chats` orange catering badge, `Catering` tab badge, ongoing notification counter, and thread-card unread dots strictly to the current rider's own unread catered threads.
+* **Fixed Read Chats Remaining Marked as Unread (`ChatRepository.kt`, `LokalexRepository.kt`, `ChatFeedScreen.kt`):**
+  * Added `activeOpenRoomId`, `localLastReadAtByRoom`, and `applyLocalReadGuard` across `refreshChats` / `refreshChatsDelta`, persisted `unread_count = 0` and `lastReadAt` to both `customer_chat_meta` and `${custId}_metadata`, and cleared unread indicators immediately on frame 1 when opening or viewing a thread.
+* **Live `Available` & `Catering` Counts Bar & Instant Open-Room Refresh (`ChatFeedScreen.kt`, `ChatMessageLocalCache.kt`, `ChatConversationPane.kt`):**
+  * Added a tappable live `🟢 Available: X` / `🛵 Catering: Y` status bar inside the `Catering` tab linking straight to `Rotations`.
+  * Added `ChatMessageLocalCache.roomMessagesFlow` + `fetchMessagesForRoom(forceNetwork = true)` triggered immediately whenever `liveSelectedChat?.lastUpdated` or `lastMessage` changes, with smooth near-bottom auto-scroll.
+
 ## Version 2.6.2 (2026-11-18)
 
 ### 1. Canonical Customer ID Deduplication & Alias Cleanup on Done/Void
