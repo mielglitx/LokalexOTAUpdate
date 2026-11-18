@@ -1,5 +1,39 @@
 # Lokalex App Release Notes
 
+## Version 2.6.2 (2026-11-18)
+
+### 1. Canonical Customer ID Deduplication & Alias Cleanup on Done/Void
+* **Single Canonical Entry per Catered Customer (`ActiveCateringLocalCache.kt`, `RosterAndShiftRepository.kt`, `RotationsScreen.kt`):**
+  * Added shared `canonicalCustomerKey`, `extractCustomerIdentityKeys`, `isSameCanonicalCustomer`, `preferHumanDisplayName`, and `preferCanonicalThreadId` normalizers stripping leading `fb_`, `id_`, `cust_`, `room_`, `messenger_`, and `Customer ` prefixes so duplicates like `"Daniella's"`, `"Customer fb_daniellas"`, and `"Customer id_daniellas"` always collapse into one card showing the real human/store name.
+  * Prevented creating duplicate `id_`-prefixed rows when an `fb_` or canonical customer record already exists.
+* **Complete Alias Purge on Done & Void (`ChatRepository.kt`, `RosterAndShiftRepository.kt`, `RotationsScreen.kt`, `ChatFeedScreen.kt`):**
+  * Tapping **Done** or **Void** now cleans up all matching alias rows (`<rawId>`, `fb_<rawId>`, `id_<rawId>`, `cust_<rawId>`, `room_<rawId>`, and normalized customer name) across `customer_chat_meta`, `customer_chats` `_metadata`, and `ActiveCateringLocalCache` so ghost entries never linger.
+
+### 2. Battery Optimization Exemption & Background Push Hardening
+* **Disable Battery Optimization Prompt (`AndroidManifest.xml`, `BackgroundPermissionHelper.kt`, `MainActivity.kt`, `MainScreen.kt`):**
+  * Added `isBatteryOptimizationIgnored` and `requestIgnoreBatteryOptimizations` (direct package exemption intent with safe fallback to battery optimization settings), surfaced **"Disable Battery Optimization (Unrestricted Background)"** at the top of the startup checklist & banner, and added a non-intrusive delayed launch prompt.
+  * Hardened `LokalexFirebaseMessagingService` to immediately post high-priority alerts on `lokalex_chat_alerts_v2` and wake `LokalexForegroundService` via `ContextCompat.startForegroundService`.
+
+### 3. Shift, Break, Booking & Queue Workflow Upgrades
+* **Role-Restricted Unlimited Break (`Rider.kt`, `StatusActionDialogs.kt`, `RosterAndShiftRepository.kt`, `MainScreen.kt`, `RotationsScreen.kt`):**
+  * Restricted **Unlimited Break** strictly to **Admin** and **Inspector** roles—completely hidden from standard Riders and Team Leaders (`TL`) in the Break dialog and guarded at the repository layer (`resolveEffectiveBreakDuration`).
+* **Auto-Mark Active Catered Customers as Done on End Shift (`StatusActionDialogs.kt`, `RosterAndShiftRepository.kt`, `ChatRepository.kt`, `MainScreen.kt`, `RotationsScreen.kt`):**
+  * Added an active-customer notice inside `EndShiftConfirmDialog` and automatically executes the full Mark as Done flow for every active customer assigned to the rider before marking their shift `End`.
+* **Atomic First-Rider-Wins Booking & Single Outbound Greeting (`ChatRepository.kt`, `ChatFeedScreen.kt`, `MainScreen.kt`):**
+  * Added `claimCustomerAtomically` conditional `PATCH` on `customer_chat_meta` (`Prefer: return=representation`) so only the winning rider transitions to `Catering` and sends the automatic greeting; losing riders skip the greeting, sync the winning rider's metadata, and see `"⚠️ Already booked by <Winner>"`.
+* **Fixed Catering Status Stuck After Done & Live Per-Second Roster Clocks (`LokalexStatusDock.kt`, `RotationsScreen.kt`, `MainScreen.kt`):**
+  * Derived the bottom status dock highlight from `currentStatus` + live `activeCateredCountForRider` so `Catering` never stays stuck after completing the last order, and upgraded Roster catering/break/cooldown timers to live per-second `MM:SS` / `HH:MM:SS` clocks.
+
+### 4. Catered Tab Timelines, Store Menu Editor, 0ms Message Dedupe & Responsive Layouts
+* **Distinct Start / Receipt / Done Timestamps + Sort & Filter (`Receipt.kt`, `LokalexRepository.kt`, `CateredCustomersScreen.kt`):**
+  * Kept `Start`, `Receipt`, and `Done` timestamps strictly distinct (never collapsing together), updated `Done` via `markReceiptDoneTimestamp`, and added **`Rider`** sort and **`My Catered Only`** filter chips.
+* **Create & Edit Store Menu List Images (`MediaUploadRepository.kt`, `LokalexSubMenuDialogs.kt`, `LokalexMenuDialog.kt`, `ChatFeedScreen.kt`, `MainScreen.kt`):**
+  * Added `ManageStoreMenusDialog` (Create, Edit, multi-photo upload/replace/remove to `chat-media/store-menus/`, Delete) accessible from Admin/TL **📋 Store Menus** and **"✏️ Edit Menus"** inside the chat Store Menu dialog.
+* **Instant 0ms Chat Message Deduplication & Faster Foreground Sync (`ChatMeta.kt`, `ChatMessageLocalCache.kt`, `ChatRepository.kt`, `ChatConversationPane.kt`, `CommissionScreen.kt`):**
+  * Added atomic in-place optimistic ID promotion (`promoteOptimisticMessage`) and synchronous O(n) pre-emit & render-time coalescing (`ChatMessage.deduplicateMessages`) so duplicate bubbles never flash, plus faster active foreground sync (`4s` active room, `8s` threads/roster, `10s` gross/commissions).
+* **Responsive `horizontalScroll` & `FlowRow` Layouts (`LokalexStatusDock.kt`, `ChatConversationPane.kt`, `ChatThreadListPane.kt`, `CateredCustomersScreen.kt`, `RotationsScreen.kt`, `ChatRoomComponents.kt`, `AdminSettingsDialogs.kt`, `StatusActionDialogs.kt`):**
+  * Made bottom status dock, quick-action chips, category tabs, and `Sort By:` bars horizontally scrollable with single-line non-wrapping labels and upgraded multi-button card/dialog bars to adaptive `FlowRow` containers.
+
 ## Version 2.6.1 (2026-11-18)
 
 ### 1. Stopped Keep-Alive Foreground Service from Ringing When Unmuted
