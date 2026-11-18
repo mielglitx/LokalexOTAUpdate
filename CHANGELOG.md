@@ -1,5 +1,17 @@
 # Lokalex App Release Notes
 
+## Version 2.6.0 (2026-11-18)
+
+### 1. Rider-Scoped Cart / Receipt Wizard Icon Visibility & Ownership Guard
+* **Strict Rider Ownership Check (`ChatMeta.kt`, `ChatFeedScreen.kt`):**
+  * Added `ChatMeta.isCateredByRider(riderId, riderName)` matching `cateredByRiderId` strictly against `currentRider.id` when present (eliminating false-positive substring name collisions like `"Mark"` vs `"Mark Anthony"`), falling back to exact normalized `cateredByRiderName` / `cateredBy` only when `cateredByRiderId` is blank.
+  * Updated `isMyCateredChat` in `ChatFeedScreen.kt` so explicit ownership on `ChatMeta` is never overridden by stale `activeCateredList` cache entries.
+* **Scoped Cart Icon Visibility (`ChatThreadListPane.kt`):**
+  * The green Cart / Receipt Wizard icon (`Icons.Rounded.ShoppingCart`) now renders **strictly** on customers catered by the current rider (`isCateredByCurrentRider == true`).
+  * For customers catered by another rider, the Cart icon is completely hidden and only the assigned rider badge (`"Catered by <Rider>"`) is displayed.
+* **Guarded Cart Click Handler (`ChatFeedScreen.kt`):**
+  * Added `openCartForChatGuarded(chat)` across both chat card Cart shortcuts and the receipt-required dialog CTA so a rider cannot open or overwrite another rider's active customer cart/receipt even if triggered programmatically.
+
 ## Version 2.5.9 (2026-11-18)
 
 ### 1. Fixed `Storage HTTP 400: Bucket not found (NoSuchBucket)` Across All Attachments
