@@ -1,5 +1,33 @@
 # Lokalex App Release Notes
 
+## Version 2.6.5 (2026-11-18)
+
+### 1. Full-Featured Messenger-Style HD Photo Editor (`LokalexPhotoEditorDialog.kt`)
+* **Locked `HD On` Full-Resolution Pipeline (`LokalexPhotoEditorDialog.kt`, `ChatFeedScreen.kt`, `ChatRoomComponents.kt`):**
+  * Built a full-screen Compose photo editor (excluding any AI auto-enhance tool) featuring a permanently active **`HD On`** pill that exports full-resolution composited bitmaps at `95%` JPEG quality directly to chat or Gallery.
+  * **6-Tool Vertical Rail:**
+    * **`Aa` Text Layers:** Inline keyboard editor, tap-to-re-edit, 4 fonts (`Classic`, `Bold`, `Mono`, `Serif`), `Left`/`Center`/`Right` alignment, `No BG` / `Solid Pill` / `Soft Pill` backgrounds, color swatches, 1-finger drag + 2-finger pinch/rotate, and drag-to-Trash deletion.
+    * **Delivery Callout Badges & Stickers:** Movable, pinch-zoomable, rotatable badges (`📍 Pin`, `✅ Paid`, `📦 Package`, `🏍️ Rider`, `⚠️ Note`, `💵 COD`, `🏪 Store`, `📞 Call`) and emojis.
+    * **Draw & Markup Toolkit:** Smooth Paint Brush, directional **`⇄ Arrow`** brush with automatic arrowheads, Emoji Brush, stroke Eraser, size slider, and step-by-step Undo.
+    * **Crop & Rotate:** Interactive 4-corner draggable crop box with rule-of-thirds grid, aspect presets (`Original`, `Square`, `2:3`, `3:4`, `9:16`), and **`Rotate 90°`**.
+    * **Image Adjustments:** Live `ColorMatrix` preview and full-resolution export for **Brightness**, **Contrast**, **Saturation**, and **Temperature** (`-100` to `+100`).
+    * **Save HD (`↓`):** Saves composited HD bitmap directly to `Pictures/Lokalex` via `MediaStore`.
+  * Wired directly into the Photo Viewer **`Edit Image`** button, Camera capture preview, and Gallery pre-send attachment preview.
+
+### 2. Store Directory `View Menu` Grid Manager & Background Menu Dispatch
+* **Store Directory `View Menu` & Multi-Select Grid (`DirectoryDialog.kt`, `LokalexSubMenuDialogs.kt`):**
+  * Added a **`View Menu`** button in a responsive `FlowRow` on each store card opening `StoreMenuGridManagerDialog` (2-column `LazyVerticalGrid`, **`+ Add Photos`** multi-image upload, per-tile single delete, and `Select` / long-press multi-select batch **`Delete Selected (N)`** persisted to Supabase).
+* **Instant Dismissal & Live `X/Y picture sent` Progress Banner (`ChatRepository.kt`, `LokalexRepository.kt`, `ChatFeedScreen.kt`, `DirectoryDialog.kt`, `ChatConversationPane.kt`):**
+  * Tapping **`Send Menu`** now closes the dialog immediately and dispatches all menu images sequentially on a background `SupervisorJob` scope, showing a live `"Sending <StoreName> menu: X/Y picture(s) sent..."` banner with progress bar above the chat composer and auto-hiding 2.5 seconds after completion.
+
+### 3. Dual-Badge `Rotations` Top Tab, Green/Blue Maps `info` Pill & Cart Draft Reset Fix
+* **Dual-Badge `Rotations` Tab & Full-Height Catering List (`LokalexTabBar.kt`, `MainScreen.kt`, `ChatFeedScreen.kt`):**
+  * Removed the rider availability strip from inside the `Catering` chat folder and rendered both the rider's personal queue badge (`#1`, `#2`, `#Catering`, `#Break`) and the color-coded **`available / catering / break`** count pill (`#22C55E` green / `#F59E0B` gold-orange / `#3B82F6` blue) cleanly inside the top **`Rotations`** tab.
+* **Green / Blue Google Maps Registration Status on Header `info` Pill (`ChatMeta.kt`, `ChatRepository.kt`, `LokalexRepository.kt`, `ChatFeedScreen.kt`, `ChatConversationPane.kt`):**
+  * Dynamically colored the chat header **`info`** pill **Green (`#22C55E`)** when the customer has a registered Google Maps link in `ChatMeta` or the Customer Directory, and **Blue (`#3B82F6`)** when none is registered.
+* **Fixed Stale Cart Items Persisting Across Repeat Orders (`CartReceiptModelsAndRenderer.kt`, `CartReceiptScreen.kt`, `LokalexRepository.kt`, `ChatRepository.kt`, `RosterAndShiftRepository.kt`, `RotationsScreen.kt`):**
+  * Cleared all canonical cart draft aliases (`rawId`, `fb_`, `id_`, `tid_`, `name_`) and notified `CartWizardDraftPrefs.draftsRevision` on **Done**, **Void**, **End Shift**, and new **Cater** while leaving completed historical receipts intact.
+
 ## Version 2.6.4 (2026-11-18)
 
 ### 1. Photo Viewer `Download SHD` Action Bar & All-Image Inline `SHD` Pill Badges
