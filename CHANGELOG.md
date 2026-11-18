@@ -1,5 +1,20 @@
 # Lokalex App Release Notes
 
+## Version 2.6.7 (2026-11-19)
+
+### 1. Weighted Rider Performance Tracker (`15% / 15% / 35% / 35%`) & Single `OVERALL TOP 1` Champion Card
+* **Weighted Overall Scoring Engine (`AdminSettingsDialogs.kt`, `LokalexRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * Computed each rider's **Weighted Overall Performance Score (`0.0% – 100.0%`)** using an objective 4-pillar formula: **`15%` Attendance Days + `15%` Time Catered + `35%` Gross Income + `35%` Number of Catered**.
+  * Replaced the 4 separate spotlight cards with **one prominent `OVERALL TOP 1` champion card** showing the #1 rider, overall weighted `%` badge (e.g. `94.5%`), and 4 clean breakdown metric tiles (`Gross Income`, `Catered`, `Time Catered`, `Attendance`).
+  * Ranked the **Rider Leaderboard** by **Overall Score** by default, with each rider row displaying their overall weighted `%` badge alongside their breakdown metrics.
+* **Accurate Multi-Day Period Analytics (`LokalexRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * **Attendance Days:** Aggregated unique calendar dates (`yyyy-MM-dd` in `Asia/Manila`) across Supabase `logins`, `settings?id=eq.shiftHistory`, and live roster, properly tracking multi-day attendance across Weekly and Monthly periods without collapsing into `1 days`.
+  * **Time Catered (`Xh Ym`):** Accurately calculated total active catering duration by summing `(completedAt - startedAt)` across all non-voided completed orders (with a sensible 10-minute floor for completed deliveries missing legacy start timestamps), plus live elapsed duration for currently active deliveries.
+  * **Catered Count & Gross Income:** Deduplicated non-voided completed orders matching by `riderId` OR normalized `riderName` across `catered`, `catered_history`, `receipts`, and live in-memory receipts.
+* **Responsive Layout & Non-Wrapping Financial Displays (`AdminSettingsDialogs.kt`):**
+  * Implemented a horizontally scrollable **`SORT BY:`** chip bar (`Overall`, `Income`, `Catered`, `Time`, `Attendance`) with single-line labels so sorting controls never squish vertically.
+  * Applied flexible weight to the rider column and locked `maxLines = 1, softWrap = false` on `₱...` amounts and `"Total Income"` labels so currency figures never wrap mid-number.
+
 ## Version 2.6.6 (2026-11-18)
 
 ### 1. Canonical Store Menu Count Parity, Local Disk Cache (`filesDir/store_menus`), Instant Deletion & Fast Direct-URL Sending
