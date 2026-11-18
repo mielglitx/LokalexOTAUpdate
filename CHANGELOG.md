@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 2.5.9 (2026-11-18)
+
+### 1. Fixed `Storage HTTP 400: Bucket not found (NoSuchBucket)` Across All Attachments
+* **Unified Supabase Storage Bucket Resolver & Fallback Probing (`MediaUploadRepository.kt`):**
+  * Standardized primary Storage bucket `chat-media` with automatic fallback probing across `chat-media` → `receipts` → `uploads` → `media` whenever Supabase returns HTTP 404, `"Bucket not found"`, or `NoSuchBucket`, caching the working bucket for subsequent uploads.
+  * Routed **all** attachment types—gallery images, camera photos, generated receipts, store menus, videos (`video/mp4`), voice/audio notes (`audio/mp4`), and documents (`application/pdf`, etc.)—through this exact resolver with proper per-type `Content-Type` headers and `POST`/`PUT` fallback.
+* **Direct Cloudflare Worker Base64 Relay Fallback for Images & Receipts (`MediaUploadRepository.kt`):**
+  * If all Supabase Storage buckets fail (e.g., `NoSuchBucket`, policy, or network block) when sending a photo, camera capture, or receipt, automatically compresses the image to JPEG (max 1080px, quality 80) and relays `data:image/jpeg;base64,...` directly to `POST /api/send-reply` (using the Worker's multipart binary upload to Meta Graph API) so customers receive photos and receipts immediately without getting blocked.
+
+### 2. Unified Tap-to-Retry & Bubble Status Transitions
+* **Cached Local Outbound Media Retry (`MediaUploadRepository.kt`, `LokalexRepository.kt`, `ChatConversationPane.kt`, `ChatFeedScreen.kt`):**
+  * Preserves local `file://` files inside `context.cacheDir/outbound_media/` on failed photo, receipt, video, voice, and document bubbles so tapping **Tap to retry** re-runs upload and Worker dispatch cleanly.
+  * Added `retryFailedAttachmentMessage` and hardened `reconcileAndCoalesceMessages` + `FailedMessageRetryBadge` visibility so every retried bubble transitions reliably from `"failed"` → `"sending"` → `"sent"`.
+
 ## Version 2.5.8 (2026-11-18)
 
 ### 1. Fixed Active & Unfinished Chat Threads Jumping Back to the Done Folder
