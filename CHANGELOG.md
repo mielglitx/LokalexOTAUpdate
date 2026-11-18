@@ -1,5 +1,29 @@
 # Lokalex App Release Notes
 
+## Version 2.6.6 (2026-11-18)
+
+### 1. Canonical Store Menu Count Parity, Local Disk Cache (`filesDir/store_menus`), Instant Deletion & Fast Direct-URL Sending
+* **Fixed `View Menu (N)` vs Grid Photo Count Mismatch (`LokalexRepository.kt`, `DirectoryDialog.kt`, `LokalexSubMenuDialogs.kt`):**
+  * Added `menuUrls: List<String>` to `DirectoryRecord` and introduced the single shared canonical helper `getResolvedStoreMenuUrls(store)` strictly scoped to each exact store record (never merging sibling branches like `"Chowking"` vs `"Chowking Camiling"` or trusting stale `storeMenuMeta.pageCount`), guaranteeing 100% count parity between the Store Directory card badge and the Store Menu Grid Manager.
+* **Persistent Local Disk Cache for Local-First Viewing & Sending (`MediaUploadRepository.kt`, `LokalexSubMenuDialogs.kt`, `ChatRepository.kt`):**
+  * Added persistent local disk caching under `filesDir/store_menus/<sanitizedStoreKey>/` mapped via `SharedPreferences("store_menu_local_cache")`. Store menu photos are automatically pre-cached on fetch, View Menu, and `+ Add Photos` uploads so menu grids open instantaneously from disk with zero bandwidth.
+  * When sending a store's menu, hosted `https://` URLs are now dispatched directly to `/api/send-reply` (using the local cached `File` for instant chat bubble preview, eliminating redundant download + re-upload round-trips) with `250ms` Messenger order pacing and live `1/N picture sent` progress updates.
+* **Instant `< 50ms` Optimistic Menu Photo Deletion (`LokalexSubMenuDialogs.kt`, `MediaUploadRepository.kt`, `LokalexRepository.kt`):**
+  * Single-photo delete and batch **`Delete Selected (N)`** immediately remove photos from the grid, local disk cache, and Directory badge count in `< 50ms` with no blocking spinner, then persist via a single Supabase `PATCH` and concurrent parallel (`async` / `awaitAll`) Supabase Storage deletions in the background.
+
+### 2. Real-Time Auto-Updating Front-Page Data Monitoring Pill
+* **Live Reactive `DataUsageTracker.liveBytesFlow` (`DataUsageTracker.kt`, `MainScreen.kt`, `DataUsageMonitorDialog.kt`):**
+  * Added `liveBytesFlow: StateFlow<Long>` updating immediately on every recorded request plus a lightweight 2-second foreground `TrafficStats` UID sampler (`getUidRxBytes + getUidTxBytes`, falling back cleanly to OkHttp totals if `TrafficStats.UNSUPPORTED`) so the top header `KB` / `MB` pill updates continuously in real time without tapping.
+
+### 3. Automatic Background APK Download + "Install Now / Later" Prompt + Update Page Installer
+* **Silent Background APK Lifecycle (`ApkUpdateDownloader.kt`, `ChatAlertNotifier.kt`, `MainActivity.kt`, `MainScreen.kt`, `LokalexSubMenuDialogs.kt`):**
+  * Added singleton `ApkUpdateState` (`Idle`, `Downloading`, `ReadyToInstall`, `Error`) persisted in `SharedPreferences` across restarts, checking Supabase `app_releases` (plus GitHub OTA manifest) and downloading newer APKs silently on `Dispatchers.IO` into `ExternalFilesDir(DIRECTORY_DOWNLOADS)/lokalex_v<version>.apk`.
+  * Fires a high-priority **"Update Ready: Lokalex v&lt;version&gt;"** local notification and non-nagging **`Install Now`** / **`Later`** dialog when ready, plus live download progress and a prominent **`Install Update (v<version>)`** button at the top of both the Updates and Change Log dialogs for instant installation anytime without re-downloading.
+
+### 4. Strict `Catering` Tab Reconciliation & Flicker-Free Thread List
+* **Eliminated Ghost/Stale Threads & Substring Hijacking (`RosterAndShiftRepository.kt`, `ChatRepository.kt`, `LokalexRepository.kt`, `ChatFeedScreen.kt`, `ChatThreadListPane.kt`):**
+  * Replaced substring `.contains()` matching in `findActiveCateredOwner` with strict canonical customer matching, added 10-second claim grace tracking, mapped orphaned `folder = "catering"` rows to `done` with 5-minute debounced async Supabase metadata cleanup, cleared all 6 `catered_by*` keys across alias rows on `Done`/`Void`/`End Shift`/`Reopen`, suppressed placeholder `"Customer fb_..."` ghost cards, preserved `selectedChat` across background polls, and keyed `LazyColumn` items by `canonicalCustomerKey`.
+
 ## Version 2.6.5 (2026-11-18)
 
 ### 1. Full-Featured Messenger-Style HD Photo Editor (`LokalexPhotoEditorDialog.kt`)
