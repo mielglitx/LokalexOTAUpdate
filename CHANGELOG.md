@@ -1,5 +1,22 @@
 # Lokalex App Release Notes
 
+## Version 2.6.1 (2026-11-18)
+
+### 1. Stopped Keep-Alive Foreground Service from Ringing When Unmuted
+* **Strictly Silent Keep-Alive Channel (`LokalexApp.kt`, `LokalexForegroundService.kt`):**
+  * Replaced the legacy foreground channel with dedicated `lokalex_keep_alive_silent` (`IMPORTANCE_LOW`, `setSound(null, null)`, `enableVibration(false)`, `enableLights(false)`, `setShowBadge(false)`), deleting legacy `lokalex_keepalive_channel` so OEM ROMs never retain audible keep-alive defaults.
+  * Configured the persistent foreground notification builder with `.setSilent(true)`, `.setOnlyAlertOnce(true)`, `.setSound(null)`, `.setVibrate(null)`, and `.setDefaults(0)` so keep-alive heartbeats, wake-locks, and unread-count refreshes never play a chime.
+* **High-Priority Incoming Message/Order Channel & Clean Unmute (`ChatAlertNotifier.kt`, `AdminSettingsDialogs.kt`, `AndroidManifest.xml`):**
+  * Routed genuine incoming customer message and order alerts onto dedicated `lokalex_chat_alerts_v2` (`IMPORTANCE_HIGH`), deduplicated by both `messageId` and persisted `lastAlertedTimestamp` (`lokalex_alert_dedupe_prefs`).
+  * Added `ChatAlertNotifier.onMuteStateChanged` so toggling **Unmute** updates mute state cleanly and seeds current unread watermarks without replaying old alerts or ringing the keep-alive service.
+
+### 2. Reliable Background Notifications When Closed, Minimized, or Screen Is Off
+* **Swipe-Close Resurrection & 3–4 Minute Doze-Safe Watchdog (`LokalexForegroundService.kt`, `LokalexKeepAliveReceiver.kt`, `LokalexBootReceiver.kt`):**
+  * Preserved `START_STICKY`, acquired timed `PARTIAL_WAKE_LOCK` during sync cycles and incoming realtime events, and scheduled immediate resurrection (`1.5s`) + repeating 3–4 minute `AlarmManager.setExactAndAllowWhileIdle` / `setAndAllowWhileIdle` watchdog alarms across `onTaskRemoved()`, `onDestroy()`, boot, and every watchdog tick.
+  * Ensured `LokalexKeepAliveReceiver` always re-arms the watchdog chain, restarts `LokalexForegroundService` via `ContextCompat.startForegroundService`, and still posts `ChatAlertNotifier.postChatAlert(...)` from a bounded sync if Android 12+ defers background FGS launch.
+* **High-Priority Data-Only FCM Background Wakeup (`LokalexFirebaseMessagingService.kt`, `supabase/functions/send-fcm-push/index.ts`):**
+  * Configured `send-fcm-push` to send pure `data`-only payloads with `android: { priority: "high", direct_boot_ok: true, ttl: "120s" }` plus `message_id`, `status`, `completed_at`, and `last_customer_message_at`, ensuring `LokalexFirebaseMessagingService.onMessageReceived` immediately posts alerts, re-arms the watchdog, and restarts `LokalexForegroundService` even when the app process was closed.
+
 ## Version 2.6.0 (2026-11-18)
 
 ### 1. Rider-Scoped Cart / Receipt Wizard Icon Visibility & Ownership Guard
