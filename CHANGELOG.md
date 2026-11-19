@@ -1,5 +1,39 @@
 # Lokalex App Release Notes
 
+## Version 2.7.8 (2026-11-19)
+
+### 1. Elimination of 48x/min Phoenix Realtime Channel Subscription Loop
+* **Topic-Level Channel Deduplication (`LokalexForegroundService.kt`):**
+  * Added `subscribedTopics = ConcurrentHashMap<String, Boolean>()` to track joined PostgreSQL change channels.
+  * In `subscribeToTable`, calls now atomically check `subscribedTopics.putIfAbsent(topic, true)` and exit immediately if already joined, completely stopping the runaway 48 joins/min (`33.5 KB/min`) subscription burst.
+  * Guarded `connectRealtimeWebSocket` to prevent duplicate concurrent connections (`isWsConnected.get() && activeWebSocket != null`).
+  * `subscribedTopics` cleanly resets strictly on socket closure, connection failure, or service destruction.
+
+### 2. Elimination of Frozen Watermark & 39x/min Room REST Polling
+* **Monotonic Watermark Advancement (`ChatRepository.kt`):**
+  * Eliminated the aggressive `-15_000L` timestamp rewind in `fetchMessagesDelta` (`sbCutoff = if (effectiveAfterTs > 0L) effectiveAfterTs else 0L`), ensuring queries advance monotonically without repeatedly re-fetching boundary messages.
+* **REST Suppression During Active Realtime WebSocket (`ChatFeedScreen.kt`):**
+  * Suppressed the 4-second active room REST delta sync and preview-change full queries while `repository.isRealtimeConnected == true`, relying on instantaneous WebSocket push and local cache.
+  * Fallback REST delta polling interval increased to 45 seconds when disconnected, eliminating 39 queries/min (`133.2 KB/min`).
+
+### 3. In-Memory Realtime Updates & Monotonic Watermark for Customer Chat Meta
+* **Direct WebSocket In-Memory Sync (`ChatRepository.kt` & `LokalexForegroundService.kt`):**
+  * Eliminated redundant REST `refreshChatsDelta` calls dispatched on every incoming WebSocket event in `LokalexForegroundService.kt`.
+  * Implemented `applyRealtimeChatMetaUpdate(recordObj)` to update `_chatList` and cursor directly in-memory, respecting the 15-second `recentlyCompletedGuard`.
+* **Timestamp Normalization & Boundary Alignment:**
+  * Replaced ASCII string comparison in `updateMaxMetaUpdatedAt` with numeric epoch millisecond comparison (`parseChatTimestampMillis`), resolving collation mismatches between PostgreSQL `+00:00` and Kotlin `Z` formats.
+  * Eliminated the `-3000ms` rewind and suppressed routine REST metadata delta polling while Realtime WebSocket is connected.
+
+### 4. Bypass 36.0 KB Background Catered Customers Blob Fetch
+* **Smart Hydration & Watermark Receipts Sync (`LokalexRepository.kt`):**
+  * Introduced `isCateredTodayHydrated` and `lastCateredFetchDate` tracking.
+  * Routine background sync ticks (`refreshReceipts()`, every 24s/50s) bypass Step 1 (`/rest/v1/catered?id=eq.<today>` 36 KB JSON blob) once hydrated from disk, syncing solely via lightweight delta watermark queries on `receipts` (< 2 KB).
+  * Preserves full blob retrieval for cold starts (when cache is unhydrated), day rollover, or explicit user pull-to-refresh (`forceUncached = true`).
+
+### 5. Accurate Caller Stack-Trace Unwrapping in Profiler
+* **Filter Minified Interceptor Frames (`DataUsageTracker.kt`):**
+  * Enhanced `captureCallerTag()` to unwrap minified OkHttp interceptor frames (`*.intercept`, `*l.intercept*`, `okhttp3.*`, `okio.*`, `CountingResponseBody`), resolving true calling repository methods and line numbers in profiler reports.
+
 ## Version 2.7.7 (2026-11-19)
 
 ### 1. In-App 60-Second Network & Realtime Diagnostic Profiler
