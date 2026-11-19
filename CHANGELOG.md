@@ -1,5 +1,29 @@
 # Lokalex App Release Notes
 
+## Version 2.7.9 (2026-11-20)
+
+### 1. Fixed Infinite "Loading messages..." Spinner on Empty Conversations
+* **Per-Room Initial Load Tracking (`ChatMessageLocalCache.kt`, `ChatRepository.kt`, `LokalexRepository.kt`):**
+  * Added explicit `loadedRoomIds: StateFlow<Set<String>>` and `isInitialRoomLoadInFlight: StateFlow<Boolean>` tracking across local SQLite and remote REST loads.
+  * Implemented `fetchRoomMessages(roomId, forceNetwork, limit)` with in-flight request deduplication (`ConcurrentHashMap<String, Deferred<List<ChatMessage>>>`), guaranteeing `markRoomLoaded(roomId)` and `isInitialRoomLoadInFlight = false` inside a `finally` block even when the server returns `[]`.
+* **Clean Empty-State Placeholder & Zero-Flicker Guard (`ChatConversationPane.kt`):**
+  * Restricted the loading spinner strictly to `(isInitialRoomLoadInFlight || isLoadingMessages) && messages.isEmpty() && !isRoomLoaded`.
+  * Empty loaded rooms now render a clean `"💬 No messages in this conversation yet"` placeholder instead of spinning indefinitely, and background delta syncs merge silently without flashing a loading overlay over already-loaded messages.
+
+### 2. Eliminated +1.21 MB Recomposition Room-Fetch Loop & Meta-Pulse Loops
+* **Canonical Room Hydration & Preview Loop Removal (`ChatFeedScreen.kt`):**
+  * Keyed initial room hydration strictly on `canonicalCustomerId, currentRoomUnlocked`, removing the destructive `fetchMessagesForRoom(forceNetwork = true)` call from the preview-update effect that previously triggered rapid infinite downloads.
+  * Ignored null-message pulses from `customer_chats_meta` / `customer_chat_meta` in `realtimeMessageEvents.collect` while Realtime WebSocket is connected so `markChatAsSeen` writes never trigger `syncActiveThreadDeltaNow()`.
+  * Short-circuited `syncActiveThreadDeltaNow()` early when `messages.isEmpty()` and the room is already loaded during an active WebSocket session.
+
+### 3. Microsecond Watermark Preservation, Zero-Polling Meta & 5s WebSocket Cooldown
+* **Exact PostgreSQL Microsecond Watermarks (`ChatRepository.kt`):**
+  * Preserved raw 6-digit PostgreSQL ISO timestamps in `updateMaxMetaUpdatedAt(iso)` (`cur.isBlank() || cleanMs > curMs || (cleanMs == curMs && clean > cur)`) instead of truncating to milliseconds.
+  * Formatted `timestamp=gt.` boundary queries in `fetchSupabaseMessages` with `Instant.ofEpochMilli(afterTimestamp + 1L)` to prevent re-fetching the same boundary row due to sub-millisecond microseconds.
+* **WebSocket-First Operations Sync & Read-Receipt Echo Suppression (`LokalexRepository.kt`, `LokalexForegroundService.kt`):**
+  * Wrapped `refreshChatsDelta` / `refreshChats` inside `if (!isWsActive)` in `startLiveOperationsSync`, stopping routine `customer_chat_meta` REST polling while Supabase Realtime WebSocket is connected.
+  * Enforced a `5_000L` ms reconnect cooldown (`lastWsConnectAttemptAtMs`) in `connectRealtimeWebSocket()` and skipped emitting `onNativeRealtimeEvent` for read-receipt-only `riderLastSeen` echoes.
+
 ## Version 2.7.8 (2026-11-19)
 
 ### 1. Elimination of 48x/min Phoenix Realtime Channel Subscription Loop
