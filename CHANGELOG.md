@@ -1,5 +1,19 @@
 # Lokalex App Release Notes
 
+## Version 2.7.1 (2026-11-19)
+
+### 1. Two-Row Non-Overlapping Chat Room Header Layout & Restored Customer Info Pill
+* **Permanently Restored Customer Info Pill (`ChatConversationPane.kt` & `ChatFeedScreen.kt`):**
+  * Customer name and color-coded **`info`** pill are now permanently rendered on the top row of the chat header across all chat folders (`Catering`, `Inbox`, `Scheduled`, `Done`, `Applicant`, `Stores`), never hidden by a folder check or squeezed off-screen by action buttons.
+  * Preserved live Google Maps registration color coding: **Green (`#22C55E`)** when a valid Google Maps link is registered in `ChatMeta` or in-memory customer directory records, and **Blue (`#3B82F6`)** when unregistered, with instant click-to-preview without extra network calls.
+* **Two-Row Non-Overlapping Header Architecture (`ChatConversationPane.kt`):**
+  * **Top Row:** Customer Avatar + Name (with flexible fill and ellipsis) + `info` pill button on the left, paired with `↻ Refresh` and `☰ Menu` action buttons on the right.
+  * **Second Row (Compact Action Strip):** Customer subtitle / real-time typing indicators on the left, paired with non-wrapping `🔒 Lock` / `🔓 Unlock` and `🤝 Request Catch` / `🚨 Catch Pending (Cancel)` / `🚨 Catch Customer` action pills on the right during active catering sessions.
+* **140.8 KB Startup Download Elimination & 0-Byte Disk Hydration (`LokalexRepository.kt`, `RosterAndShiftRepository.kt`, `DataUsageMonitorDialog.kt`):**
+  * Excluded massive 113.5 KB `appErrorLogs` (restricted to `id=eq.facebookApis`) and 33.5 KB `shiftHistory` (filtered via `id=neq.shiftHistory`) blobs from routine startup sync.
+  * Implemented zero-byte local disk hydration on startup and PostgREST JSON delta sync (`data->>updatedAt=gt.<maxSettingsUpdatedAt>`).
+  * Added exact normalized sub-endpoint breakdown inside `DataUsageMonitorDialog` and throttled directory updates with 15-minute intervals.
+
 ## Version 2.7.0 (2026-11-19)
 
 ### 1. Drastic Mobile Data Reduction & OkHttp Conditional Caching
