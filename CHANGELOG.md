@@ -1,5 +1,87 @@
 # Lokalex App Release Notes
 
+## Version 2.7.6 (2026-11-19)
+
+### 1. Elimination of Roster & Logins Bandwidth Drain
+* **Realtime WebSocket In-Memory Updates (`RosterAndShiftRepository.kt` & `LokalexForegroundService.kt`):**
+  * Handled `INSERT`, `UPDATE`, and `DELETE` events for `roster` and `logins` directly in-memory via `applyRealtimeRosterUpdate` and `applyRealtimeLoginUpdate` without triggering expensive full-table REST re-fetches.
+  * Persists updated states to disk snapshots (`filesDir/roster_cache.json` and `filesDir/logins_today_cache.json`) instantly.
+* **Strict Suppression of Background Polling (`LokalexRepository.kt` & `RosterAndShiftRepository.kt`):**
+  * Suppressed periodic roster polling ticks while the Phoenix Channels WebSocket is healthy (`if (!isWsActive) refreshRoster(...)`), cutting data usage to zero bytes during active WebSocket connections.
+  * Added PostgREST watermark delta sync for `roster` (`or=(data->>lastUpdated.gt.$max,data->>updatedAt.gt.$max)&select=id,data&limit=50`) returning 0 payload bytes when unchanged.
+* **Strict Manila Date Filtering for Logins (`RosterAndShiftRepository.kt`):**
+  * Filtered Supabase `logins` queries strictly to today's date in `Asia/Manila` (`select=id,data&or=(id.like.${todayDate}*,data->>date.eq.${todayDate})&limit=50`).
+  * Completely eliminated the un-filtered 50-row historical fallback query that previously downloaded 54.8 KB of past login records whenever today's logins returned empty.
+* **Targeted Shift Mutations & Zero-Byte Optimistic Updates (`RosterAndShiftRepository.kt`):**
+  * Narrowed `updateRosterFields` queries to targeted id and name parameters (`limit=5`) and removed the 100-row `getAllReq` fallback query.
+  * Implemented `applyLocalRosterUpdate` applying shift status changes in-memory with zero network overhead.
+  * Sanitized `Rider.photoUrl` to permanently strip `data:image` and `data:` base64 URIs.
+
+### 2. 100% Dynamic Starting Hubs & Main Hub Resolution
+* **Dynamic Hub & Branch Derivation (`DirectoryDialog.kt`, `CartReceiptScreen.kt`, `LokalexRepository.kt`):**
+  * Removed all hardcoded town and branch names. Starting hubs are built dynamically from loaded Supabase `rates` and `settings` records.
+  * Dynamically resolves the active Main Hub from Supabase `settings["mainHub"]`, displaying `(Main Hub)` for the primary hub and `<Hub> Branch` for all other branches.
+  * Added direct Admin quick-access gear pill opening `AdminMainHubDialog` to configure the main hub in Supabase with `Prefer: return=minimal`.
+
+### 3. Clickable + Type-to-Suggest Cascading Location Dropdowns
+* **Material 3 ExposedDropdownMenuBox (`DirectoryDialog.kt`):**
+  * Converted Starting Hub, Destination Region, Destination Municipality / City, and Destination Barangay / District into searchable dropdowns in Add/Edit Rate Entry modals.
+  * Equipped with trailing dropdown chevrons (`▼`) for 1-tap browsing and clear (`✕`) buttons.
+  * Instant type-to-suggest filtering backed 100% by live Supabase records with zero external PSA PSGC API calls and zero hardcoded town lists.
+
+## Version 2.7.5 (2026-11-19)
+
+### 1. Atomic Done Persistence & Elimination of Done -> Inbox Snapback
+* **Completion Order & In-Memory Done Persistence (`ChatRepository.kt` & `RosterAndShiftRepository.kt`):**
+  * Eliminated the race condition where marking a customer Done moved the thread to `Done` briefly and then snapped back to `Inbox` when the End-Chat auto-message fired.
+  * In `markCustomerDone`, immediately activates a 15-second `recentlyCompletedGuard[canonicalCustId]` and optimistically commits `folder = "done"`, `status = "completed"`, `cateredBy = ""`, and completion timestamps across all matching alias entries in `_chatList`—guaranteeing 0 UI flicker.
+  * Resets customer cart drafts and purges active catering entries from `ActiveCateringLocalCache` before dispatching the farewell message.
+
+### 2. Final Supabase Persistence Ordered After Farewell Dispatch
+* **Strict Post-Dispatch PATCH Ordering (`ChatRepository.kt`):**
+  * `sendEndChatAutoMessageIfEnabled(...)` dispatches outbound farewell messages **before** sending the final `PATCH /rest/v1/customer_chat_meta`.
+  * Even if the worker or outbound message temporarily touches `last_message` or metadata, the subsequent `PATCH` (`Prefer: return=minimal`) authoritatively writes `folder = "done"`, `status = "completed"`, `catered_by = null`, `is_done = true` as the final persisted Supabase state.
+
+### 3. Outgoing Message & Stale Delta Protection for Done Threads
+* **Zero Outbound Reopen Policy (`ChatRepository.kt`):**
+  * Stale inbound deltas and outgoing Page/rider messages (including the farewell auto-reply) are strictly prohibited from reopening Done threads to Inbox across all sync handlers (`parseSupabaseChats`, `maybeAutoReleaseDoneThread`, `fetchMessagesSb`, `fetchRecentGlobalMessages`, `forceMessageUpdate`, and `buildMetaUpdatesWithAutoRelease`).
+  * While within the 15-second `recentlyCompletedGuard` window, in-flight delta rows that still report older pre-completion folders (`catering` or `inbox`) are ignored and forced to `done`.
+  * Threads can now only be reopened to `Inbox` by genuine inbound customer messages (`!isFromPage && !isOutgoing && !isRider`) with timestamps strictly newer than the thread's completion timestamp.
+
+## Version 2.7.4 (2026-11-19)
+
+### 1. Zero-Drain Delta Watermark Sync for Customer Chats & Chats Meta
+* **Delta-Only Watermark Sync for `/rest/v1/customer_chats` (`ChatRepository.kt` & `ChatMessageLocalCache.kt`):**
+  * Eliminated the **906.0 KB/min** chat wire drain by persisting `max_chat_timestamp` in local SQLite/SharedPreferences watermarks and querying strictly new messages (`timestamp=gt.<maxChatTimestamp>&order=timestamp.asc&limit=100`).
+  * Yields empty response payloads (`[]` = 2 bytes) when no new customer messages exist, cutting chat polling data usage down to **< 5 KB**.
+  * Added reverse pagination via `fetchOlderMessagesForRoom` (`timestamp=lt.<oldestCachedTs>&order=timestamp.desc`) loaded strictly on-demand when a rider scrolls up in a conversation.
+* **Active-Folder Filtering & Delta Sync on `/rest/v1/customer_chat_meta` (`ChatRepository.kt` & `ChatFeedScreen.kt`):**
+  * Slashed metadata wire traffic from **238.7 KB/min down to < 3 KB** by tracking `max_meta_updated_at` and routing routine polls to `refreshChatsDelta`.
+  * Appended `&data->>folder=neq.done` on cold start and full refreshes so thousands of archived Done threads are never downloaded during startup.
+  * Added lazy-loaded `fetchDoneChats(limit = 100)` triggered on-demand only when the rider taps the **Done** tab in `ChatThreadListPane.kt` / `ChatFeedScreen.kt`.
+
+### 2. Today-Only + Delta Watermark Sync for Receipts with Offline Cache
+* **Calendar Day Scoping & Delta Querying (`LokalexRepository.kt`):**
+  * Restricted routine receipt polling strictly to today's date in `Asia/Manila` (`data->>date=eq.<today>`) combined with delta watermark filtering (`created_at=gt.<maxCreatedAt>&order=created_at.asc`), cutting receipt wire usage from **191.7 KB/min to < 2 KB**.
+  * Bounded historical date range queries in `fetchPerformancePeriodDataset` (`data->>date=gte.<start>&data->>date=lte.<end>`), bypassing historical fetches entirely when the requested period is strictly today.
+* **Instant Offline Disk Cache Hydration (`LokalexRepository.kt`):**
+  * Persists today's receipts to `config_cache/receipts_today.json` on sync and hydrates them instantly on cold boot, rendering today's gross and receipts with **0 network bytes**.
+
+### 3. Realtime WebSocket Health Coordination & Polling Back-Off
+* **Intelligent Polling Back-Off (`LokalexForegroundService.kt`, `LokalexRepository.kt`, `ChatFeedScreen.kt`):**
+  * Exposed `isWebSocketHealthy` companion state indicating active Phoenix Channels streaming on `customer_chats`, `customer_chat_meta`, and `roster`.
+  * Backed off foreground REST polling loops (`liveSyncJob` and `ChatFeedScreen.kt`) from aggressive 8s ticks to 20s–30s safety net intervals during active WebSocket connections, eliminating duplicate event traffic and battery drain.
+
+### 4. 100% Dynamic Directory Records from Live Supabase Records
+* **Dynamic Municipality, Store & Category Derivation (`DirectoryDialog.kt`, `CartReceiptScreen.kt`, `LokalexRepository.kt`):**
+  * Eliminated all hardcoded town and store lists across the app.
+  * Dynamically extracts and merges active municipalities and categories from live `customer_directory`, `store_directory`, `rates`, and `settings["serviceMunicipalities"]` records with full custom text input support.
+
+### 5. Strict Catering-Gated Farewell Message Guard
+* **Active Catering Verification (`ChatRepository.kt` & `RosterAndShiftRepository.kt`):**
+  * Gated `sendEndChatAutoMessageIfEnabled` in `markCustomerDone` strictly on active prior catering state (`inActiveCateredList`, `folder == catering`, or `status == catering`).
+  * Ensures moving non-catering threads (e.g. from `Inbox`, `Scheduled`, `Store`, or `Applicant`) to `Done` never fires automated farewell messages.
+
 ## Version 2.7.3 (2026-11-19)
 
 ### 1. 100% Manual App Update Checking with Zero Background/Startup Data Usage
