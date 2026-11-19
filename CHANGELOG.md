@@ -1,5 +1,33 @@
 # Lokalex App Release Notes
 
+## Version 2.8.0 (2026-11-20)
+
+### 1. Daily Asia/Manila Rollover, Date-Stamped Caches & Today-Only Tab Badges
+* **Centralized Zero-Network Rollover (`LokalexRepository.kt`):**
+  * Added `ensureDailyRolloverIfNeeded(ctx)` comparing `todayManilaDate()` against persisted `last_active_manila_date` and exposing reactive `currentManilaDateFlow: StateFlow<String>`.
+  * On date change, clears daily disk & in-memory caches (`catered_today`, `receipts_today`, `logins_today`, `roster_snapshot` / `roster_cache.json`, `cachedLoginsToday`, `cachedShiftHistoryLogins`, `maxReceiptCreatedAtByDate`, stale prior-day `_activeCateredList` & `_receiptList`) and resets prior-day rider shift fields (`hasLoggedInToday = false`, `timeIn = null`, `timeOut = null`, `status = "End"`, `isOffline = true`).
+* **Date-Stamped Disk Caches (`LokalexRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * Stamped `"cachedDate": todayManilaDate()` inside `catered_today`, `receipts_today`, `roster_cache.json` / `roster_snapshot`, and `logins_today_cache.json`; startup hydration rejects and deletes any cache whose `cachedDate != todayManilaDate()`.
+  * `refreshReceipts()` now writes empty date-stamped caches (`{"cachedDate": today, "rows": []}`) and marks `isCateredTodayHydrated = true; lastCateredFetchDate = today` even when Supabase returns `[]`, overwriting yesterday's disk file.
+* **Accurate Tab Badges & Reactive Today Date (`MainScreen.kt`, `CateredCustomersScreen.kt`):**
+  * Scoped `LokalexTabBar` `cateredCount` strictly to today's non-voided, non-penalty receipts (`rc.date.trim() == todayDate && !isReceiptTombstonedOrVoided(rc) && rc.grossAmount > 0.0 && rc.penaltyAmount <= 0.0`).
+  * Replaced frozen `remember { repository.todayManilaDate() }` with reactive `currentManilaDateFlow` + `ON_RESUME` rollover checks in both `MainScreen.kt` and `CateredCustomersScreen.kt`.
+
+### 2. Daily Logins & Rotations Reset
+* **Authoritative Empty `/rest/v1/logins` Handling (`RosterAndShiftRepository.kt`):**
+  * `refreshRoster()` invokes `ensureDailyRolloverIfNeeded()` first and bypasses the WebSocket early-return once on day rollover.
+  * Treated any HTTP `2xx` from `/rest/v1/logins` as authoritative (`loginsFetchSucceeded = true`) even when `[]` (0 riders clocked in today), resetting unlogged prior-day riders to `hasLoggedInToday = false`, `timeIn = null`, `timeOut = null`, `isOffline = true`, and `status = "End"`.
+* **Strict `hasLoggedInToday` Counts (`RiderLoginsScreen.kt`, `MainScreen.kt`):**
+  * Removed stale `|| !it.timeIn.isNullOrBlank()` fallbacks so Logins and Rotations badges reset cleanly to `0 / N` and `0/0/0` each morning.
+
+### 3. Missed-Cutoff Auto End Shift Recovery & Doze-Safe AlarmManager
+* **Missed-Cutoff Date-Window Evaluation (`RosterAndShiftRepository.kt`):**
+  * Supported `time`, `endTime`, `cutoffTime`, and `autoEndTime` in both 12-hour and 24-hour formats.
+  * Replaced the 59-minute window with `lastDueCutoffMs` / `cutoffShiftDate` evaluation in `Asia/Manila` so missed overnight/Doze cutoffs run immediately when `lastTriggeredDate < cutoffShiftDate`, ending all still-active riders (including forgotten `Catering` riders) whose last activity was before `lastDueCutoffMs` while protecting post-cutoff early logins.
+  * Kept the 60s local timer at **0 network bytes** when `cachedObj == null` or `lastTriggeredDate >= cutoffShiftDate`.
+* **Doze-Safe Alarm Scheduling (`LokalexKeepAliveReceiver.kt`, `LokalexForegroundService.kt`, `AndroidManifest.xml`):**
+  * Added `ACTION_AUTO_END_SHIFT` (`AlarmManager.RTC_WAKEUP`, `setExactAndAllowWhileIdle` / `setAndAllowWhileIdle`) scheduled on startup and whenever `autoEndShift` settings load or change.
+
 ## Version 2.7.9 (2026-11-20)
 
 ### 1. Fixed Infinite "Loading messages..." Spinner on Empty Conversations
