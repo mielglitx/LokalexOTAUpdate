@@ -1,5 +1,34 @@
 # Lokalex App Release Notes
 
+## Version 2.7.7 (2026-11-19)
+
+### 1. In-App 60-Second Network & Realtime Diagnostic Profiler
+* **Live 60-Second Trace Session (`DataUsageTracker.kt` & `DataUsageMonitorDialog.kt`):**
+  * Built a reactive in-app network profiler accessible directly from `DataUsageMonitorDialog`.
+  * Added StateFlow metrics (`isTraceActive`, `traceCountdown`, `traceElapsedSeconds`, `traceTotalBytes`, `traceTotalHits`, `traceStatsList`) profiling all HTTP requests and Phoenix Channels WebSocket frames over a 60-second window.
+  * Added **`▶ Run 60s Trace`** / **`⏹ Stop Trace (${countdown}s)`** button with live pulsing countdown status indicator.
+  * Added **`📋 Copy Report`** button copying a structured Markdown diagnostic summary to clipboard with Android Toast feedback.
+* **Top Callers & Queries Breakdown:**
+  * Categorizes each profiled hit with HTTP/WebSocket method badges (`GET`, `POST`, `PATCH`, `DELETE`, `WS_RECV`, `WS_SEND`).
+  * Shows hit count pills (`3x`), total data transferred, and average payload size per hit (`• avg 1.4 KB`).
+  * Monospace code chips display exact query parameters (`?select=id,text&limit=50`, `table=customer_chat_meta`, etc.).
+
+### 2. Stack-Trace Call-Site Attribution & Query Parameter Logging
+* **Automatic Stack-Trace Caller Identification (`captureCallerTag` in `DataUsageTracker.kt`):**
+  * Traverses `Thread.currentThread().stackTrace` past OkHttp internals and internal interceptors (`createUpsertDedupeInterceptor`, `createConditionalCacheInterceptor`, `CountingResponseBody`) to isolate the exact business logic caller function and line number in `com.lokalex.rider.*` (e.g., `ChatRepository.syncDeltaMessages:412`, `LokalexRepository.fetchRecentReceipts:1520`).
+  * Captures full query strings (`request.url.query`) and HTTP methods across all network requests.
+* **WebSocket Frame Attribution (`LokalexForegroundService.kt`):**
+  * Explicitly passes caller tags (`onMessage:320`, `subscribeToTable:381`, `startWsHeartbeat:405`), methods (`WS_RECV`, `WS_SEND`), and query parameters (`table=$table`, `topic=phoenix`) to `recordTraffic`.
+
+### 3. Root Cause Resolution for Duplicate Realtime Byte Counting
+* **Elimination of Phantom Overhead Spikes (`DataUsageTracker.kt`):**
+  * Discovered that `sampleLiveTrafficStats()` was sampling kernel socket deltas and synthesizing duplicate `"Realtime ($activeInfo)"` records under `"system"` while `LokalexForegroundService.onMessage` was measuring and logging the same WebSocket frames under `"chats"` or `"rotations"`.
+  * Implemented a rolling credit/debit balance against Android kernel `TrafficStats` so in-flight application frames absorb socket deltas without timing gaps.
+  * Residual OS-level network overhead is now strictly labeled as `"Network & TLS Overhead"` (never `"Realtime (...)`).
+  * Automated cleanup in `loadRecords()` and `saveRecords()` permanently purges legacy duplicate `"Realtime ("` entries from local disk storage.
+* **Accurate Disk Cache Hit Detection:**
+  * Fixed cache hit validation (`(response.cacheResponse != null && response.networkResponse == null) || response.header("X-Lokalex-Cache") == "HIT-DISK"`) so in-memory/mock responses in tests and profiling are tracked accurately without false zero-byte skips.
+
 ## Version 2.7.6 (2026-11-19)
 
 ### 1. Elimination of Roster & Logins Bandwidth Drain
