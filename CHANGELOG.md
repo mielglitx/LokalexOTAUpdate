@@ -1,5 +1,36 @@
 # Lokalex App Release Notes
 
+## Version 2.7.0 (2026-11-19)
+
+### 1. Drastic Mobile Data Reduction & OkHttp Conditional Caching
+* **OkHttp HTTP Disk Cache & `If-None-Match` / ETag Conditional Revalidation (`LokalexRepository.kt`, `DataUsageTracker.kt`):**
+  * Integrated a 10 MB persistent OkHttp disk cache (`cacheDir/supabase_http_cache`) and a conditional cache interceptor for Supabase PostgREST endpoints (`settings`, `admin_settings`, `riders`, `store_directory`, `directory`, `rates`, `app_releases`, `logins`, `rider_dayoffs`, `store_accounts`, `shared_quick_replies`).
+  * When Supabase data is unchanged, requests return `304 Not Modified` with 0 body bytes over the wire. `DataUsageTracker` now accurately tracks wire bytes (0 bytes for disk hits, ~300 bytes headers for 304s), cutting idle mobile data usage by over 95%.
+* **5-Minute Config TTLs & Deduplicated Operations Sync Loop (`LokalexRepository.kt`, `RosterAndShiftRepository.kt`, `MainScreen.kt`, `LokalexForegroundService.kt`):**
+  * Enforced a 5-minute background cache TTL on all static configuration tables (`settings`, `admin_settings`, `directory`, `store_accounts`, `shared_quick_replies`, `advanced_orders`, `riders`, `rider_dayoffs`, and `shiftHistory`).
+  * In `refreshRoster()`, routine live ticks now only query `roster` and today's `logins` (with reduced limit 50). Full config is only fetched every 5 minutes or on explicit refresh.
+  * Replaced duplicate foreground polling in `MainScreen` with a single unified `startLiveOperationsSync` loop in `LokalexRepository` featuring adaptive foreground (8–10s) and background (25–30s) throttling and incremental delta chat sync (`updated_at=gt.<cursor>`).
+* **Column Projections & Limit Reductions (`LokalexRepository.kt`, `ApkUpdateDownloader.kt`, `ChatRepository.kt`):**
+  * Replaced `select=*` on `app_releases` with explicit columns `id,version_code,version_name,apk_url,changelog,created_at&limit=5`.
+  * Lowered routine query bounds on `customer_chat_meta` (from 500 to 80) and `receipts` (from 200 to 80).
+
+### 2. Catch Customer (Order Handoff / SOS Reassignment) Workflow
+* **Atomic Order Reassignment & Fleet Notification (`RosterAndShiftRepository.kt`, `ChatRepository.kt`, `ActiveCateringLocalCache.kt`, `ChatAlertNotifier.kt`):**
+  * Riders can tap **Catch Customer** on active orders to request SOS reassignment with pre-set reasons (`Flat tire`, `Emergency`, `Breakdown`, etc.).
+  * Other available riders receive an immediate high-priority audio alert, notification banner, and an **SOS Catch Handoff** action card in their chat feed and rotations view.
+  * Enforced atomic claim guards on Supabase (`catch_requested = false, catered_by_rider_id = <claimer>`) and local cache to prevent race conditions when multiple riders tap Catch simultaneously.
+  * Preserved customer cart wizard draft data during reassignment so items and calculated fees are seamlessly transferred to the new catering rider.
+
+### 3. Dynamic 33% Income Tiers & Full Booking Limits Enforcement
+* **Automated Lineup Gross Income Tiers (`AdminSettingsDialogs.kt`, `RosterAndShiftRepository.kt`, `RotationsScreen.kt`):**
+  * Implemented automated 33% gross fee ranking when `autoEnabled` is active: lowest-earning 33% of riders can cater up to 4 concurrent bookings, middle 33% up to 2, and top 33% max 1 booking.
+  * Fixed `bookingLimits` configuration key serialization and immediate client-side limits re-calculation.
+  * Added visual `FULL BOOK` status indicators on rider rotation cards and instant dialog enforcement.
+
+### 4. Full Admin Privileges for Inspector Role
+* **Role Unification (`isAdminOrInspector` across all screens & dialogs):**
+  * Granted complete Admin visibility, configuration dialogs, lineup management, and 100% gross commission viewing to users with the `Inspector` role.
+
 ## Version 2.6.7 (2026-11-19)
 
 ### 1. Weighted Rider Performance Tracker (`15% / 15% / 35% / 35%`) & Single `OVERALL TOP 1` Champion Card
