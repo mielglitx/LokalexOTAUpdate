@@ -1,5 +1,33 @@
 # Lokalex App Release Notes
 
+## Version 2.8.1 (2026-11-20)
+
+### 1. Minimized Realtime Delivery, Doze Push Alerts & Faster Open-Room Chat Updates
+* **`INSERT` & `UPDATE` on `customer_chats` Without Metadata Noise (`LokalexForegroundService.kt`, `ChatRepository.kt`):**
+  * Subscribed `customer_chats` to `"*"` so in-place updates on per-room `${roomId}_messages` container rows arrive immediately when minimized or open.
+  * Dropped `_metadata`, `_threadSeenBy`, and `_midIndex` echoes at the top of `handleRealtimeMessage()` before any state updates or queries, and skipped re-emitting/alerting on `UPDATE` frames matching already-cached rows with identical content and timestamp.
+* **Doze Push Resilience & Reliable Sound/Vibration (`LokalexForegroundService.kt`, `ChatAlertNotifier.kt`, `LokalexFirebaseMessagingService.kt`):**
+  * Added immediate Doze-safe Phoenix heartbeat probing (`sendImmediateWsHeartbeat` / `requestImmediatePhoenixHeartbeat` with 10s ACK timeout), persisted `lastDeltaCursorMs` and `alertedMessageIds`, switched watchdog/FCM fallback to tiny `refreshChatsDelta(..., limit = 15)`, and restored `IMPORTANCE_HIGH` background sound & vibration.
+* **Fast Open-Room `customer_chat_meta` Catch-Up, Page `"You: ..."` Echoes & Stale-Socket Guard (`ChatFeedScreen.kt`, `LokalexForegroundService.kt`):**
+  * Applied `applyRealtimeChatMetaUpdate(record)` before notifying UI and ensured new non-blank outbound `"You: ..."` echoes are never suppressed by read-receipt filtering.
+  * Added 350ms debounced open-room catch-up on newer `customer_chat_meta` pulses (running 1 open-room `fetchMessagesDelta` only if no `customer_chats` frame arrived, and coalescing deterministic `"Page Admin"` `"You: ..."` bubbles via `ChatMessage.deduplicateMessages`).
+  * Kept routine REST polling suppressed while Realtime WebSocket is connected (20s open-room delta fallback when disconnected), with a 25s in-memory stale-socket guard that triggers 1 open-room delta + Phoenix heartbeat only when >25s pass without a frame while `liveSelectedChat` is newer.
+
+### 2. Hardened Chat Reply-To, Zero-Drain In-Place Reactions & Edits
+* **Reply-To Persistence & Accurate Tap-to-Scroll (`ChatRepository.kt`, `ChatConversationPane.kt`, `ChatFeedScreen.kt`, `ChatMessageLocalCache.kt`):**
+  * Fixed `sanitizeReplyMid()` so room-prefixed `mid__` and `mid.$` strings preserve canonical `mid.$`; preserved `replyToMid`/`replyToText`/`replyToSender` on optimistic promotion, media reply snippets, and failed-message retries.
+  * Updated `quotedIndex` lookup to match via `canonicalMidForDedupe`/`canonicalMidForMatch` and adjusted `onQuoteClick` scroll target for the optional `LazyColumn` top header item.
+* **Zero-Drain In-Place Edits & Reactions on Non-Latest Messages (`ChatRepository.kt`, `ChatMessageLocalCache.kt`, `ChatMeta.kt`, `ChatFeedScreen.kt`):**
+  * Updated `parseChatMessageFromJson()` so `message_edit` and `message_reaction` events (including `unreact` and emoji switches) update matching cached messages via `ChatMessageLocalCache.updateCachedMessageByMid()` and emit directly onto `_realtimeMessageEvents` (`customer_chats_edit` / `customer_chats_reaction`) with **0 extra REST queries**.
+  * Added `ChatMessage.reconcileEditFields()` wired into both `insertOrReplaceMessageInTx()` and `mergeLogicalMessages()` so non-edited rows never clobber `existing.isEdited` or `existing.originalText`.
+
+### 3. Login-Epoch Auto End Shift & Cross-Device Roster/Lineup Sync
+* **Explicit Manila Login Date & Epoch Evaluation (`Rider.kt`, `RosterAndShiftRepository.kt`, `LokalexForegroundService.kt`):**
+  * Persisted explicit `loginDate` and `loginTimestamp` per rider with `resolveLoginEpochMs()` and `isRiderActivityBeforeCutoff()`, protecting post-cutoff early logins and unlogged zero-timestamp rows while accurately ending forgotten pre-cutoff riders, and guarded `REASON_RIDER_UPDATE` against unintended roster sweeps.
+* **Monotonic & Clean Cross-Device Roster/Login Sync (`RosterAndShiftRepository.kt`, `RotationsScreen.kt`):**
+  * Added monotonic `lastUpdated` staleness guard in `applyRealtimeRosterUpdate()`, explicit clearing of `customerName`, break timers, and `isOffline` on `"Available"`/`"Break"`/`"End"` transitions, immediate `clearActiveCateredForRider()` when leaving Catering, disk persistence, and active-catering cache reconciliation.
+  * Updated `applyRealtimeLoginUpdate()` to sync today's logins directly onto `_rosterList` (`hasLoggedInToday = true`, `timeIn`, `isOffline = clockOut != null`) and added a lightweight one-shot on-enter / `ON_RESUME` `ensureDailyRolloverIfNeeded` + `refreshRoster(forceFullConfig = false)` check in `RotationsScreen`.
+
 ## Version 2.8.0 (2026-11-20)
 
 ### 1. Daily Asia/Manila Rollover, Date-Stamped Caches & Today-Only Tab Badges
