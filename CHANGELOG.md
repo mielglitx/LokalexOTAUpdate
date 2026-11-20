@@ -1,5 +1,27 @@
 # Lokalex App Release Notes
 
+## Version 2.8.2 (2026-11-20)
+
+### 1. Cross-Device Roster Lineup & Catering Timer Sync
+* **Never Block `Available -> Catering` or `End` Realtime Transitions (`RosterAndShiftRepository.kt`):**
+  * Tightened the monotonic staleness guard in `applyRealtimeRosterUpdate()` so non-`DELETE` updates are skipped only when `existing.lastUpdated > 0L && parsed.lastUpdated > 0L && existing.lastUpdated > parsed.lastUpdated && !parsed.isEnd && !parsed.isCatering`, preventing riders transitioning to `Catering` on another device from staying stuck in `Available`.
+  * Cleaned break/customer/offline fields on every transition and persisted immediately via `saveRosterSnapshotToDisk()` and `syncActiveCateringCacheFromState()`.
+* **Consistent Catering Elapsed Timers Across Phones (`RotationsScreen.kt`, `RosterAndShiftRepository.kt`):**
+  * Updated `syncActiveCateringCacheFromState()` to initialize `ActiveCateredEntry.startedAt` from `rider.lastUpdated` (instead of `System.currentTimeMillis()`) when no prior local cache entry exists.
+  * Updated `RotationsScreen.kt` `caterStartMs` to prefer matching `activeCatered` entries and reconcile with `rider.lastUpdated` whenever `activeCatered` is empty or `rider.lastUpdated` is newer than a stale cached `startedAt`.
+
+### 2. Zero-Network Placeholder `"Customer <ID>"` Ghost Card Removal
+* **Local Thread List & Parser Guards (`ChatFeedScreen.kt`, `ChatRepository.kt`):**
+  * Filtered empty placeholder PSID rows (`isRawCustomerIdFallbackName` + blank/fallback `customerName` + blank or `"No messages yet"` `lastMessage`) across `Catering`, `Inbox`, and `Scheduled` (`followup`) in `ChatFeedScreen.filteredChats`.
+  * Guarded `ChatRepository.parseSupabaseChats()` (and `applyRealtimeChatMetaUpdate()`) against synthesizing blank-name empty stubs in `inbox`/`followup`/`scheduled` when there is no catering owner and `!isApplicant`.
+
+### 3. Zero-Drain & Push Notification Cleanups
+* **Eliminated Redundant `refreshRoster()` Calls (`RotationsScreen.kt`, `MainScreen.kt`):**
+  * Removed 12 duplicate `repository.refreshRoster()` calls right after `repository.updateRiderStatus(...)`, preserving manual Refresh buttons and one-shot `ON_RESUME` / day-rollover checks.
+* **Microsecond Watchdog Fallback & FCM Catering Metadata (`LokalexForegroundService.kt`, `supabase/functions/send-fcm-push/index.ts`):**
+  * Preferred `ChatMessageLocalCache.getInstanceOrNull()?.getMaxChatTimestamp()` when `maxMetaIso` is blank before falling back to `Instant.ofEpochMilli(lastDeltaCursorMs).toString()` in `syncDeltaNow()`.
+  * Included `catered_by_rider_id`, `catered_by_rider_name`, and `status` in `send-fcm-push/index.ts` `customer_chat_meta` FCM data payloads for accurate background notification ownership filtering.
+
 ## Version 2.8.1 (2026-11-20)
 
 ### 1. Minimized Realtime Delivery, Doze Push Alerts & Faster Open-Room Chat Updates
