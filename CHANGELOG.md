@@ -1,5 +1,77 @@
 # Lokalex App Release Notes
 
+## Version 2.9.0 (2026-11-21)
+
+### 1. Fixed Catering Chat Disappearance on App Close/Minimize & Sync
+* **Protected Active Catering Ownership (`RosterAndShiftRepository.kt`, `ChatFeedScreen.kt`):**
+  * Eliminated destructive remote `scheduleOrphanedCateringCleanup` calls on today's active chats that previously sent PATCH requests to Supabase marking actively catered threads as `Done` and erasing `cateredByRiderId` / `cateredByRiderName` when the app was minimized or closed.
+  * Hardened `syncActiveCateringCacheFromState` to retain all active catered entries from today's active shift in `_activeCateredList` and `ActiveCateringLocalCache`, preventing them from being wiped on background sync or app resume.
+  * Relaxed `findActiveCateredOwner` from overly strict comma-separated string matching in `roster.customerName`, trusting valid active catering assignments as long as the assigned rider is on duty and not offline/ended.
+  * Ensured `resolveWithActiveCatered` and `filteredChats` in `ChatFeedScreen.kt` preserve actively catered chats in the Catering folder across all app lifecycle events.
+
+### 2. Restored Proper Folder Categorization & Filter Isolation
+* **Prevented False `isDone` Hijacking (`ChatMeta.kt`, `ChatRepository.kt`):**
+  * Updated `ChatMeta.isDone` and `ChatRepository.parseSupabaseChats` so that `status = "completed"` no longer hijacks explicit non-done folders (`Stores`, `Applicant`, `Inbox`, `Catering`, `Scheduled`).
+  * Fixed bug where merchant partner chats (`Stores`) or applicants (`Applicant`) or active inbox chats with legacy completed order statuses were being misclassified into the `Done` folder.
+  * Now each chat maps 100% reliably to its intended category: `Inbox`, `Catering`, `Stores`, `Scheduled` / `Followup`, `Applicant`, and `Done`.
+
+### 3. Hardened Directory Rates Destination Filter
+* **Rates Destination Dropdown Scoping (`DirectoryDialog.kt`):**
+  * Ensured the "Destination" filter dropdown in Directory -> Rates displays only cities/municipalities that have saved rate records under the selected Starting Hub, eliminating the dump of all 500+ gazetteer towns.
+
+## Version 2.8.9 (2026-11-21)
+
+### 1. Offline Philippine PSGC Location Gazetteer & Barangay Name Guards
+* **Complete Offline Philippine PSGC Gazetteer (`PhLocationGazetteer.kt`, `ph_psgc_locations.json`):**
+  * Bundled a 132 KB compact offline JSON asset (`app/src/main/assets/ph_psgc_locations.json`) covering all 18 official Philippine regions (NCR, CAR, Region I through XIII, MIMAROPA, BARMM, NIR) and 486+ cities/municipalities with authentic official PSGC barangay lists across operational provinces (including 100% of Tarlac, Pangasinan, Nueva Ecija, Pampanga, Zambales, Bataan, Bulacan, La Union, Ilocos Norte, Ilocos Sur, and Metro Manila), consuming 0 network bytes.
+  * Added `PhLocationGazetteer.isBarangayName()` guard in `DirectoryAndRatesRepository.getDynamicMunicipalities()` preventing barangay names (such as "Anoling 1st" and "Anoling 2nd") from appearing in the Destination Municipality / City dropdown and quick-chips.
+* **Cascading Isolation & Region Strictness (`DirectoryAndRatesRepository.kt`):**
+  * Strictly filtered both PSGC gazetteer and custom records by `selectedRegion` (never leaking `serviceMunicipalities` or other-region records into MIMAROPA or international selections).
+  * Enforced that records with blank region must have `findRegionForMunicipality(candidate) == cleanRegion`, completely blocking unresolvable records (`resolvedReg == null`) from leaking into a region's municipality list.
+  * In `getDynamicBarangays()`, strictly filtered by `selectedRegion` and `selectedMunicipality`, removing cross-town fallback that leaked unrelated barangays.
+* **Starting Hub & Main Hub Hardening (`DirectoryAndRatesRepository.kt`):**
+  * Hardened `getMainHub()` resolution hierarchy: `settingsMap["mainHub"]` -> `settingsMap["startingHubs"]` -> most frequent `originHub` in existing `barangays` rate records -> `defaultMunicipality` -> `"Camiling"` fallback (never returning placeholder `"Hub"`).
+  * Hardened `getDynamicStartingHubs()` to collect strictly `getMainHub()`, `startingHubs` setting entries, and distinct `originHub` values from `barangays` rate records with `"Camiling"` fallback, completely eliminating the 546-town leakage.
+  * Pinned Region III and Region I at the top of the region selector for immediate operational access.
+* **Immediate Stale Barangay Reset on Municipality Change (`DirectoryDialog.kt`):**
+  * Unconditionally resets `destinationBarangay = ""` whenever `destinationMunicipality` changes in `DirectoryRecordFormView` via dropdown selection or municipality chip taps, preventing previously selected barangays from carrying over to another town.
+
+## Version 2.8.6 (2026-11-21)
+
+### 1. Security Dialog Await, Password RPC Error Propagation & Single-Tap Logout
+* **Single-Tap Reactive Logout (`MainScreen.kt`):**
+  * Replaced stale non-reactive `savedName` string state with reactive `var savedName by remember { mutableStateOf(...) }` and computed `isLoggedIn`.
+  * In `LokalexMenuDialog`'s `onLogout`, immediately resets `savedName = ""`, calls `prefs.edit().remove("riderName").remove("userName").apply()`, clears active states, and dismisses dialogs so a single tap cleanly returns the app to the login screen.
+* **Security PIN / Password RPC Propagation (`LokalexRepository.kt`, `LokalexSubMenuDialogs.kt`):**
+  * In `saveRiderProfileFields()`, wired `set_account_password_rpc` with canonical ID resolution (`targetId = riderId ?: matchedRosterId ?: riderName`).
+  * Propagated non-404 RPC failures as `false` rather than silently succeeding.
+  * In `SecurityDialog`, awaited the save result before closing or showing toast: showing success toast and dismissing only when `ok == true`, and displaying an error message while keeping the dialog open on failure.
+
+## Version 2.8.5 (2026-11-20)
+
+### 1. Server-Side Auth RPC, Worker-Only Messenger Replies & Role-Based Security
+* **Server-Side Authentication RPC (`LokalexRepository.kt`):**
+  * Wires `authenticate_user_rpc` for rider and merchant accounts with HTTP 404 fallback, eliminating plaintext password memory retention and hardens legacy login to prevent overwriting blank rider passwords without admin credentials.
+* **Worker-Only Messenger Replies & Role-Based Security (`ChatRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * Routes all Messenger quoted replies through Cloudflare Worker (`/api/send-reply`) with server-side signing, removes hardcoded Facebook Page access token, enforces strict role-based admin checks without name/ID hardcoding, and purges credentials from cached rider profiles and roster memory.
+
+## Version 2.8.4 (2026-11-20)
+
+### 1. Cross-Device Lineup Parity, Monotonic Earliest Catering Timer & Remote Claim Sync
+* **Cross-Device Active Catering Alignment (`RosterAndShiftRepository.kt`, `ChatRepository.kt`):**
+  * Synchronizes all active today's catering chats across devices in `refreshRoster()`, eliminates single-phone claim gates, and prevents remote catering claim race conditions in `reconcileChatsWithRoster()` and `applyRealtimeChatMetaUpdate()`.
+* **Monotonic Earliest Catering Timers (`RotationsScreen.kt`, `RosterAndShiftRepository.kt`):**
+  * Prioritizes earliest valid `cachedStart` without `lastUpdated` forward jumps in `RotationsScreen.kt`, keeping catering timers strictly monotonic.
+  * Enforces `bypassWsCache` on manual refresh and app wakeups for guaranteed fresh Supabase state.
+
+## Version 2.8.3 (2026-11-20)
+
+### 1. Phase 1 Atomic PostgreSQL RPCs & Realtime Coalescing
+* **Atomic PostgreSQL RPCs (`LokalexRepository.kt`, `RosterAndShiftRepository.kt`):**
+  * Wired atomic PostgreSQL RPCs with HTTP 404 fallback (`claim_customer_atomic`, `complete_or_void_customer_atomic`, `patch_roster_atomic`).
+  * Enforced numeric epoch `lastUpdated` timestamps with formatted clock-string fallback, preserved active duty status for older APKs lacking logins rows, and automated active order completion on End Shift from Logins tab.
+  * Widened duplicate coalescing to 120s with `(edited)` and `You:` normalization.
+
 ## Version 2.8.2 (2026-11-20)
 
 ### 1. Cross-Device Roster Lineup & Catering Timer Sync
